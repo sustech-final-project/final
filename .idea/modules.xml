@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MineSweeper-Demo.iml" filepath="$PROJECT_DIR$/MineSweeper-Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/minesweeper.iml" filepath="$PROJECT_DIR$/minesweeper.iml" />
     </modules>
   </component>
 </project>
