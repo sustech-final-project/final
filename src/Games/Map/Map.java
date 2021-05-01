@@ -16,6 +16,8 @@ public class Map {
     }
 
     /**
+     * 作者：杨清淞
+     * 日期：2021.5.1
      * 构造一个新地图，对地图进行随机的初始化操作，并保证第一次点击位置不是雷
      * @param XI 第一次点击的X坐标，从'0'开始编号
      * @param YI 第一次点击的Y坐标，从'0'开始编号
@@ -61,27 +63,66 @@ public class Map {
     }
 
     /**
+     * 作者： 戴郭轶
+     * 日期：2021.5.1
      * 将构造的地图输入至:"mine.txt"文件中
      * 文件格式为：第一行为两个整数，分别代表了行数和列数
      *          下面的row行column列为雷区分布
-     * @param row 地图总行数
-     * @param column 地图总列数
+     *默认路径为/buffer/*.txt；
+     * 调用方法为mapWriter("*")
+     * 若调用mapWriter()，则默认为mine.txt
      */
-    public void mapwritter(int row,int column){
+    public void  mapWriter(){
+        mapWriter("mine.txt");
+    }
+    public void mapWriter(String filename){
         try{
-            File file = new File("mine.txt");
+            String s = "buffer/" + filename;
+            File file = new File(s);
             PrintStream writer = new PrintStream(new FileOutputStream(file));
-            writer.println(row + " "+column);
-            for (int i =0;i<row;i++){
-                for (int j=0;j<column;j++){
+            writer.println(map.length + " " + map[0].length);
+            for (int i =0;i<map.length;i++){
+                for (int j=0;j<map[i].length;j++){
                     writer.write(map[i][j]);
                 }
                 writer.println();
             }
         }catch (IOException e ){
-            System.out.println("opps");
+            System.out.println("writer");
         }
     }
+    /**
+     * 作者： 戴郭轶
+     * 日期：2021.5.1
+     * 读取构造的地图
+     * 文件格式为：第一行为两个整数，分别代表了行数和列数
+     *          下面的row行column列为雷区分布
+     *默认路径为/buffer/*.txt；
+     *调用方法为mapReader("*")
+     * 若调用mapReader(),则默认为mine.txt
+     */
+    public void mapReader(){
+        mapReader("mine.txt");
+    }
+    public void mapReader(String filename)  {
+        try {
+            String s = "buffer/" + filename;
+            BufferedReader in = new BufferedReader(new FileReader(s));
+            String str = in.readLine();
+            String [] arr = str.split("\\s+");
+            int a = Integer.parseInt(arr[0]);
+            int b = Integer.parseInt(arr[1]);
+            int i=0;
+            while ((str = in.readLine()) != null&&i<a) {
 
+                for (int j=0;j<b;j++){
+                    map[i][j] = str.charAt(j);
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            System.out.println("reader");
+        }
+    }
 
 }
