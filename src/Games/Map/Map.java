@@ -14,6 +14,9 @@ public class Map {
     public char[][] getMap() {
         return map;
     }
+    public char getMap(int X,int Y){
+        return map[X][Y];
+    }
 
     /**
      * 作者：杨清淞
@@ -124,5 +127,7 @@ public class Map {
             System.out.println("reader");
         }
     }
+
+
 
 }
