@@ -1,6 +1,7 @@
 package Games.Map;
 
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 /**
  * 该类是创造并保存一个x行y列的地图，其中数字代表周围雷的个数，字符“M”代表雷
@@ -9,6 +10,11 @@ import java.util.Random;
  */
 public class Map {
     private char[][] map;
+
+    public char[][] getMap() {
+        return map;
+    }
+
     /**
      * 构造一个新地图，对地图进行随机的初始化操作，并保证第一次点击位置不是雷
      * @param XI 第一次点击的X坐标，从'0'开始编号
@@ -53,5 +59,29 @@ public class Map {
             }
         }
     }
+
+    /**
+     * 将构造的地图输入至:"mine.txt"文件中
+     * 文件格式为：第一行为两个整数，分别代表了行数和列数
+     *          下面的row行column列为雷区分布
+     * @param row 地图总行数
+     * @param column 地图总列数
+     */
+    public void mapwritter(int row,int column){
+        try{
+            File file = new File("mine.txt");
+            PrintStream writer = new PrintStream(new FileOutputStream(file));
+            writer.println(row + " "+column);
+            for (int i =0;i<row;i++){
+                for (int j=0;j<column;j++){
+                    writer.write(map[i][j]);
+                }
+                writer.println();
+            }
+        }catch (IOException e ){
+            System.out.println("opps");
+        }
+    }
+
 
 }
