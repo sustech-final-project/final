@@ -24,6 +24,7 @@ public class ListenerClient extends Thread{
     public void addClientName(String str){
         ArrayList<String> a = SaveClientName.getClientname();
         a.add(str);
+        SaveClientName.setClientname(a);
     }
     public void deleteClientName(String str) {
         String [] arr = str.split("\\s+");
@@ -35,6 +36,7 @@ public class ListenerClient extends Thread{
                 i--;
             }
         }
+        SaveClientName.setClientname(a);
         System.out.println(arr[2]);//本行的arr[2]为玩家选择的对手，需要传递到下一个服务器
     }
 
@@ -62,8 +64,8 @@ public class ListenerClient extends Thread{
                 }
                 else {
                     addClientName(msg.substring(4));
-                    UpdateList();
                 }
+                UpdateList();
 
             } catch (IOException e) {
                 println(e.toString());
