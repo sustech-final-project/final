@@ -9,9 +9,13 @@ import java.util.*;
  * row和column两个值表示行数和列数
  */
 public class Map {
-    private char[][] map;
+    private static char[][] map;
 
-    public char[][] getMap() {
+    public static void setMap(char[][] map1) {
+        map = map1;
+    }
+
+    public static char[][] getMap() {
         return map;
     }
 
