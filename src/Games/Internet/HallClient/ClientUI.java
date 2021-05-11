@@ -10,6 +10,7 @@ public class ClientUI extends JFrame {
 //    public static void main(String[] args) {
 //        new ClientUI();
 //    }
+    public String name;
 
     public JButton btStart;
     public JButton btSend;
@@ -27,8 +28,8 @@ public class ClientUI extends JFrame {
     public ClientUI() {
         super("扫雷游戏大厅");
         btStart = new JButton("启动连接");
-        btSend = new JButton("请输入你想选择的对手序号");
-        tfSend = new JTextField(20);
+        btSend = new JButton("匹配一个旗鼓相当的对手");
+        //tfSend = new JTextField(20);
 //        tfIP = new JTextField(8);
 //        tfPort = new JTextField(3);
         tfName = new JTextField(6);
@@ -41,7 +42,31 @@ public class ClientUI extends JFrame {
 //        portText = new JTextPane();
 //        //portText.setText("服务端口");
 //        portText.setEditable(false);
-        taShow = new JTextArea();
+        final ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\test2.png");
+        taShow = new JTextArea(){
+            Image image = imageIcon.getImage();
+
+            Image grayImage = GrayFilter.createDisabledImage(image);
+            {
+                setOpaque(false);
+            }
+            public void paint(Graphics g) {
+                g.drawImage(imageIcon.getImage(), 0, 0, this);
+                super.paint(g);
+            }
+        };
+        Font x = new Font("Serif",1,20);
+        taShow.setFont(x);
+
+
+//    };
+//    JScrollPane scrollPane = new JScrollPane(textArea);
+//    Container content = frame.getContentPane();
+//    content.add(scrollPane, BorderLayout.CENTER);
+//    frame.setSize(250, 250);
+//    frame.setVisible(true);
+//}
+
         //启动链接按钮事件
         btStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,33 +74,33 @@ public class ClientUI extends JFrame {
             }
         });
         //发送按钮事件
-        tfSend.addKeyListener(new KeyListener() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    btSend.doClick();
-                  //  value = tfSend.getText();
-                    // System.out.println("Enter " + value);
-                    //FindAction.getAction(value);
-                    // JTextField text;String value;都在之前定义好了
-                    // FindAction.getAction()方法，其中FindAction实现的ActionListener接口
-                    // getAction()方法是从actionPerformed(ActionEvent e)中抽象出来的
-                }
-                // System.out.println("Text " + value);
-            }
-            public void keyReleased(KeyEvent e) {
-            }
-            public void keyTyped(KeyEvent e) {
-            }
-        });
+//        tfSend.addKeyListener(new KeyListener() {
+//            public void keyPressed(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+//                    btSend.doClick();
+//                  //  value = tfSend.getText();
+//                    // System.out.println("Enter " + value);
+//                    //FindAction.getAction(value);
+//                    // JTextField text;String value;都在之前定义好了
+//                    // FindAction.getAction()方法，其中FindAction实现的ActionListener接口
+//                    // getAction()方法是从actionPerformed(ActionEvent e)中抽象出来的
+//                }
+//                // System.out.println("Text " + value);
+//            }
+//            public void keyReleased(KeyEvent e) {
+//            }
+//            public void keyTyped(KeyEvent e) {
+//            }
+//        });
 
         btSend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String name = tfName.getText();
+                name = tfName.getText();
                 if (name == null || "".equals(name)) {
                     name = "匿名者";
                 }
-                server.sendMsg("over" +" " + name + " " + tfSend.getText());
-                tfSend.setText("");
+                server.sendMsg("over" +" " + name);
+               // tfSend.setText("");
                 System.exit(0);
             }
         });
@@ -85,13 +110,14 @@ public class ClientUI extends JFrame {
                 int a = JOptionPane.showConfirmDialog(null, "确定关闭吗？", "温馨提示",
                         JOptionPane.YES_NO_OPTION);
                 if (a == 1) {
+                    server.sendMsg("quit" + name);
                     System.exit(0); // 关闭
                 }
             }
         });
         //底部的发送信息框与链接按钮
         JPanel top = new JPanel(new FlowLayout());
-        top.add(tfSend); //发送文本
+      //  top.add(tfSend); //发送文本
         top.add(btSend); //发送按钮
         this.add(top, BorderLayout.SOUTH); //加载到底部
 
@@ -112,7 +138,7 @@ public class ClientUI extends JFrame {
         this.taShow.setEditable(false);
         this.add(sp, BorderLayout.CENTER);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 400);
+        this.setSize(1600, 1200);
         this.setLocation(600, 200);
         this.setVisible(true);
     }

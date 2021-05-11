@@ -29,15 +29,16 @@ public class ListenerClient extends Thread{
     public void deleteClientName(String str) {
         String [] arr = str.split("\\s+");
         ArrayList<String> a = SaveClientName.getClientname();
-        a.remove(Integer.parseInt(arr[2])-1);
-        for (int i = 0; i < a.size(); i++) {
-            if (a.get(i).equals(arr[1])) {
+        for (int i=0;i<=a.size();i++){
+            if (a.get(i).equals(arr[1])){
                 a.remove(i);
-                i--;
             }
         }
         SaveClientName.setClientname(a);
-        System.out.println(arr[2]);//本行的arr[2]为玩家选择的对手，需要传递到下一个服务器
+        UpdateList();
+//        a.remove(arr[1]);
+//        SaveClientName.setClientname(a);
+//        //System.out.println(arr[1]);//本行的arr[2]为玩家选择的对手，需要传递到下一个服务器
     }
 
     public void UpdateList(){
@@ -59,7 +60,10 @@ public class ListenerClient extends Thread{
                 reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 writer = new PrintWriter(client.getOutputStream(), true);
                 msg = reader.readLine();
-                if (msg.substring(0,3).equals("over")){
+                if (msg.substring(0,4).equals("over")){
+                    deleteClientName(msg);
+                }
+                if (msg.substring(0,4).equals("quit")){
                     deleteClientName(msg);
                 }
                 else {

@@ -31,6 +31,7 @@ public class Client extends Thread {
                 name = "匿名者";
             }
             sendMsg("abcd"+name);
+            ui.btStart.setEnabled(false);
             // 如果为 true，则 println、printf 或 format 方法将刷新输出缓冲区
         } catch (NumberFormatException nu) {
             println("端口请输入正确.......");
