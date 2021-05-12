@@ -27,7 +27,7 @@ public class ClientUI extends JFrame {
 
     public ClientUI() {
         super("扫雷游戏大厅");
-        btStart = new JButton("启动连接");
+        btStart = new JButton("登录");
         btSend = new JButton("匹配一个旗鼓相当的对手");
         //tfSend = new JTextField(20);
 //        tfIP = new JTextField(8);

@@ -1,4 +1,4 @@
-package Games.Map;
+package Games.Internet.GameServer;
 
 /**
  * 作者：戴郭轶
@@ -12,11 +12,8 @@ public class Data {
     private static int point1=0;      //玩家1的分数
     private static int point2=0;      //玩家2的分数
     private static int order=1;       //下一步的次序
-    private static int mines = 0;     //雷的个数
-    private static int click =0 ;     //每回合点击次数
-    private static int players = 0;   //玩家个数
-    private static String name1="";   //玩家1的姓名
-    private static String name2="";   //玩家2的姓名
+    private static String filename;
+
 
 
 
@@ -82,43 +79,11 @@ public class Data {
         order = order1;
     }
 
-    public static String getName1() {
-        return name1;
+    public static String getFilename() {
+        return filename;
     }
 
-    public static void setName1(String name1) {
-        Data.name1 = name1;
-    }
-
-    public static String getName2() {
-        return name2;
-    }
-
-    public static void setName2(String name2) {
-        Data.name2 = name2;
-    }
-
-    public static int getMines() {
-        return mines;
-    }
-
-    public static void setMines(int mines) {
-        Data.mines = mines;
-    }
-
-    public static int getClick() {
-        return click;
-    }
-
-    public static void setClick(int click) {
-        Data.click = click;
-    }
-
-    public static int getPlayers() {
-        return players;
-    }
-
-    public static void setPlayers(int players) {
-        Data.players = players;
+    public static void setFilename(String filename) {
+        Data.filename = filename;
     }
 }

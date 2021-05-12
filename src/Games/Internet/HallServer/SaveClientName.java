@@ -1,9 +1,11 @@
 package Games.Internet.HallServer;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SaveClientName {
     public static ArrayList<String> Clientname = new ArrayList<>();
+    public Map<Integer, Integer> schedule;
     public SaveClientName(){
     }
 
