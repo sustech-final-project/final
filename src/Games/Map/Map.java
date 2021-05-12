@@ -10,6 +10,19 @@ import java.util.*;
  */
 public class Map {
     private static char[][] map;
+    private int row, column, num;
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getNum() {
+        return num;
+    }
 
     public static void setMap(char[][] map1) {
         map = map1;
@@ -18,9 +31,30 @@ public class Map {
     public static char[][] getMap() {
         return map;
     }
+    public char[][] geTMap() {
+        return map;
+    }
+
+
 
     public char getMap(int X, int Y) {
         return map[X][Y];
+    }
+
+
+    public Map(int row, int column, int num) {
+        map = new char[row][column];
+        this.row = row;
+        this.column = column;
+        this.num = num;
+    }
+
+    public Map(String fileName) {
+        mapReader(fileName);
+    }
+
+    public Map() {
+        mapReader();
     }
 
     /**
@@ -30,12 +64,8 @@ public class Map {
      *
      * @param XI     第一次点击的X坐标，从'0'开始编号
      * @param YI     第一次点击的Y坐标，从'0'开始编号
-     * @param row    地图总行数
-     * @param column 地图总列数
-     * @param num    地雷个数
      */
-    public Map(int XI, int YI, int row, int column, int num) {
-        this.map = new char[row][column];
+    public char[][] createMap(int XI, int YI) {
         Random r = new Random();
 
         int[][] tem = new int[row + 2][column + 2];
@@ -69,14 +99,7 @@ public class Map {
                 if (map[i][j] != 'M') map[i][j] = (char) (tem[i + 1][j + 1] + '0');
             }
         }
-    }
-
-    public Map(String fileName) {
-        mapReader(fileName);
-    }
-
-    public Map() {
-        mapReader();
+        return map;
     }
 
     /**
@@ -130,12 +153,12 @@ public class Map {
             BufferedReader in = new BufferedReader(new FileReader(s));
             String str = in.readLine();
             String[] arr = str.split("\\s+");
-            int a = Integer.parseInt(arr[0]);
-            int b = Integer.parseInt(arr[1]);
-            map = new char[a][b];
+            row = Integer.parseInt(arr[0]);
+            column = Integer.parseInt(arr[1]);
+            map = new char[row][column];
             int i = 0;
-            while ((str = in.readLine()) != null && i < a) {
-                for (int j = 0; j < b; j++) {
+            while ((str = in.readLine()) != null && i < row) {
+                for (int j = 0; j < column; j++) {
                     map[i][j] = str.charAt(j);
                 }
                 i++;
