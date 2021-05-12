@@ -1,5 +1,7 @@
 package Games.Map;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 
 /**
@@ -11,11 +13,12 @@ import java.io.*;
  *   第二行为两位玩家的分数
  *   下面分别问地图与遍历情况
  */
-public class Save extends Map{
-    public static void Save(){
+public class Save<choosenFile> extends Map {
+    public static void Save() {
         Save("save.txt");
     }
-    public static void Save(String filename){
+
+    public static void Save(String filename) {
         int a[][] = Data.getHasClicked();
         char map1[][] = getMap();
         int point1 = Data.getPoint1();
@@ -66,19 +69,19 @@ public class Save extends Map{
             int point2 = Integer.parseInt(arr1[1]);
             str = in.readLine();
             int order = Data.getOrder();
-            char [][] map1 = new char[a][b];
-            int [][] HasClicked1 = new int[a][b];
+            char[][] map1 = new char[a][b];
+            int[][] HasClicked1 = new int[a][b];
             int i = 0;
-            while ((str = in.readLine()) != null &&i<a) {
+            while ((str = in.readLine()) != null && i < a) {
                 for (int j = 0; j < b; j++) {
                     map1[i][j] = str.charAt(j);
                 }
                 i++;
             }
-            i=0;
-            while ((str = in.readLine()) != null &&i<a) {
+            i = 0;
+            while ((str = in.readLine()) != null && i < a) {
                 for (int j = 0; j < b; j++) {
-                    HasClicked1[i][j] = str.charAt(j)-'0';
+                    HasClicked1[i][j] = str.charAt(j) - '0';
                 }
                 i++;
             }
@@ -97,7 +100,7 @@ public class Save extends Map{
         return MapReader("save.txt");
     }
 
-    public static Map MapReader(String filename){
+    public static Map MapReader(String filename) {
         Map map = new Map();
         try {
             String s = "buffer/" + filename;
@@ -112,19 +115,19 @@ public class Save extends Map{
             int point2 = Integer.parseInt(arr1[1]);
             str = in.readLine();
             int order = Data.getOrder();
-            char [][] map1 = new char[a][b];
-            int [][] HasClicked1 = new int[a][b];
+            char[][] map1 = new char[a][b];
+            int[][] HasClicked1 = new int[a][b];
             int i = 0;
-            while ((str = in.readLine()) != null &&i<a) {
+            while ((str = in.readLine()) != null && i < a) {
                 for (int j = 0; j < b; j++) {
                     map1[i][j] = str.charAt(j);
                 }
                 i++;
             }
-            i=0;
-            while ((str = in.readLine()) != null &&i<a) {
+            i = 0;
+            while ((str = in.readLine()) != null && i < a) {
                 for (int j = 0; j < b; j++) {
-                    HasClicked1[i][j] = str.charAt(j)-'0';
+                    HasClicked1[i][j] = str.charAt(j) - '0';
                 }
                 i++;
             }
@@ -140,8 +143,59 @@ public class Save extends Map{
         return map;
     }
 
+    public static Map filechosser() {
+        JFileChooser chooser = new JFileChooser(new File("save"));
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+// 保存所选目录chooser.showSaveDialog(parent);
+        Component parent = null;
+        int returnVal = chooser.showSaveDialog(parent);
+// 获得选中的文件对象JFileChooser.APPROVE_OPTION
+// 如果保存的目录跟获得选中的文件对象一致，成功都是返回0
+        String selectPath = "";
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            selectPath = chooser.getSelectedFile().getPath();
+            //System.out.println("你选择的目录是：" + selectPath);
+            //System.exit(0);
+        }
 
+        Map map = new Map();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(selectPath));
+            String str = in.readLine();
+            String[] arr = str.split("\\s+");
+            int a = Integer.parseInt(arr[0]);
+            int b = Integer.parseInt(arr[1]);
+            str = in.readLine();
+            String[] arr1 = str.split("\\s+");
+            int point1 = Integer.parseInt(arr1[0]);
+            int point2 = Integer.parseInt(arr1[1]);
+            str = in.readLine();
+            int order = Data.getOrder();
+            char[][] map1 = new char[a][b];
+            int[][] HasClicked1 = new int[a][b];
+            int i = 0;
+            while ((str = in.readLine()) != null && i < a) {
+                for (int j = 0; j < b; j++) {
+                    map1[i][j] = str.charAt(j);
+                }
+                i++;
+            }
+            i = 0;
+            while ((str = in.readLine()) != null && i < a) {
+                for (int j = 0; j < b; j++) {
+                    HasClicked1[i][j] = str.charAt(j) - '0';
+                }
+                i++;
+            }
 
-
-
+            setMap(map1);
+            Data.setPoint1(point1);
+            Data.setPoint2(point2);
+            Data.setHasClicked(HasClicked1);
+            Data.setOrder(order);
+        } catch (IOException e) {
+            System.out.println("reader");
+        }
+        return map;
+    }
 }
