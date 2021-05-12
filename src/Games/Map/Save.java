@@ -93,6 +93,53 @@ public class Save extends Map{
         }
     }
 
+    public static Map MapReader() {
+        return MapReader("save.txt");
+    }
+
+    public static Map MapReader(String filename){
+        Map map = new Map();
+        try {
+            String s = "buffer/" + filename;
+            BufferedReader in = new BufferedReader(new FileReader(s));
+            String str = in.readLine();
+            String[] arr = str.split("\\s+");
+            int a = Integer.parseInt(arr[0]);
+            int b = Integer.parseInt(arr[1]);
+            str = in.readLine();
+            String[] arr1 = str.split("\\s+");
+            int point1 = Integer.parseInt(arr1[0]);
+            int point2 = Integer.parseInt(arr1[1]);
+            str = in.readLine();
+            int order = Data.getOrder();
+            char [][] map1 = new char[a][b];
+            int [][] HasClicked1 = new int[a][b];
+            int i = 0;
+            while ((str = in.readLine()) != null &&i<a) {
+                for (int j = 0; j < b; j++) {
+                    map1[i][j] = str.charAt(j);
+                }
+                i++;
+            }
+            i=0;
+            while ((str = in.readLine()) != null &&i<a) {
+                for (int j = 0; j < b; j++) {
+                    HasClicked1[i][j] = str.charAt(j)-'0';
+                }
+                i++;
+            }
+
+            setMap(map1);
+            Data.setPoint1(point1);
+            Data.setPoint2(point2);
+            Data.setHasClicked(HasClicked1);
+            Data.setOrder(order);
+        } catch (IOException e) {
+            System.out.println("reader");
+        }
+        return map;
+    }
+
 
 
 

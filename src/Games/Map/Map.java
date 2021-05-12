@@ -54,7 +54,7 @@ public class Map {
     }
 
     public Map() {
-        mapReader();
+        //mapReader();
     }
 
     /**
