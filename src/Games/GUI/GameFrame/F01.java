@@ -1,9 +1,13 @@
 package Games.GUI.GameFrame;
 
+import Games.Map.Map;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 import static Games.GUI.GameFrame.MainLocal.f02;
+import static Games.GUI.GameFrame.MainLocal.f03;
 
 public class F01 extends JFrame {
 
@@ -23,17 +27,19 @@ public class F01 extends JFrame {
 
         buttonYes.addActionListener((l) -> {
             this.dispose();
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-//                    f04(); 游戏开始
+                    Map map = new Map();
+                    F03 f03 = new F03("扫雷",map, new String[3]);
+                    f03(f03);
                 }
             });
         });
 
         buttonNo.addActionListener((l) -> {
             this.dispose();
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
 

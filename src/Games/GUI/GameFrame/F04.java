@@ -15,7 +15,7 @@ public class F04 extends JFrame {
         Container contentPane = getContentPane();
         Layout layout = new Layout();
         contentPane.setLayout(layout);
-        this.map = map.geTMap().clone();
+        this.map = map.getMap().clone();
 
 //        buttonYes.addActionListener((l) -> {
 //            this.dispose();

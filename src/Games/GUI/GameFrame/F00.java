@@ -25,10 +25,14 @@ public class F00 extends JFrame {
 
         native_.addActionListener((l) -> {
             this.dispose();
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    f01();
+                    if (true) {         ////////////////////////////
+                        f01();
+                    } else {
+                        f02();
+                    }
                 }
             });
         });
