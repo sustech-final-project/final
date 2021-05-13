@@ -157,7 +157,6 @@ public class Save<choosenFile> extends Map {
             //System.out.println("你选择的目录是：" + selectPath);
             //System.exit(0);
         }
-
         Map map = new Map();
         try {
             BufferedReader in = new BufferedReader(new FileReader(selectPath));
@@ -187,7 +186,6 @@ public class Save<choosenFile> extends Map {
                 }
                 i++;
             }
-
             setMap(map1);
             Data.setPoint1(point1);
             Data.setPoint2(point2);
@@ -195,6 +193,9 @@ public class Save<choosenFile> extends Map {
             Data.setOrder(order);
         } catch (IOException e) {
             System.out.println("reader");
+        }
+        catch (NumberFormatException e){
+            System.out.println("数据不合法");
         }
         return map;
     }
