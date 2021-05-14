@@ -191,11 +191,8 @@ public class Save<choosenFile> extends Map {
             Data.setPoint2(point2);
             Data.setHasClicked(HasClicked1);
             Data.setOrder(order);
-        } catch (IOException e) {
-            System.out.println("reader");
-        }
-        catch (NumberFormatException e){
-            System.out.println("数据不合法");
+        }  catch (Exception e){
+            System.out.println("数据不合法，请重新选择");
         }
         return map;
     }
