@@ -18,13 +18,18 @@ public class Timer implements Runnable							//计时器类
     private int time;													//计时变量
 
     JPanel panel1;												//面板
+
+    public JPanel getPanel1() {
+        return panel1;
+    }
+
     JTextField TimerField;										//计时器文本框
     Thread TimerThread;											//为计时器创建新线程
 
-    public Timer(JFrame frame)									//构造函数
+    public Timer(JPanel panel)									//构造函数
     {
         time = 0;
-        this.panel1 = (JPanel)frame.getContentPane();			//获取主面板
+        this.panel1 = panel;			//获取主面板
 
         JLabel labelTime = new JLabel("用 时:");					//"计时"字样标签
         labelTime.setHorizontalAlignment(JLabel.CENTER);

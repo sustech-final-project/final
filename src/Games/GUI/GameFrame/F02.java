@@ -1,4 +1,4 @@
-package Games.GUI.GameFrame;
+ package Games.GUI.GameFrame;
 
 import Games.Map.Map;
 
@@ -132,7 +132,7 @@ public class F02 extends JFrame {
                     public void run() {
                         String[] playerList = new String[people];
                         for (int i = 0; i < playerList.length; i++) {
-                            playerList[i] = JOptionPane.showInputDialog(this, "input here");
+                            playerList[i] = JOptionPane.showInputDialog("输入玩家" + (i + 1) +"昵称:", "input here");
                         }
                         f03(new F03("扫雷", map, playerList));
                     }

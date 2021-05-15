@@ -1,6 +1,7 @@
 package Games.GUI.GameFrame;
 
 import Games.Map.Map;
+import Games.Map.Timer;
 
 
 import javax.swing.*;
@@ -17,10 +18,12 @@ public class F03 extends JFrame {
     MouseListener[][] listeners;
     Button[][] buttons;
     JPanel[] panels;
+    JPanel timerPanel = new Timer(new JPanel()).getPanel1();
     JPanel board = new JPanel(new VerticalFlowLayout(VerticalFlowLayout.TOP, 1, 1));
 
     public F03(String title, Map map1, String [] playerList) {
         super(title);
+
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         Layout layout = new Layout();
@@ -33,6 +36,7 @@ public class F03 extends JFrame {
             panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
             for (int j = 0; j < map.getColumn(); j++) {
                 buttons[i][j] = new Button("");
+                buttons[i][j].setFocusable(false);
                 listeners[i][j] = new MouseListener();
                 buttons[i][j].setPreferredSize(new Dimension(41, 41));
                 buttons[i][j].addMouseListener(listeners[i][j]);
@@ -40,6 +44,7 @@ public class F03 extends JFrame {
             }
             board.add(panels[i]);
         }
+        contentPane.add(timerPanel);
         contentPane.add(board);
 
         //
@@ -79,9 +84,15 @@ public class F03 extends JFrame {
 
         @Override
         public void layoutContainer(Container parent) {
-
+            int width = parent.getWidth();
+            int height = parent.getHeight();
             if (board.isVisible()) {
                 board.setBounds(0, 0, 43 * map.getRow(), 44 * map.getColumn());
+            }
+
+            if (timerPanel.isVisible()){
+                Dimension size = timerPanel.getPreferredSize();
+                timerPanel.setBounds(43 * map.getRow(),0,size.width * 2,size.height);
             }
 
 
