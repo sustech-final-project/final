@@ -1,6 +1,7 @@
 package Games.GUI.GameFrame;
 
 import Games.Map.Map;
+import Games.listener.GameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +11,14 @@ import static Games.GUI.GameFrame.MainLocal.f02;
 import static Games.GUI.GameFrame.MainLocal.f03;
 
 public class F01 extends JFrame {
-
-    JLabel haveSave = new JLabel("是否继续上次未完成的游戏");
+    GameController gc;
+    JLabel haveSave = new JLabel("是否从存档开始游戏");
     JButton buttonYes = new JButton("是");
     JButton buttonNo = new JButton("否");
 
-    public F01(String title){
+    public F01(String title, GameController gc){
         super(title);
+        this.gc = gc;
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         Layout layout = new Layout();
@@ -30,9 +32,8 @@ public class F01 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    Map map = new Map();
-                    F03 f03 = new F03("扫雷",map, new String[3]);
-                    f03(f03);
+                    gc.choseSave();
+                    f03();
                 }
             });
         });

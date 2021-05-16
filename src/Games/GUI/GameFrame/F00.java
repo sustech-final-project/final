@@ -1,6 +1,8 @@
 package Games.GUI.GameFrame;
 
 import Games.Map.Map;
+import Games.listener.GameController;
+import Games.listener.test;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +14,11 @@ public class F00 extends JFrame {
     JLabel label = new JLabel("请选择游戏类型");
     JButton native_ = new JButton("单机游戏");
     JButton net = new JButton("联网游戏");
+    GameController gc;
 
-    public F00(String title){
+    public F00(String title, GameController gc){
         super(title);
+        this.gc = gc;
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         Layout layout = new Layout();
@@ -28,7 +32,7 @@ public class F00 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (true) {         ////////////////////////////
+                    if (gc.isSaveExist()) {         ////////////////////////////
                         f01();
                     } else {
                         f02();

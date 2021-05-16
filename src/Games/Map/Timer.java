@@ -1,5 +1,6 @@
 package Games.Map;
 
+import java.awt.*;
 import java.text.*;
 
 /**
@@ -36,7 +37,7 @@ public class Timer implements Runnable							//计时器类
         labelTime.setFocusable(false);
         panel1.add(labelTime);									//添加至主面板中
 
-        TimerField = new JTextField("0");						//计时数字文本框
+        TimerField = new JTextField("0", 3);						//计时数字文本框
         TimerField.setHorizontalAlignment(JTextField.CENTER);
         TimerField.setEditable(false);
         TimerField.setFocusable(false);

@@ -1,6 +1,6 @@
  package Games.GUI.GameFrame;
 
-import Games.Map.Map;
+import Games.listener.GameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,7 @@ import java.awt.*;
 import static Games.GUI.GameFrame.MainLocal.*;
 
 public class F02 extends JFrame {
+    GameController gc;
     JRadioButton easy = new JRadioButton("简单", true);
     JRadioButton middle = new JRadioButton("中等");
     JRadioButton hard = new JRadioButton("困难");
@@ -17,21 +18,25 @@ public class F02 extends JFrame {
     JLabel column = new JLabel("列数：");
     JLabel mine = new JLabel("雷数：");
     JLabel player = new JLabel("游戏人数：");
+    JLabel turn = new JLabel("每人一轮点击数：");
     JTextField nR = new JFormattedTextField("100");
     JTextField nC = new JFormattedTextField("100");
     JTextField nM = new JFormattedTextField("30");
     JTextField nP = new JFormattedTextField("2");
+    JTextField nT = new JFormattedTextField("5");
     JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel panel5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
     int people = 0;
 
 
     JButton oK = new JButton("OK");
 
-    public F02(String title) {
+    public F02(String title, GameController gc) {
         super(title);
+        this.gc = gc;
         Container contentPane = getContentPane();
         Layout layout = new Layout();
         contentPane.setLayout(layout);
@@ -59,6 +64,10 @@ public class F02 extends JFrame {
         nR.setEnabled(false);
         nC.setEnabled(false);
         nM.setEnabled(false);
+        panel5.add(turn);
+        panel5.add(nT);
+        contentPane.add(panel5);
+
 
         other.addActionListener((e) -> {
             nR.setEnabled(true);
@@ -84,7 +93,7 @@ public class F02 extends JFrame {
             int row = 0;
             int column = 0;
             int mine = 0;
-
+            int turn = 0;
             int error = 0;
             try {
                 people = Integer.parseInt(nP.getText());
@@ -102,6 +111,8 @@ public class F02 extends JFrame {
                     row = Integer.parseInt(nR.getText());
                     column = Integer.parseInt(nC.getText());
                     mine = Integer.parseInt(nM.getText());
+                    turn = Integer.parseInt(nT.getText());
+
                 } catch (Exception e1) {
                     error++;
                     SwingUtilities.invokeLater(new Runnable() {
@@ -126,15 +137,21 @@ public class F02 extends JFrame {
             }
 
             if (error == 0) {
-                Map map = new Map(row, column, mine);
+                gc.setSize(row, column, mine);
+                gc.setTurns(turn);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String[] playerList = new String[people];
-                        for (int i = 0; i < playerList.length; i++) {
-                            playerList[i] = JOptionPane.showInputDialog("输入玩家" + (i + 1) +"昵称:", "input here");
+                        String str = "";
+                        String str1 = null;
+                        for (int i = 0; i < people && str != null; i++) {
+                            gc.addPlayer(people, str = JOptionPane.showInputDialog(str1 +"输入玩家" + (i + 1) +"的昵称:", "昵称"));
+                            if(str == null) {
+                                str1 = "输入无效，请重新";
+                                i --;
+                            } else str1 = null;
                         }
-                        f03(new F03("扫雷", map, playerList));
+                        f03();
                     }
                 });
                 this.dispose();
@@ -152,7 +169,6 @@ public class F02 extends JFrame {
             int width = parent.getWidth();
             int height = parent.getHeight();
 //            System.out.println(width + " " + height);
-
             {
                 Dimension size = easy.getPreferredSize();
                 int x = (width - size.width) / 4;
@@ -206,6 +222,12 @@ public class F02 extends JFrame {
                 int x = (width - size.width) / 4;
                 int y = 4 * (height - size.height) / 5;
                 panel4.setBounds(x, y, size.width, size.height);
+            }
+            {
+                Dimension size = panel5.getPreferredSize();
+                int x = 3 * (width - size.width) / 4;
+                int y = 2 * (height - size.height) / 5;
+                panel5.setBounds(x, y, size.width, size.height);
             }
         }
 

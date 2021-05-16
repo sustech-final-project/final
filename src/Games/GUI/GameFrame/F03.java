@@ -1,60 +1,72 @@
 package Games.GUI.GameFrame;
 
-import Games.Map.Map;
 import Games.Map.Timer;
-
+import Games.listener.GameController;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 
 
 public class F03 extends JFrame {
-
-    boolean[][] tem;
-
-    static int order = 0;
-    Map map;
+    int order = 0;
+    GameController gc;
+    char[][] map;
     MouseListener[][] listeners;
     Button[][] buttons;
     JPanel[] panels;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
-    JPanel board = new JPanel(new VerticalFlowLayout(VerticalFlowLayout.TOP, 1, 1));
+    JPanel board = new JPanel(new VerticalFlowLayout(VerticalFlowLayout.TOP, 0, 0));
 
-    public F03(String title, Map map1, String [] playerList) {
+    public F03(String title, GameController gc) {
         super(title);
-
-        setLocationRelativeTo(null);
-        Container contentPane = getContentPane();
-        Layout layout = new Layout();
-        contentPane.setLayout(layout);
-        map = map1;
-        buttons = new Button[map.getRow()][map.getColumn()];
-        listeners = new MouseListener[map.getRow()][map.getColumn()];
-        panels = new JPanel[map.getRow()];
-        for (int i = 0; i < map.getRow(); i++) {
-            panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
-            for (int j = 0; j < map.getColumn(); j++) {
-                buttons[i][j] = new Button("");
-                buttons[i][j].setFocusable(false);
-                listeners[i][j] = new MouseListener();
-                buttons[i][j].setPreferredSize(new Dimension(41, 41));
-                buttons[i][j].addMouseListener(listeners[i][j]);
-                panels[i].add(buttons[i][j]);
+            this.gc = gc;
+            setLocationRelativeTo(null);
+            Container contentPane = getContentPane();
+            contentPane.setLayout(new Af);
+        {
+            map = gc.getMap();
+            buttons = new Button[map.length][map[0].length];
+            listeners = new MouseListener[map.length][map[0].length];
+            panels = new JPanel[map.length];
+            for (int i = 0; i < map.length; i++) {
+                panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+                for (int j = 0; j < map[0].length; j++) {
+                    buttons[i][j] = new Button("");
+                    if (gc.isMapLoad() && gc.isPrint(i, j)) {
+                        buttons[i][j].setLabel(map[i][j] + "");
+                        buttons[i][j].setEnabled(false);
+                        order = gc.getOrder();
+                    }
+                    buttons[i][j].setFocusable(false);
+                    listeners[i][j] = new MouseListener();
+                    buttons[i][j].setPreferredSize(new Dimension(41, 41));
+                    buttons[i][j].addMouseListener(listeners[i][j]);
+                    panels[i].add(buttons[i][j]);
+                }
+                board.add(panels[i]);
             }
-            board.add(panels[i]);
+        }//建立board
+
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+        Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
+        board.setBorder(border);
+        timerPanel.setBorder(border);
+        if (board.isVisible()) {
+            Dimension size = board.getPreferredSize();
+            board.setBounds(0, 0, size.width, size.height);
+        }
+
+        if (timerPanel.isVisible()){
+            Dimension size = timerPanel.getPreferredSize();
+            timerPanel.setBounds(43 * map.length,0,size.width * 2,size.height);
         }
         contentPane.add(timerPanel);
         contentPane.add(board);
 
-        //
-        tem = new boolean[map.getRow()][map.getRow()];
-        for (int i = 0; i < tem.length; i++) {
-            for (int j = 0; j < tem[0].length; j++) {
-                tem[i][j] = false;
-            }
-        }
-        //
+
 
 
 //        buttonYes.addActionListener((l) -> {
@@ -80,46 +92,6 @@ public class F03 extends JFrame {
     }
 
 
-    private class Layout implements LayoutManager {
-
-        @Override
-        public void layoutContainer(Container parent) {
-            int width = parent.getWidth();
-            int height = parent.getHeight();
-            if (board.isVisible()) {
-                board.setBounds(0, 0, 43 * map.getRow(), 44 * map.getColumn());
-            }
-
-            if (timerPanel.isVisible()){
-                Dimension size = timerPanel.getPreferredSize();
-                timerPanel.setBounds(43 * map.getRow(),0,size.width * 2,size.height);
-            }
-
-
-        }
-
-        @Override
-        public void addLayoutComponent(String name, Component comp) {
-
-        }
-
-        @Override
-        public void removeLayoutComponent(Component comp) {
-
-        }
-
-        @Override
-        public Dimension preferredLayoutSize(Container parent) {
-            return null;
-        }
-
-        @Override
-        public Dimension minimumLayoutSize(Container parent) {
-            return null;
-        }
-    }
-
-
     private class MouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -133,44 +105,37 @@ public class F03 extends JFrame {
                     }
                 }
             }
-            if (order == 0) map.createMap(r, c);
-            if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
-                left(r, c);
-            } else if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                buttons[r][c].setLabel("F");
-            }
-            else if (buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                buttons[r][c].setLabel("");
+            if (!gc.isMapLoad()){
+                if (order == 0) gc.createMap(r, c);
+                if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
+                    left(r, c);
+                } else if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
+                    buttons[r][c].setLabel("F");
+                }
+                else if (buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
+                    buttons[r][c].setLabel("");
+                }
             }
             order++;
+            gc.setOrder(order);
         }
     }
 
     private void left(int r, int c) {
-        buttons[r][c].setLabel("" + map.getMap(r, c));
+        buttons[r][c].setLabel(gc.getChar(r, c));
         buttons[r][c].setEnabled(false);
-        tem[r][c] = true;
-        if (map.getMap(r, c) == '0'){
-            if (has(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {};
-            if (has(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {};
-            if (has(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {};
-            if (has(r, c + 1)) try {left(r, c + 1);} catch (Exception ignored) {};
-            if (has(r, c)) try {left(r, c);} catch (Exception ignored) {};
-            if (has(r, c - 1)) try {left(r, c - 1);} catch (Exception ignored) {};
-            if (has(r + 1, c + 1)) try {left(r + 1, c + 1);} catch (Exception ignored) {};
-            if (has(r + 1, c)) try {left(r + 1, c);} catch (Exception ignored) {};
-            if (has(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {};
+        if (buttons[r][c].getLabel().equals("0")){
+            if (gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
+            if (gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
+            if (gc.isPrint(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {}
+            if (gc.isPrint(r, c + 1)) try {left(r, c + 1);} catch (Exception ignored) {}
+            if (gc.isPrint(r, c)) try {left(r, c);} catch (Exception ignored) {}
+            if (gc.isPrint(r, c - 1)) try {left(r, c - 1);} catch (Exception ignored) {}
+            if (gc.isPrint(r + 1, c + 1)) try {left(r + 1, c + 1);} catch (Exception ignored) {}
+            if (gc.isPrint(r + 1, c)) try {left(r + 1, c);} catch (Exception ignored) {}
+            if (gc.isPrint(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {}
         }
     }
-
-    private boolean has(int r, int c) {
-        try {
-            return !tem[r][c];
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 }
 
 

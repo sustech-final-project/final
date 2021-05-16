@@ -1,10 +1,9 @@
-package Games.清淞大佬.pve;
+package Gamesdgy大佬.pve;
 
 
 import java.util.Random;
-import Games.清淞大佬.pve.Station;
 
-    public class boomInitialization {
+public class boomInitialization {
 
         protected Station[][] Array;
         protected int[] blockX;

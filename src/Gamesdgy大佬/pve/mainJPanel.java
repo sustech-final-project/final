@@ -1,20 +1,15 @@
-package Games.清淞大佬.pve;
+package Gamesdgy大佬.pve;
 
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Random;
 
 import javax.swing.*;
 
-import Games.清淞大佬.pve.boomInitialization;
-import Games.清淞大佬.pve.Station;
-
-    public class mainJPanel extends JPanel{
+public class mainJPanel extends JPanel{
         private JPanel[][] m_panel;
         private JLabel[][] m_label;
         private JButton[][] m_button;

@@ -1,11 +1,15 @@
 package Games.GUI.GameFrame;
 
 import Games.Map.Map;
+import Games.listener.GameController;
+import Games.listener.test;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainLocal {
+    private static final GameController gc = new test();
+
     public static void begin() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -26,28 +30,28 @@ public class MainLocal {
     }
 
     public static void f00() {
-        F00 f00 = new F00("欢迎");
+        F00 f00 = new F00("欢迎", gc);
         f00.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f00.setBounds(600, 400, 289, 153);
         f00.setVisible(true);
     }
 
     public static void f01() {
-        F01 f01 = new F01("是否继续上次游戏");
+        F01 f01 = new F01("是否继续上次游戏", gc);
         f01.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f01.setBounds(600, 400, 289, 153);
         f01.setVisible(true);
     }
 
     public static void f02() {
-        F02 f02 = new F02("游戏设置");
+        F02 f02 = new F02("游戏设置", gc);
         f02.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f02.setBounds(600, 400, 417, 159);
         f02.setVisible(true);
     }
 
-    public static void f03(F03 f03) {
-        f03.setTitle("扫雷");
+    public static void f03() {
+        F03 f03 = new F03("扫雷", gc);
         f03.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f03.setBounds(600, 400, 1000, 700);
         f03.setVisible(true);
