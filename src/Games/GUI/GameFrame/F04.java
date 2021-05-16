@@ -1,6 +1,8 @@
 package Games.GUI.GameFrame;
 
+import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Map;
+import Games.listener.GameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,14 +10,28 @@ import java.awt.*;
 import static Games.GUI.GameFrame.MainLocal.f02;
 
 public class F04 extends JFrame {
-    char[][] map;
-    public F04(String title, Map map){
+    GameController gc;
+    JButton play;
+    JLabel label;
+    public F04(String title, GameController gc){
         super(title);
+        this.gc = gc;
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
-        Layout layout = new Layout();
-        contentPane.setLayout(layout);
-        this.map = map.getMap().clone();
+        contentPane.setLayout(new Layout());
+        label = new JLabel("Congratulation, " + gc.whoWin() + ", wins!");
+        play = new JButton("Play Again.");
+        play.addActionListener(e -> {
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    dispose();
+                    f02();
+                }
+            });
+        });
+        contentPane.add(label);
+        contentPane.add(play);
 
 //        buttonYes.addActionListener((l) -> {
 //            this.dispose();
@@ -45,6 +61,14 @@ public class F04 extends JFrame {
         public void layoutContainer(Container parent) {
             int width = parent.getWidth();
             int height = parent.getHeight();
+            if (label.isVisible()){
+                Dimension size = label.getPreferredSize();
+                label.setBounds((width - size.width) / 2, (height - size.height) / 3, size.width, size.height);
+            }
+            if (play.isVisible()){
+                Dimension size = play.getPreferredSize();
+                play.setBounds((width - size.width) / 2, 2 * (height - size.height) / 3, size.width, size.height);
+            }
 //            System.out.println(width + " " + height);
 
 //            if (haveSave.isVisible()) {

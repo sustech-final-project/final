@@ -83,7 +83,37 @@ public interface GameController {
      */
     void setTurns(int turn);
 
-    void setOrder(int order);
-
+    /**
+     * 获得现在点击的次数
+     * @return 现在点击的次数
+     */
     int getOrder();
+
+    /**
+     * 获得玩家列表
+     * @return 玩家列表
+     */
+    String[] getPlayers();
+
+    /**
+     * 获得分数列表（顺序与上方相同）
+     * @return 分数列表
+     */
+    int[] getScores();
+
+    /**
+     * 点击(r,c)处时进行的所有数值改变，包括order等
+     * @param r 行
+     * @param c 列
+     * @param button 1 -> 左键； 3 -> 右键
+     */
+    void Click(int r, int c, int button);
+
+    /**
+     * 获得错误次数列表（顺序与上方相同）
+     * @return 出现错误次数列表
+     */
+    int[] getMistakes();
+
+    int getTurn();
 }

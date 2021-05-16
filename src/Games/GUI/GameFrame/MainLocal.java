@@ -57,12 +57,12 @@ public class MainLocal {
         f03.setVisible(true);
     }
 
-//    public static void f04() {
-//        F04 f04 = new F04("");
-//        f04.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        f04.setBounds(600, 400, 289, 153);
-//        f04.setVisible(true);
-//    }
+    public static void f04() {
+        F04 f04 = new F04("Congratulation", gc);
+        f04.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f04.setBounds(600, 400, 289, 153);
+        f04.setVisible(true);
+    }
 
 //    public static void f05() {
 //        F05 f05 = new F05("");

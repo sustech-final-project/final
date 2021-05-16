@@ -47,17 +47,17 @@ public class test implements GameController{
     @Override
     public boolean isPrint(int r, int c) {
 //        return Data.getHasClicked(r, c) == 0;
-        return true;
-    }
-
-    @Override
-    public boolean isEnd() {
         return false;
     }
 
     @Override
+    public boolean isEnd() {
+        return true;
+    }
+
+    @Override
     public String whoWin() {
-        return null;
+        return "null";
     }
 
     @Override
@@ -71,12 +71,32 @@ public class test implements GameController{
     }
 
     @Override
-    public void setOrder(int order) {
-        this.order = order;
+    public int getOrder() {
+        return order;
     }
 
     @Override
-    public int getOrder() {
-        return order;
+    public String[] getPlayers() {
+        return new String[] {"1", "2", "3"};
+    }
+
+    @Override
+    public int[] getScores() {
+        return new int[] {1, 2, 3};
+    }
+
+    @Override
+    public void Click(int r, int c, int button) {
+        order++;
+    }
+
+    @Override
+    public int[] getMistakes() {
+        return new int[] {1, 2 ,3};
+    }
+
+    @Override
+    public int getTurn() {
+        return 0;
     }
 }
