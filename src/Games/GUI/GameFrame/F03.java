@@ -44,10 +44,10 @@ public class F03 extends JFrame {
                 panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
                 for (int j = 0; j < map[0].length; j++) {
                     buttons[i][j] = new Button("");
-                    if (gc.isMapLoad() && gc.isPrint(i, j)) {
+                    order = gc.getOrder();
+                    if (order != 0 && gc.isPrint(i, j)) {
                         buttons[i][j].setLabel(map[i][j] + "");
                         buttons[i][j].setEnabled(false);
-                        order = gc.getOrder();
                     }
                     buttons[i][j].setFocusable(false);
                     listeners[i][j] = new MouseListener();
@@ -105,7 +105,7 @@ public class F03 extends JFrame {
                     }
                 }
             }
-                if (!gc.isMapLoad() && order == 0) gc.createMap(r, c);
+                if (order == 0) gc.createMap(r, c);
 
                 if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);

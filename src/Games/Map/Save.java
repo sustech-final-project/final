@@ -51,11 +51,11 @@ public class Save<choosenFile> extends Map {
     /**
      * 本程序为读取存档程序，读取格式与上相同
      */
-    public static void Reader() {
-        Reader("save.txt");
+    public static boolean Reader() {
+        return Reader("save.txt");
     }
 
-    public static void Reader(String filename) {
+    public static boolean Reader(String filename) {
         try {
             String s = "buffer/" + filename;
             BufferedReader in = new BufferedReader(new FileReader(s));
@@ -91,8 +91,10 @@ public class Save<choosenFile> extends Map {
             Data.setPoint2(point2);
             Data.setHasClicked(HasClicked1);
             Data.setOrder(order);
-        } catch (IOException e) {
-            System.out.println("reader");
+            return true;
+        } catch (Exception e) {
+            //System.out.println("reader");
+            return false;
         }
     }
 

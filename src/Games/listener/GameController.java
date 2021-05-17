@@ -20,12 +20,6 @@ public interface GameController {
     char[][] getMap();
 
     /**
-     * 检查此地图是否有存档建立
-     * @return 由存档建立 -> true
-     */
-    boolean isMapLoad();
-
-    /**
      *设置地图的参数
      * @param row 行
      * @param column 列

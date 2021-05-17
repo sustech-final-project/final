@@ -8,16 +8,26 @@ package Games.Map;
  */
 public class Data {
 
-    private static int[][] HasClicked; //判断位置是否被遍历
+
+
+    private static int[][] HasClicked;//判断位置是否被遍历
+    private static int[][] tool;      //道具
     private static int point1=0;      //玩家1的分数
     private static int point2=0;      //玩家2的分数
+    private static int point3=0;      //玩家3的分数
+    private static int point4=0;      //玩家4的分数
     private static int order=1;       //下一步的次序
     private static int mines = 0;     //雷的个数
     private static int click =0 ;     //每回合点击次数
     private static int players = 0;   //玩家个数
     private static String name1="";   //玩家1的姓名
     private static String name2="";   //玩家2的姓名
-
+    private static String name3="";   //玩家3的姓名
+    private static String name4="";   //玩家4的姓名
+    private static int mine1;         //玩家1触雷个数
+    private static int mine2;         //玩家2触雷个数
+    private static int mine3;         //玩家3触雷个数
+    private static int mine4;         //玩家4触雷个数
 
 
     /**
@@ -120,5 +130,77 @@ public class Data {
 
     public static void setPlayers(int players) {
         Data.players = players;
+    }
+
+    public static int[][] getTool() {
+        return tool;
+    }
+
+    public static void setTool(int[][] tool) {
+        Data.tool = tool;
+    }
+
+    public static String getName3() {
+        return name3;
+    }
+
+    public static void setName3(String name3) {
+        Data.name3 = name3;
+    }
+
+    public static String getName4() {
+        return name4;
+    }
+
+    public static void setName4(String name4) {
+        Data.name4 = name4;
+    }
+
+    public static int getMine1() {
+        return mine1;
+    }
+
+    public static void setMine1(int mine1) {
+        Data.mine1 = mine1;
+    }
+
+    public static int getMine2() {
+        return mine2;
+    }
+
+    public static void setMine2(int mine2) {
+        Data.mine2 = mine2;
+    }
+
+    public static int getMine3() {
+        return mine3;
+    }
+
+    public static void setMine3(int mine3) {
+        Data.mine3 = mine3;
+    }
+
+    public static int getMine4() {
+        return mine4;
+    }
+
+    public static void setMine4(int mine4) {
+        Data.mine4 = mine4;
+    }
+
+    public static int getPoint3() {
+        return point3;
+    }
+
+    public static void setPoint3(int point3) {
+        Data.point3 = point3;
+    }
+
+    public static int getPoint4() {
+        return point4;
+    }
+
+    public static void setPoint4(int point4) {
+        Data.point4 = point4;
     }
 }

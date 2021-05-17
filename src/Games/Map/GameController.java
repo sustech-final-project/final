@@ -1,15 +1,22 @@
-package Games.listener;
-
-//import Games.Map.Data;
+package Games.Map;
 import Games.Map.Map;
 import Games.Map.Save;
+import Games.components.Winner;
 
-public class test implements GameController{
+/** 5.17 杨基同学根据清淞的需要整接口
+ *注释点击每个方法左边的小按钮就好啦！！
+ */
+public class GameController implements Games.listener.GameController {
     Map map;
     int order;
     @Override
+  /**
+    *Reader 更改为boolean类型且可以直接导出
+    *isSaveExist会直接导出map
+ */
+
     public boolean isSaveExist() {
-        return true;
+        return Save.Reader();
     }
 
     @Override
@@ -29,30 +36,43 @@ public class test implements GameController{
 
     @Override
     public void createMap(int r, int c) {
-//        Data.setHasClicked(r, c);
         map.createMap(r,c);
     }
 
+    /**Data 中 HasClicked方法用于判断是否遍历
+     * 返回值： 坐标位置 ， 过程： 将其变为遍历状态
+     * @param r 行
+     * @param c 列
+     * @return 坐标位置
+     */
     @Override
     public String getChar(int r, int c) {
-//        Data.HasClicked(r,c);
-        return "" + map.getMap(r, c);
+        Data.setHasClicked(r,c);
+        return ""+map.getMap(r,c);
     }
 
+    /**地铁 老人 手机.jpg 一无所知.jpg
+     * getHasClicked()==1 已被遍历；==0 未遍历；
+     * @param r 行
+     * @param c 列
+     * @return 坐标是否已遍历 -> true
+     */
     @Override
     public boolean isPrint(int r, int c) {
-//        return Data.getHasClicked(r, c) == 0;
-        return false;
+      if(Data.getHasClicked(r,c)==1)
+          return true;
+     else
+          return false;
     }
 
     @Override
     public boolean isEnd() {
-        return true;
+        return false;
     }
 
     @Override
     public String whoWin() {
-        return "null";
+        return Winner.getWinner();
     }
 
     @Override
@@ -67,31 +87,31 @@ public class test implements GameController{
 
     @Override
     public int getOrder() {
-        return order;
+        return 0;
     }
 
     @Override
     public String[] getPlayers() {
-        return new String[] {"1", "2", "3"};
+        return new String[0];
     }
 
     @Override
     public int[] getScores() {
-        return new int[] {1, 2, 3};
+        return new int[0];
     }
 
     @Override
     public void Click(int r, int c, int button) {
-        order++;
+
     }
 
     @Override
     public int[] getMistakes() {
-        return new int[] {1, 2 ,3};
+        return new int[0];
     }
 
     @Override
     public int getTurn() {
-        return 0;
+        return Data.getOrder();
     }
 }

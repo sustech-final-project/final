@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainLocal {
-    private static final GameController gc = new test();
+    private static final GameController gc = new Games.Map.GameController();
 
     public static void begin() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
