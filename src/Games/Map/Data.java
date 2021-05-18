@@ -32,6 +32,115 @@ public class Data {
     private static int mistake2=0;
     private static int mistake3=0;
     private static int mistake4=0;
+    private static int pointOfRo1=0;//左边为上方类似数据 机器人1 2 3分别表示简单 中等 困难模式
+    private static int mineOfRo1=0;//point 机器人得分 mistake 机器人错误数 mine 机器人触雷数 最后只使用Ro1数据因为不同难度机器人可用一个数据（因为不会同时出现）方便设置方法
+    private static int mistakeOfRo1=0;
+    private static int pointOfRo2=0;
+    private static int mineOfRo2=0;
+    private static int mistakeOfRo2=0;
+    private static int pointOfRo3=0;
+    private static int mineOfRo3=0;
+
+    public static int getPointOfRo1() {
+        return pointOfRo1;
+    }
+
+    public static void setPointOfRo1(int pointOfRo1) {
+        Data.pointOfRo1 = pointOfRo1;
+    }
+
+    public static int getMineOfRo1() {
+        return mineOfRo1;
+    }
+
+    public static void setMineOfRo1(int mineOfRo1) {
+        Data.mineOfRo1 = mineOfRo1;
+    }
+
+    public static int getMistakeOfRo1() {
+        return mistakeOfRo1;
+    }
+
+    public static void setMistakeOfRo1(int mistakeOfRo1) {
+        Data.mistakeOfRo1 = mistakeOfRo1;
+    }
+
+    public static int getPointOfRo2() {
+        return pointOfRo2;
+    }
+
+    public static void setPointOfRo2(int pointOfRo2) {
+        Data.pointOfRo2 = pointOfRo2;
+    }
+
+    public static int getMineOfRo2() {
+        return mineOfRo2;
+    }
+
+    public static void setMineOfRo2(int mineOfRo2) {
+        Data.mineOfRo2 = mineOfRo2;
+    }
+
+    public static int getMistakeOfRo2() {
+        return mistakeOfRo2;
+    }
+
+    public static void setMistakeOfRo2(int mistakeOfRo2) {
+        Data.mistakeOfRo2 = mistakeOfRo2;
+    }
+
+    public static int getPointOfRo3() {
+        return pointOfRo3;
+    }
+
+    public static void setPointOfRo3(int pointOfRo3) {
+        Data.pointOfRo3 = pointOfRo3;
+    }
+
+    public static int getMineOfRo3() {
+        return mineOfRo3;
+    }
+
+    public static void setMineOfRo3(int mineOfRo3) {
+        Data.mineOfRo3 = mineOfRo3;
+    }
+
+    public static int getMistakeOfRo3() {
+        return mistakeOfRo3;
+    }
+
+    public static void setMistakeOfRo3(int mistakeOfRo3) {
+        Data.mistakeOfRo3 = mistakeOfRo3;
+    }
+
+    public static String getNameEz() {
+        return nameEz;
+    }
+
+    public static void setNameEz(String nameEz) {
+        Data.nameEz = nameEz;
+    }
+
+    public static String getNameMd() {
+        return nameMd;
+    }
+
+    public static void setNameMd(String nameMd) {
+        Data.nameMd = nameMd;
+    }
+
+    public static String getNameHa() {
+        return nameHa;
+    }
+
+    public static void setNameHa(String nameHa) {
+        Data.nameHa = nameHa;
+    }
+
+    private static int mistakeOfRo3=0;
+    private static String nameEz ="容易被击败的玩家";
+    private static String nameMd ="不太容易被击败的玩家";
+    private static String nameHa ="强大的机器人玩家";
 
     public static int getMistake1() {
         return mistake1;

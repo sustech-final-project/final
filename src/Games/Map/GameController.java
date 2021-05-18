@@ -213,6 +213,6 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public int getTurn() {
-        return Data.getOrder();
+        return Data.getClick();
     }
 }
