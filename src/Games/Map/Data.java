@@ -28,6 +28,10 @@ public class Data {
     private static int mine2;         //玩家2触雷个数
     private static int mine3;         //玩家3触雷个数
     private static int mine4;         //玩家4触雷个数
+    private static int mistake1;      //  mistake n 对应玩家n插旗错误次数
+    private static int mistake2;
+    private static int mistake3;
+    private static int mistake4;
 
 
     /**

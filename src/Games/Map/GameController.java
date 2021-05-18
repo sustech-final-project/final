@@ -8,7 +8,8 @@ import Games.components.Winner;
  */
 public class GameController implements Games.listener.GameController {
     Map map;
-    int order;
+    int order;//点击的次数
+    int turns;//每回合玩家课点击次数
     @Override
   /**
     *Reader 更改为boolean类型且可以直接导出
@@ -82,12 +83,12 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void setTurns(int turn) {
-
+        turns= Data.getClick();
     }
 
     @Override
     public int getOrder() {
-        return 0;
+        return Data.getOrder();
     }
 
     @Override
@@ -95,9 +96,29 @@ public class GameController implements Games.listener.GameController {
         return new String[0];
     }
 
+
+    public int getEachScores(String name) {
+        if(name==Data.getName1())
+            return Data.getPoint1();
+            if(name==Data.getName2())
+                return Data.getPoint2();
+                if(name==Data.getName3())
+                    return Data.getPoint3();
+                    if(name==Data.getName4())
+                        return Data.getPoint4();
+                    else return 0;
+    }
     @Override
-    public int[] getScores() {
-        return new int[0];
+    public int[] getScores(){
+        int a[] = new int[Data.getPlayers()];
+       a[0]=getEachScores(Data.getName1());
+       if (Data.getName2()!=null)
+           a[1]=getEachScores(Data.getName2());
+       if (Data.getName2()!=null)
+           a[2]=getEachScores(Data.getName3());
+       if (Data.getName2()!=null)
+           a[3]=getEachScores(Data.getName4());
+       return a;
     }
 
     @Override
