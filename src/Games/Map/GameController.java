@@ -42,7 +42,7 @@ public class GameController implements Games.listener.GameController {
     }
 
     /**Data 中 HasClicked方法用于判断是否遍历
-     * 返回值： 坐标位置 ， 过程： 将其变为遍历状态
+     * 返回值： 坐标位置 ， 过程： 将其变为遍历状
      * @param r 行
      * @param c 列
      * @return 坐标位置
@@ -128,55 +128,71 @@ public class GameController implements Games.listener.GameController {
             if(map.getMap(r,c)=='M'&&order==1){
                 Data.setPoint1(Data.getPoint1()-1);
                 Data.setMine1(Data.getMine1()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==2){
                 Data.setPoint2(Data.getPoint2()-1);
                 Data.setMine2(Data.getMine2()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==3){
                 Data.setPoint3(Data.getPoint3()-1);
                 Data.setMine3(Data.getMine3()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==4){
                 Data.setPoint4(Data.getPoint4()+1);
                 Data.setMine4(Data.getMine4()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==1){
                 Data.setPoint1(Data.getPoint1()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==2){
                 Data.setPoint2(Data.getPoint2()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==3){
                 Data.setPoint3(Data.getPoint3()+1);
+                Data.setHasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==4){
                 Data.setPoint4(Data.getPoint4()+1);
+                Data.setHasClicked(r,c);
             }
             if(button==3){
                 if(map.getMap(r,c)=='M'&&order==1){
                     Data.setPoint1(Data.getPoint1()+2);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==2){
                     Data.setPoint2(Data.getPoint2()+2);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==3){
                     Data.setPoint3(Data.getPoint3()+2);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==4){
                     Data.setPoint4(Data.getPoint4()+2);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==1){
                     Data.setMistake1(Data.getMistake1()+1);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==2){
                     Data.setMistake2(Data.getMistake2()+1);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==3){
                     Data.setMistake3(Data.getMistake3()+1);
+                    Data.setHasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==4){
                     Data.setMistake4(Data.getMistake4()+1);
+                    Data.setHasClicked(r,c);
                 }
             }
         }
@@ -184,7 +200,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public int[] getMistakes() {
-        return new int[0];
+        int[]
     }
 
     @Override
