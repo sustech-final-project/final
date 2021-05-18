@@ -51,6 +51,8 @@ public class Map {
 
     public Map(String fileName) {
         mapReader(fileName);
+        row = map.length;
+        column = map[0].length;
     }
 
     public Map() {

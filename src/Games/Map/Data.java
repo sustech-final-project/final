@@ -24,15 +24,46 @@ public class Data {
     private static String name2="";   //玩家2的姓名
     private static String name3="";   //玩家3的姓名
     private static String name4="";   //玩家4的姓名
-    private static int mine1;         //玩家1触雷个数
-    private static int mine2;         //玩家2触雷个数
-    private static int mine3;         //玩家3触雷个数
-    private static int mine4;         //玩家4触雷个数
-    private static int mistake1;      //  mistake n 对应玩家n插旗错误次数
-    private static int mistake2;
-    private static int mistake3;
-    private static int mistake4;
+    private static int mine1=0;         //玩家1触雷个数
+    private static int mine2=0;         //玩家2触雷个数
+    private static int mine3=0;         //玩家3触雷个数
+    private static int mine4=0;         //玩家4触雷个数
+    private static int mistake1=0;      //  mistake n 对应玩家n插旗错误次数
+    private static int mistake2=0;
+    private static int mistake3=0;
+    private static int mistake4=0;
 
+    public static int getMistake1() {
+        return mistake1;
+    }
+
+    public static void setMistake1(int mistake1) {
+        Data.mistake1 = mistake1;
+    }
+
+    public static int getMistake2() {
+        return mistake2;
+    }
+
+    public static void setMistake2(int mistake2) {
+        Data.mistake2 = mistake2;
+    }
+
+    public static int getMistake3() {
+        return mistake3;
+    }
+
+    public static void setMistake3(int mistake3) {
+        Data.mistake3 = mistake3;
+    }
+
+    public static int getMistake4() {
+        return mistake4;
+    }
+
+    public static void setMistake4(int mistake4) {
+        Data.mistake4 = mistake4;
+    }
 
     /**
      * 本程序在初始化棋盘式需要执行
