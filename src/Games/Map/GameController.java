@@ -200,7 +200,15 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public int[] getMistakes() {
-        int[]
+        int[] getMistakes=new int[Data.getPlayers()];
+        getMistakes[0]=Data.getMistake1();
+        if (Data.getName2()!=null)
+            getMistakes[1]=Data.getMistake2();
+        if (Data.getName3()!=null)
+            getMistakes[2]=Data.getMistake3();
+        if (Data.getName4()!=null)
+            getMistakes[3]=Data.getMistake4();
+                    return getMistakes;
     }
 
     @Override
