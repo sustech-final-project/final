@@ -1,7 +1,5 @@
 package Games.Map;
 
-import Games.Internet.GameServer.Player;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,7 +8,7 @@ import java.util.Arrays;
  * 日期：2021.5.4
  * 本程序用于存储一些数据
  *
- * 现在不仅仅是存数据了 由于新建player类 大改此data
+ * 现在不仅仅是存数据了 由于新建player类 大改此data 5.19
  *
  */
 public class Data {
@@ -21,8 +19,39 @@ public class Data {
     private static int[][] tool;      //道具
     private static int order =0;       //下一步的次序
     private static int mines = 0;     //雷的个数
-    private static int click =0 ;     //每回合点击次数
+    private static int click =0;     //每回合点击次数
     private static ArrayList<Player> players;
+    private static int[] Score=new int[players.size()];
+    private static int[] Mistake=new int[players.size()];
+    public static int[] getScore() {
+        return Score;
+
+    }
+
+    public  void setScore() {
+        int i=0;
+        for (Player player : players){
+            player.score=Score[i];
+            i++;
+        }
+    }
+
+    public static int[] getMistake() {
+        return Mistake;
+    }
+
+    //        for (int i=0;i<players.size();i++){
+//            Player player = players.get(i);
+//            player.score=Score[i];
+//        }
+//    }
+    public void setMistake(){
+        int i=0;
+        for(Player player : players){
+            player.mistake=Mistake[i];
+            i++;
+        }
+    }
 
     public void addPlayer(String name){
         players.add(new Player(name));

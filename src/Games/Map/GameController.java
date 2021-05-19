@@ -1,7 +1,4 @@
 package Games.Map;
-import Games.GUI.GameFrame.F03;
-import Games.Map.Map;
-import Games.Map.Save;
 import Games.components.Winner;
 
 import java.util.Arrays;
@@ -85,10 +82,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void addPlayer( String player) {
-        if (players.length != num) players = new String[num];
-        players[index] = player;
-        index++;
-        Data.setPlayers(num);
+        Data.getPlayers().add(new Player(player));
     }
 
     @Override
@@ -107,129 +101,128 @@ public class GameController implements Games.listener.GameController {
     }
 
 
-    public int getEachScores(String name) {
-        if(name==Data.getName1())
-            return Data.getPoint1();
-            if(name==Data.getName2())
-                return Data.getPoint2();
-                if(name==Data.getName3())
-                    return Data.getPoint3();
-                    if(name==Data.getName4())
-                        return Data.getPoint4();
-                    else return 0;
-    }
+//    public int getEachScores(String name) {
+//        if(name==Data.getName1())
+//            return Data.getPoint1();
+//            if(name==Data.getName2())
+//                return Data.getPoint2();
+//                if(name==Data.getName3())
+//                    return Data.getPoint3();
+//                    if(name==Data.getName4())
+//                        return Data.getPoint4();
+//                    else return 0;
+//    }
     @Override
     public int[] getScores(){
-        int a[] = new int[Data.getPlayers()];
-       a[0]=getEachScores(Data.getName1());
-        if (Data.getPlayers()>=2){
-            if (Data.getName2()!=null)
-                a[1]=getEachScores(Data.getName2());
-        }
-        if (Data.getPlayers()>=3){
-            if (Data.getName2()!=null)
-                a[2]=getEachScores(Data.getName3());
-        }
-        if (Data.getPlayers()>=3){
-            if (Data.getName2()!=null)
-                a[3]=getEachScores(Data.getName4());
-        }
-       return a;
+
+       return Data.getScore();
     }
 
     @Override
     public void Click(int r, int c, int button) {
-        if(button==1){
-            if(map.getMap(r,c)=='M'&&order==1){
-                Data.setPoint1(Data.getPoint1()-1);
-                Data.setMine1(Data.getMine1()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)=='M'&&order==2){
-                Data.setPoint2(Data.getPoint2()-1);
-                Data.setMine2(Data.getMine2()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)=='M'&&order==3){
-                Data.setPoint3(Data.getPoint3()-1);
-                Data.setMine3(Data.getMine3()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)=='M'&&order==4){
-                Data.setPoint4(Data.getPoint4()+1);
-                Data.setMine4(Data.getMine4()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)!='M'&&order==1){
-                Data.setPoint1(Data.getPoint1()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)!='M'&&order==2){
-                Data.setPoint2(Data.getPoint2()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)!='M'&&order==3){
-                Data.setPoint3(Data.getPoint3()+1);
-                Data.HasClicked(r,c);
-            }
-            if(map.getMap(r,c)!='M'&&order==4){
-                Data.setPoint4(Data.getPoint4()+1);
-                Data.HasClicked(r,c);
-            }
-            if(button==3){
-                if(map.getMap(r,c)=='M'&&order==1){
-                    Data.setPoint1(Data.getPoint1()+2);
+
+            for(int i=1;i<=Data.getPlayers().size();i++){
+                if(button==1) {
+                    if (map.getMap(r, c) == 'M' && order == i) {
+                        Data.getScore()[i] -= 1;
+                        Data.HasClicked(r, c);
+                    }
+
+                    if (map.getMap(r, c) != 'M' && order == i) {
+                        Data.getScore()[i] += 1;
+                        Data.HasClicked(r, c);
+                    }
+                }
+                if(button==3){
+                if(map.getMap(r,c)=='M'&&order==i){
+                    Data.getScore()[i]+=2;
                     Data.HasClicked(r,c);
                 }
-                if(map.getMap(r,c)=='M'&&order==2){
-                    Data.setPoint2(Data.getPoint2()+2);
+                if(map.getMap(r,c)!='M'&&order==i){
+                    Data.getMistake()[i]+=1;
                     Data.HasClicked(r,c);
                 }
-                if(map.getMap(r,c)=='M'&&order==3){
-                    Data.setPoint3(Data.getPoint3()+2);
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)=='M'&&order==4){
-                    Data.setPoint4(Data.getPoint4()+2);
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)!='M'&&order==1){
-                    Data.setMistake1(Data.getMistake1()+1);
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)!='M'&&order==2){
-                    Data.setMistake2(Data.getMistake2()+1);
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)!='M'&&order==3){
-                    Data.setMistake3(Data.getMistake3()+1);
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)!='M'&&order==4){
-                    Data.setMistake4(Data.getMistake4()+1);
-                    Data.HasClicked(r,c);
-                }
+
             }
         }
+//        if(button==1){
+//            if(map.getMap(r,c)=='M'&&order==1){
+//                Data.setPoint1(Data.getPoint1()-1);
+//                Data.setMine1(Data.getMine1()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)=='M'&&order==2){
+//                Data.setPoint2(Data.getPoint2()-1);
+//                Data.setMine2(Data.getMine2()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)=='M'&&order==3){
+//                Data.setPoint3(Data.getPoint3()-1);
+//                Data.setMine3(Data.getMine3()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)=='M'&&order==4){
+//                Data.setPoint4(Data.getPoint4()+1);
+//                Data.setMine4(Data.getMine4()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)!='M'&&order==1){
+//                Data.setPoint1(Data.getPoint1()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)!='M'&&order==2){
+//                Data.setPoint2(Data.getPoint2()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)!='M'&&order==3){
+//                Data.setPoint3(Data.getPoint3()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(map.getMap(r,c)!='M'&&order==4){
+//                Data.setPoint4(Data.getPoint4()+1);
+//                Data.HasClicked(r,c);
+//            }
+//            if(button==3){
+//                if(map.getMap(r,c)=='M'&&order==1){
+//                    Data.setPoint1(Data.getPoint1()+2);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)=='M'&&order==2){
+//                    Data.setPoint2(Data.getPoint2()+2);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)=='M'&&order==3){
+//                    Data.setPoint3(Data.getPoint3()+2);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)=='M'&&order==4){
+//                    Data.setPoint4(Data.getPoint4()+2);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)!='M'&&order==1){
+//                    Data.setMistake1(Data.getMistake1()+1);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)!='M'&&order==2){
+//                    Data.setMistake2(Data.getMistake2()+1);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)!='M'&&order==3){
+//                    Data.setMistake3(Data.getMistake3()+1);
+//                    Data.HasClicked(r,c);
+//                }
+//                if(map.getMap(r,c)!='M'&&order==4){
+//                    Data.setMistake4(Data.getMistake4()+1);
+//                    Data.HasClicked(r,c);
+//                }
+//            }
+//        }
+
     }
 
     @Override
     public int[] getMistakes() {
-        int[] getMistakes=new int[Data.getPlayers()];
-        getMistakes[0]=Data.getMistake1();
-        if (Data.getPlayers()>=2){
-            if (Data.getName2()!=null)
-            getMistakes[1]=Data.getMistake2();
-        }
-        if(Data.getPlayers()>=3){
-            if (Data.getName3()!=null)
-                getMistakes[2]=Data.getMistake3();
-        }
-        if(Data.getPlayers()>=4){
-            if (Data.getName4()!=null)
-                getMistakes[3]=Data.getMistake4();
-        }
-                    return getMistakes;
+     return Data.getMistake();
     }
 
     @Override
