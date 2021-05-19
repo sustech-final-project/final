@@ -97,6 +97,7 @@ public class F02 extends JFrame {
             int error = 0;
             try {
                 people = Integer.parseInt(nP.getText());
+                turn = Integer.parseInt(nT.getText());
             } catch (Exception e1) {
                 error++;
                 SwingUtilities.invokeLater(new Runnable() {
@@ -111,7 +112,6 @@ public class F02 extends JFrame {
                     row = Integer.parseInt(nR.getText());
                     column = Integer.parseInt(nC.getText());
                     mine = Integer.parseInt(nM.getText());
-                    turn = Integer.parseInt(nT.getText());
 
                 } catch (Exception e1) {
                     error++;

@@ -1,5 +1,7 @@
 package Games.Map;
 
+import java.util.Arrays;
+
 /**
  * 作者：戴郭轶
  * 日期：2021.5.4
@@ -16,7 +18,7 @@ public class Data {
     private static int point2=0;      //玩家2的分数
     private static int point3=0;      //玩家3的分数
     private static int point4=0;      //玩家4的分数
-    private static int order=1;       //下一步的次序
+    private static int order =0;       //下一步的次序
     private static int mines = 0;     //雷的个数
     private static int click =0 ;     //每回合点击次数
     private static int players = 0;   //玩家个数
@@ -192,7 +194,8 @@ public class Data {
      */
 
     public static int getHasClicked(int row,int column){
-        return HasClicked[row-1][column-1];
+        System.out.println(Arrays.deepToString(HasClicked));
+        return HasClicked[row][column];
     }
 
     /**
@@ -201,7 +204,7 @@ public class Data {
      * @param column   点击的列数
      */
     public static void HasClicked(int row,int column) {
-        HasClicked[row-1][column-1] = 1;
+        HasClicked[row][column] = 1;
     }
 
     public static void setHasClicked(int[][] hasClicked) {

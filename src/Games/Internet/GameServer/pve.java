@@ -1,8 +1,7 @@
-package Games.components;
+package Games.Internet.GameServer;
 
 import Games.Map.Data;
 import Games.Map.Map;
-import Games.*;
 import Games.utils.ClickType;
 
 public class pve {

@@ -11,6 +11,8 @@ public class GameController implements Games.listener.GameController {
     Map map;
     int order;//点击的次数
     int turns;//每回合玩家课点击次数
+    String[] players = new String[0];
+    int index = 0;
     @Override
   /**
     *Reader 更改为boolean类型且可以直接导出
@@ -79,12 +81,15 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void addPlayer(int num, String player) {
-
+        if (players.length != num) players = new String[num];
+        players[index] = player;
+        index++;
+        Data.setPlayers(num);
     }
 
     @Override
     public void setTurns(int turn) {
-        turns= Data.getClick();
+        Data.setClick(turn);
     }
 
     @Override
@@ -94,7 +99,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public String[] getPlayers() {
-        return new String[0];
+        return players;
     }
 
 
@@ -113,12 +118,18 @@ public class GameController implements Games.listener.GameController {
     public int[] getScores(){
         int a[] = new int[Data.getPlayers()];
        a[0]=getEachScores(Data.getName1());
-       if (Data.getName2()!=null)
-           a[1]=getEachScores(Data.getName2());
-       if (Data.getName2()!=null)
-           a[2]=getEachScores(Data.getName3());
-       if (Data.getName2()!=null)
-           a[3]=getEachScores(Data.getName4());
+        if (Data.getPlayers()>=2){
+            if (Data.getName2()!=null)
+                a[1]=getEachScores(Data.getName2());
+        }
+        if (Data.getPlayers()>=3){
+            if (Data.getName2()!=null)
+                a[2]=getEachScores(Data.getName3());
+        }
+        if (Data.getPlayers()>=3){
+            if (Data.getName2()!=null)
+                a[3]=getEachScores(Data.getName4());
+        }
        return a;
     }
 
@@ -202,12 +213,18 @@ public class GameController implements Games.listener.GameController {
     public int[] getMistakes() {
         int[] getMistakes=new int[Data.getPlayers()];
         getMistakes[0]=Data.getMistake1();
-        if (Data.getName2()!=null)
+        if (Data.getPlayers()>=2){
+            if (Data.getName2()!=null)
             getMistakes[1]=Data.getMistake2();
-        if (Data.getName3()!=null)
-            getMistakes[2]=Data.getMistake3();
-        if (Data.getName4()!=null)
-            getMistakes[3]=Data.getMistake4();
+        }
+        if(Data.getPlayers()>=3){
+            if (Data.getName3()!=null)
+                getMistakes[2]=Data.getMistake3();
+        }
+        if(Data.getPlayers()>=4){
+            if (Data.getName4()!=null)
+                getMistakes[3]=Data.getMistake4();
+        }
                     return getMistakes;
     }
 

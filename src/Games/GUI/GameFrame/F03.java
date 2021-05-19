@@ -10,6 +10,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 import static Games.GUI.GameFrame.MainLocal.f03;
 import static Games.GUI.GameFrame.MainLocal.f04;
@@ -105,6 +106,7 @@ public class F03 extends JFrame {
                     }
                 }
             }
+            System.out.println(order);
                 if (order == 0) gc.createMap(r, c);
 
                 if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
@@ -121,6 +123,7 @@ public class F03 extends JFrame {
                 for (int i = 0; i < players.length; i++) {
                     playerInf[i].setText("Player:" + players[i] + "       Score:" + scores[i] + "       Mistake:" + mistakes[i]);
                 }
+            System.out.println(gc.getTurn() + "\t" + players.length);
                 playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(Color.blue);
                 playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(null);
 
@@ -137,18 +140,20 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
+        System.out.println(gc.getChar(r, c));
+        System.out.println(Arrays.deepToString(gc.getMap()));
         buttons[r][c].setLabel(gc.getChar(r, c));
         buttons[r][c].setEnabled(false);
         if (buttons[r][c].getLabel().equals("0")){
-            if (gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
-            if (gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
-            if (gc.isPrint(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {}
-            if (gc.isPrint(r, c + 1)) try {left(r, c + 1);} catch (Exception ignored) {}
-            if (gc.isPrint(r, c)) try {left(r, c);} catch (Exception ignored) {}
-            if (gc.isPrint(r, c - 1)) try {left(r, c - 1);} catch (Exception ignored) {}
-            if (gc.isPrint(r + 1, c + 1)) try {left(r + 1, c + 1);} catch (Exception ignored) {}
-            if (gc.isPrint(r + 1, c)) try {left(r + 1, c);} catch (Exception ignored) {}
-            if (gc.isPrint(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
+            if (!gc.isPrint(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r, c + 1)) try {left(r, c + 1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r, c)) try {left(r, c);} catch (Exception ignored) {}
+            if (!gc.isPrint(r, c - 1)) try {left(r, c - 1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r + 1, c + 1)) try {left(r + 1, c + 1);} catch (Exception ignored) {}
+            if (!gc.isPrint(r + 1, c)) try {left(r + 1, c);} catch (Exception ignored) {}
+            if (!gc.isPrint(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {}
         }
     }
 }
