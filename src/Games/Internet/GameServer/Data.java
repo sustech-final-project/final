@@ -12,7 +12,17 @@ public class Data {
     public static int point1=0;      //玩家1的分数
     public static int point2=0;      //玩家2的分数
     private static int order=1;       //下一步的次序
+
+    public static String getFilename() {
+        return filename;
+    }
+
+    public static void setFilename(String filename) {
+        Data.filename = filename;
+    }
+
     public static int mistake1,mistake2;
+    public static String filename;
 
     public static int getMistake1() {
         return mistake1;

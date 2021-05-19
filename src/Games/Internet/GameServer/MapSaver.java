@@ -19,9 +19,9 @@ public class MapSaver {
 
     public static void MapSaver() {
         string = createRandomStr();
-        Data.setFilename("ServerMap/"+string+".txt");
+        //Data.setFilename("ServerMap/"+string+".txt");
         Map map = new Map(1,1,10,10,10);
-        Save.Save(Data.getFilename());
+        //Save.Save(Data.getFilename());
     }
 
 //    public static void main(String[] args) {
