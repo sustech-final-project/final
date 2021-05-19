@@ -34,6 +34,9 @@ public class Map {
     public char[][] geTMap() {
         return map;
     }
+    public static char getMapchar(int row,int column){
+        return map[row][column];
+    }
 
 
 

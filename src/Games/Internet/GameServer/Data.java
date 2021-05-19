@@ -58,7 +58,7 @@ public class Data {
      */
 
     public static int getHasClicked(int row,int column){
-        return HasClicked[row-1][column-1];
+        return HasClicked[row][column];
     }
 
     /**
@@ -67,7 +67,7 @@ public class Data {
      * @param column   点击的列数
      */
     public static void HasClicked(int row,int column) {
-        HasClicked[row-1][column-1] = 1;
+        HasClicked[row][column] = 1;
     }
 
     public static void setHasClicked(int[][] hasClicked) {
