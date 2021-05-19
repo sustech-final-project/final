@@ -59,6 +59,7 @@ public class ListenerClient extends Thread{
     }
 
     public void judge(int row, int column, String clickType) {
+        Data.HasClicked(row,column);
         if (map.getMap(row,column)=='M'&&clickType.equals("LEFT_CLICK")) {
             Data.setMistake1(Data.mistake1+1);
             Data.setPoint1(Data.point1-1);
