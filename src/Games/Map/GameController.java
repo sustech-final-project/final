@@ -4,6 +4,8 @@ import Games.Map.Map;
 import Games.Map.Save;
 import Games.components.Winner;
 
+import java.util.Arrays;
+
 /** 5.17 杨基同学根据清淞的需要整接口
  *注释点击每个方法左边的小按钮就好啦！！
  */
@@ -41,6 +43,7 @@ public class GameController implements Games.listener.GameController {
     @Override
     public void createMap(int r, int c) {
         map.createMap(r,c);
+        Data.setHasClicked(map.getRow(),map.getColumn());
     }
 
     /**Data 中 HasClicked方法用于判断是否遍历
@@ -51,7 +54,8 @@ public class GameController implements Games.listener.GameController {
      */
     @Override
     public String getChar(int r, int c) {
-        Data.setHasClicked(r,c);
+        System.out.println(Arrays.deepToString(Data.getHasClicked()));
+        Data.HasClicked(r,c);
         return ""+map.getMap(r,c);
     }
 
@@ -80,7 +84,7 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public void addPlayer(int num, String player) {
+    public void addPlayer( String player) {
         if (players.length != num) players = new String[num];
         players[index] = player;
         index++;
@@ -139,71 +143,71 @@ public class GameController implements Games.listener.GameController {
             if(map.getMap(r,c)=='M'&&order==1){
                 Data.setPoint1(Data.getPoint1()-1);
                 Data.setMine1(Data.getMine1()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==2){
                 Data.setPoint2(Data.getPoint2()-1);
                 Data.setMine2(Data.getMine2()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==3){
                 Data.setPoint3(Data.getPoint3()-1);
                 Data.setMine3(Data.getMine3()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)=='M'&&order==4){
                 Data.setPoint4(Data.getPoint4()+1);
                 Data.setMine4(Data.getMine4()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==1){
                 Data.setPoint1(Data.getPoint1()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==2){
                 Data.setPoint2(Data.getPoint2()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==3){
                 Data.setPoint3(Data.getPoint3()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'&&order==4){
                 Data.setPoint4(Data.getPoint4()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(button==3){
                 if(map.getMap(r,c)=='M'&&order==1){
                     Data.setPoint1(Data.getPoint1()+2);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==2){
                     Data.setPoint2(Data.getPoint2()+2);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==3){
                     Data.setPoint3(Data.getPoint3()+2);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)=='M'&&order==4){
                     Data.setPoint4(Data.getPoint4()+2);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==1){
                     Data.setMistake1(Data.getMistake1()+1);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==2){
                     Data.setMistake2(Data.getMistake2()+1);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==3){
                     Data.setMistake3(Data.getMistake3()+1);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
                 if(map.getMap(r,c)!='M'&&order==4){
                     Data.setMistake4(Data.getMistake4()+1);
-                    Data.setHasClicked(r,c);
+                    Data.HasClicked(r,c);
                 }
             }
         }

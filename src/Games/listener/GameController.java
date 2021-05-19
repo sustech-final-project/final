@@ -69,7 +69,7 @@ public interface GameController {
      * @param num 玩家总个数
      * @param player 玩家昵称
      */
-    void addPlayer(int num,String player);
+    void addPlayer(String player);
 
     /**
      * 设置游戏中一人一轮点击次数

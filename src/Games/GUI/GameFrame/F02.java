@@ -145,7 +145,7 @@ public class F02 extends JFrame {
                         String str = "";
                         String str1 = null;
                         for (int i = 0; i < people && str != null; i++) {
-                            gc.addPlayer(people, str = JOptionPane.showInputDialog(str1 +"输入玩家" + (i + 1) +"的昵称:", "昵称"));
+                            gc.addPlayer( str = JOptionPane.showInputDialog(str1 +"输入玩家" + (i + 1) +"的昵称:", "昵称"));
                             if(str == null) {
                                 str1 = "输入无效，请重新";
                                 i --;

@@ -29,21 +29,21 @@ public class Robot {
             if(map.getMap(r,c)=='M'){
             Data.setPointOfRo1(Data.getPointOfRo1()-1);
             Data.setMineOfRo1(Data.getMineOfRo1());
-            Data.setHasClicked(r,c);
+            Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'){
                 Data.setPointOfRo1(Data.getPointOfRo1()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
         }
         if(button==3){
             if(map.getMap(r,c)=='M'){
                 Data.setPointOfRo1(Data.getPointOfRo1()+2);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
             if(map.getMap(r,c)!='M'){
                 Data.setMistakeOfRo1(Data.getMistakeOfRo1()+1);
-                Data.setHasClicked(r,c);
+                Data.HasClicked(r,c);
             }
         }
     }
