@@ -9,13 +9,26 @@ package Games.Internet.GameServer;
 public class Data {
 
     private static int[][] HasClicked; //判断位置是否被遍历
-    private static int point1=0;      //玩家1的分数
-    private static int point2=0;      //玩家2的分数
+    public static int point1=0;      //玩家1的分数
+    public static int point2=0;      //玩家2的分数
     private static int order=1;       //下一步的次序
-    private static String filename;
+    public static int mistake1,mistake2;
 
+    public static int getMistake1() {
+        return mistake1;
+    }
 
+    public static void setMistake1(int mistake1) {
+        Data.mistake1 = mistake1;
+    }
 
+    public static int getMistake2() {
+        return mistake2;
+    }
+
+    public static void setMistake2(int mistake2) {
+        Data.mistake2 = mistake2;
+    }
 
     /**
      * 本程序在初始化棋盘式需要执行
@@ -79,11 +92,5 @@ public class Data {
         order = order1;
     }
 
-    public static String getFilename() {
-        return filename;
-    }
 
-    public static void setFilename(String filename) {
-        Data.filename = filename;
-    }
 }

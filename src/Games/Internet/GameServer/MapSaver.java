@@ -4,6 +4,8 @@ import java.util.*;
 
 
 public class MapSaver {
+    public static String string;
+
     public static String createRandomStr(){
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
@@ -16,7 +18,8 @@ public class MapSaver {
     }
 
     public static void MapSaver() {
-        Data.setFilename("ServerMap/"+createRandomStr()+".txt");
+        string = createRandomStr();
+        Data.setFilename("ServerMap/"+string+".txt");
         Map map = new Map(1,1,10,10,10);
         Save.Save(Data.getFilename());
     }

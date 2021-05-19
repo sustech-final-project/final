@@ -15,7 +15,7 @@ public class CheckMap extends Map {
      */
     public int CheckMap(int a,int b,int num){
         char[][] map = getMap();
-        if(a*b*0.8<num) return 1;  //应当输出雷数过多，请重新定义雷数
+        if(a*b*0.5<num) return 1;  //应当输出雷数过多，请重新定义雷数
         else if(a<3||b<3) return 2; //地图过小
         else {
             for (int i=1; i<a-1;i++){
