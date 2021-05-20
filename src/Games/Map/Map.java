@@ -46,7 +46,7 @@ public class Map {
 
 
     public Map(int row, int column, int num) {
-        map = new char[row][column];
+        map = new char[row][column];y
         this.row = row;
         this.column = column;
         this.num = num;

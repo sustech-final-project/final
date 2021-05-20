@@ -3,7 +3,7 @@ package Games.listener;
 //import Games.Map.Data;
 import Games.Map.Map;
 import Games.Map.Save;
-
+/*
 public class test implements GameController{
     Map map;
     int order;
@@ -55,10 +55,6 @@ public class test implements GameController{
         return "null";
     }
 
-    @Override
-    public void addPlayer(int num, String player) {
-
-    }
 
     @Override
     public void setTurns(int turn) {
@@ -94,4 +90,4 @@ public class test implements GameController{
     public int getTurn() {
         return 0;
     }
-}
+}*/
