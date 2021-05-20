@@ -1,6 +1,7 @@
 package Games.Map;
 import Games.components.Winner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /** 5.17 杨基同学根据清淞的需要整接口
@@ -76,7 +77,7 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public String whoWin() {
+    public ArrayList<String> whoWin() {
         return Winner.getWinner();
     }
 

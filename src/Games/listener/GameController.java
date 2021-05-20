@@ -1,5 +1,7 @@
 package Games.listener;
 
+import java.util.ArrayList;
+
 public interface GameController {
 
     /**
@@ -62,7 +64,7 @@ public interface GameController {
      * 返回赢家姓名
      * @return 赢家姓名
      */
-    String whoWin();
+    ArrayList<String> whoWin();
 
     /**
      * 按顺序添加玩家
