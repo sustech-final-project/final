@@ -101,99 +101,98 @@ public int[] getScores(){
      *
      */
 
-    public int AiClick(Player Robot){
-//        if(Robot==Hdrobot)
+    public int AiClick(Player Robot) {
+        if (Robot == Hdrobot) {
+            char map[][] = Map.getMap();
+            int r = getRandomNumberInRange(0, map.length);
+            int c = getRandomNumberInRange(0, map[0].length);
+            if (Data.getHasClicked(r, c) == 1) {
+                if (getMap().getMap(r, c - 1) == 'M' && c - 1 != -1) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r, c - 1);
+                    return 3;
+                }
+                if (getMap().getMap(r + 1, c - 1) == 'M' && c - 1 != -1 && r + 1 <= map.length) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r + 1, c - 1);
+                    return 3;
+                }
+                if (getMap().getMap(r + 1, c) == 'M' && r + 1 <= map.length) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r + 1, c);
+                    return 3;
+                }
+                if (getMap().getMap(r + 1, c + 1) == 'M' && r + 1 <= map.length && c + 1 <= map[0].length) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r + 1, c + 1);
+                    return 3;
+                }
+                if (getMap().getMap(r - 1, c - 1) == 'M' && c - 1 != -1 && r - 1 != -1) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r - 1, c - 1);
+                    return 3;
+                }
+                if (getMap().getMap(r - 1, c + 1) == 'M' && c - 1 != -1 && c + 1 <= map[0].length) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r - 1, c + 1);
+                    return 3;
+                }
+                if (getMap().getMap(r - 1, c) == 'M' && r - 1 != -1) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r - 1, c);
+                    return 3;
+                }
+                if (getMap().getMap(r - 1, c - 1) == 'M' && c - 1 != -1 && r - 1 != -1) {
+                    Robot.addScore(2);
+                    Data.HasClicked(r - 1, c - 1);
+                    return 3;
+                }
 
-        char map[][] = Map.getMap();
-        int r=getRandomNumberInRange(0, map.length);
-        int c=getRandomNumberInRange(0,map[0].length);
-        if(Data.getHasClicked(r,c)==1){
-            if(getMap().getMap(r,c-1)=='M'&&c-1!=-1){
-                Robot.addScore(2);
-                Data.HasClicked(r,c-1);
-                return 3;
-            }if(getMap().getMap(r+1,c-1)=='M'&&c-1!=-1&&r+1<=map.length){
-                Robot.addScore(2);
-                Data.HasClicked(r+1,c-1);
-                return 3;
-            }
-            if(getMap().getMap(r+1,c)=='M'&&r+1<=map.length){
-                Robot.addScore(2);
-                Data.HasClicked(r+1,c);
-                return 3;
-            }
-            if(getMap().getMap(r+1,c+1)=='M'&&r+1<=map.length&&c+1<=map[0].length){
-                Robot.addScore(2);
-                Data.HasClicked(r+1,c+1);
-                return 3;
-            }
-            if(getMap().getMap(r-1,c-1)=='M'&&c-1!=-1&&r-1!=-1){
-                Robot.addScore(2);
-                Data.HasClicked(r-1,c-1);
-                return 3;
-            }
-            if(getMap().getMap(r-1,c+1)=='M'&&c-1!=-1&&c+1<=map[0].length){
-                Robot.addScore(2);
-                Data.HasClicked(r-1,c+1);
-                return 3;
-            }
-            if(getMap().getMap(r-1,c)=='M'&&r-1!=-1){
-                Robot.addScore(2);
-                Data.HasClicked(r-1,c);
-                return 3;
-            }
-            if(getMap().getMap(r-1,c-1)=='M'&&c-1!=-1&&r-1!=-1){
-                Robot.addScore(2);
-                Data.HasClicked(r-1,c-1);
-                return 3;
-            }
 
+                if (getMap().getMap(r, c - 1) != 'M' && c - 1 != -1) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r, c - 1);
+                    return 1;
+                }
+                if (getMap().getMap(r + 1, c - 1) != 'M' && c - 1 != -1 && r + 1 <= map.length) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r + 1, c - 1);
+                    return 1;
+                }
+                if (getMap().getMap(r + 1, c) != 'M' && r + 1 <= map.length) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r + 1, c);
+                    return 1;
+                }
+                if (getMap().getMap(r + 1, c + 1) != 'M' && r + 1 <= map.length && c + 1 <= map[0].length) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r + 1, c + 1);
+                    return 1;
+                }
+                if (getMap().getMap(r - 1, c - 1) != 'M' && c - 1 != -1 && r - 1 != -1) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r - 1, c - 1);
+                    return 1;
+                }
+                if (getMap().getMap(r - 1, c + 1) != 'M' && c - 1 != -1 && c + 1 <= map[0].length) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r - 1, c + 1);
+                    return 1;
+                }
+                if (getMap().getMap(r - 1, c) != 'M' && r - 1 != -1) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r - 1, c);
+                    return 1;
+                }
+                if (getMap().getMap(r - 1, c - 1) != 'M' && c - 1 != -1 && r - 1 != -1) {
+                    Robot.addScore(1);
+                    Data.HasClicked(r - 1, c - 1);
+                    return 1;
+                } else return 0;
+            } else return 0;
 
-            if(getMap().getMap(r,c-1)!='M'&&c-1!=-1){
-                Robot.addScore(1);
-                Data.HasClicked(r,c-1);
-                return 1;
-            }if(getMap().getMap(r+1,c-1)!='M'&&c-1!=-1&&r+1<=map.length){
-                Robot.addScore(1);
-                Data.HasClicked(r+1,c-1);
-                return 1;
-            }
-            if(getMap().getMap(r+1,c)!='M'&&r+1<=map.length){
-                Robot.addScore(1);
-                Data.HasClicked(r+1,c);
-                return 1;
-            }
-            if(getMap().getMap(r+1,c+1)!='M'&&r+1<=map.length&&c+1<=map[0].length){
-                Robot.addScore(1);
-                Data.HasClicked(r+1,c+1);
-                return 1;
-            }
-            if(getMap().getMap(r-1,c-1)!='M'&&c-1!=-1&&r-1!=-1){
-                Robot.addScore(1);
-                Data.HasClicked(r-1,c-1);
-                return 1;
-            }
-            if(getMap().getMap(r-1,c+1)!='M'&&c-1!=-1&&c+1<=map[0].length){
-                Robot.addScore(1);
-                Data.HasClicked(r-1,c+1);
-                return 1;
-            }
-            if(getMap().getMap(r-1,c)!='M'&&r-1!=-1){
-                Robot.addScore(1);
-                Data.HasClicked(r-1,c);
-                return 1;
-            }
-            if(getMap().getMap(r-1,c-1)!='M'&&c-1!=-1&&r-1!=-1){
-                Robot.addScore(1);
-                Data.HasClicked(r-1,c-1);
-                return 1;
-            }
-            else return 0;
         }
-        else return 0;
-
     }
-
 
 
 }

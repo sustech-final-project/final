@@ -11,6 +11,7 @@ import java.util.Random;
 public class Map {
     private static char[][] map;
 
+
     public static void setMap(char[][] map1) {
         map = map1;
     }

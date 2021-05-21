@@ -1,5 +1,7 @@
 package Games.Internet.GameServer;
 
+import java.util.ArrayList;
+
 /**
  * 作者：戴郭轶
  * 日期：2021.5.4
@@ -12,6 +14,9 @@ public class Data {
     public static int point1=0;      //玩家1的分数
     public static int point2=0;      //玩家2的分数
     private static int order=1;       //下一步的次序
+    private static ArrayList<String> history = new ArrayList<>();
+
+
 
     public static String getFilename() {
         return filename;
@@ -70,6 +75,24 @@ public class Data {
         HasClicked[row][column] = 1;
     }
 
+    /**
+     * 第a步，从1开始
+     * @param a
+     * @return
+     */
+    public static String gethistory(int a){
+        return history.get(a-1);
+    }
+
+    /**
+     * history格式：
+     * 玩家编号，点击行，列，点击格式，分数，错误数量
+     * @param str
+     */
+    public static void addhistory(String str){
+        history.add(str);
+    }
+
     public static void setHasClicked(int[][] hasClicked) {
         HasClicked = hasClicked;
     }
@@ -100,6 +123,14 @@ public class Data {
 
     public static void setOrder(int order1) {
         order = order1;
+    }
+
+    public static ArrayList<String> getHistory() {
+        return history;
+    }
+
+    public static void setHistory(ArrayList<String> history) {
+        Data.history = history;
     }
 
 
