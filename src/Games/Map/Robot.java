@@ -192,6 +192,7 @@ public int[] getScores(){
             } else return 0;
 
         }
+        return 0;
     }
 
 

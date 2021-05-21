@@ -1,5 +1,7 @@
 package Games.Map;
 
+import Games.components.Music;
+
 public class test {
     public static void main(String[] args) {
 //        Map map = Save.MapReader();
@@ -11,7 +13,8 @@ public class test {
         //Save.Reader();
         //map.mapWriter("mine3.txt");
 
-        Save.filechosser();
+   //     Save.filechosser();
+        Music.playMusic("boom");
 
 
     }

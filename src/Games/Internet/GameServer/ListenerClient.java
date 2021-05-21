@@ -42,10 +42,10 @@ public class ListenerClient extends Thread{
                     int column = Integer.parseInt(arr[3]);
                     String clickType = arr[4];
                     if (Integer.parseInt(arr[1])==1){
-                        judge(row, column, clickType);
+                        judge1(row, column, clickType);
                     }
                     if (Integer.parseInt(arr[1])==2){
-                        judge(row, column, clickType);
+                        judge2(row, column, clickType);
                     }
                 }
             } catch (IOException e) {
@@ -58,7 +58,7 @@ public class ListenerClient extends Thread{
         }
     }
 
-    public void judge(int row, int column, String clickType) {
+    public void judge1(int row, int column, String clickType) {
         Data.HasClicked(row,column);
         if (map.getMap(row,column)=='M'&&clickType.equals("LEFT_CLICK")) {
             Data.setMistake1(Data.mistake1+1);
@@ -79,6 +79,29 @@ public class ListenerClient extends Thread{
             Data.setMistake1(Data.mistake1+1);
             Data.setPoint1(Data.point1-1);
             sendMsg("play" + 1 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        }
+    }
+    public void judge2(int row, int column, String clickType) {
+        Data.HasClicked(row,column);
+        if (map.getMap(row,column)=='M'&&clickType.equals("LEFT_CLICK")) {
+            Data.setMistake1(Data.mistake1+1);
+            Data.setPoint1(Data.point1-1);
+            sendMsg("play" + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        }
+        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
+            //Data.setMistake1(Data.mistake1+1);
+            Data.setPoint1(Data.point1+1);
+            sendMsg("play" + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        }
+        if (map.getMap(row,column)!='M'&&clickType.equals("LEFT_CLICK")) {
+            //Data.setMistake1(Data.mistake1+1);
+            Data.setPoint1(Data.point1+1);
+            sendMsg("play" + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        }
+        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
+            Data.setMistake1(Data.mistake1+1);
+            Data.setPoint1(Data.point1-1);
+            sendMsg("play" + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
         }
     }
 

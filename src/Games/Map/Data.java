@@ -12,9 +12,6 @@ import java.util.Arrays;
  *
  */
 public class Data {
-
-
-
     private static int[][] HasClicked;//判断位置是否被遍历
     private static int[][] tool;      //道具
     private static int order =0;       //下一步的次序
