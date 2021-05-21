@@ -17,7 +17,7 @@ public class Data {
     private static int order =0;       //下一步的次序
     private static int mines = 0;     //雷的个数
     private static int click =0;     //每回合点击次数
-    private static ArrayList<Player> players;
+    private static ArrayList<Player> players = new ArrayList<>();
     private static int[] Score=new int[players.size()];
     private static int[] Mistake=new int[players.size()];
     public static int[] getScore() {
@@ -31,6 +31,11 @@ public class Data {
             player.score=Score[i];
             i++;
         }
+    }
+
+    public static void initializeData(int row,int column){
+        HasClicked = new int[row][column];
+        tool = new int[row][column];
     }
 
     public static int[] getMistake() {
