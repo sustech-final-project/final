@@ -10,9 +10,6 @@ import java.util.Arrays;
 public class GameController implements Games.listener.GameController {
     Map map;
     int order;//点击的次数
-    int turns;//每回合玩家课点击次数
-    String[] players = new String[0];
-    int index = 0;
     @Override
   /**
     *Reader 更改为boolean类型且可以直接导出
@@ -52,7 +49,6 @@ public class GameController implements Games.listener.GameController {
      */
     @Override
     public String getChar(int r, int c) {
-        System.out.println(Arrays.deepToString(Data.getHasClicked()));
         Data.HasClicked(r,c);
         return ""+map.getMap(r,c);
     }
@@ -97,8 +93,8 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public String[] getPlayers() {
-        return players;
+    public ArrayList<Player> getPlayers() {
+        return Data.getPlayers();
     }
 
 
@@ -113,121 +109,40 @@ public class GameController implements Games.listener.GameController {
 //                        return Data.getPoint4();
 //                    else return 0;
 //    }
-    @Override
-    public int[] getScores(){
-
-       return Data.getScore();
-    }
 
     @Override
     public void Click(int r, int c, int button) {
+        if (button == 1 && map.getMap(r,c) != 'M') {
 
-            for(int i=1;i<=Data.getPlayers().size();i++){
-                if(button==1) {
-                    if (map.getMap(r, c) == 'M' && order == i) {
-                        Data.getScore()[i] -= 1;
-                        Data.HasClicked(r, c);
-                    }
-
-                    if (map.getMap(r, c) != 'M' && order == i) {
-                        Data.getScore()[i] += 1;
-                        Data.HasClicked(r, c);
-                    }
-                }
-                if(button==3){
-                if(map.getMap(r,c)=='M'&&order==i){
-                    Data.getScore()[i]+=2;
-                    Data.HasClicked(r,c);
-                }
-                if(map.getMap(r,c)!='M'&&order==i){
-                    Data.getMistake()[i]+=1;
-                    Data.HasClicked(r,c);
-                }
-
-            }
+        } else if (button == 3 && map.getMap(r,c) != 'M'){
+            whoseTurn().addMistake();
+        } else if (button == 1 && map.getMap(r,c) == 'M'){
+            whoseTurn().loseScore(1);
+        } else if (button == 3 && map.getMap(r,c) == 'M'){
+            whoseTurn().addScore(1);
         }
-//        if(button==1){
-//            if(map.getMap(r,c)=='M'&&order==1){
-//                Data.setPoint1(Data.getPoint1()-1);
-//                Data.setMine1(Data.getMine1()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)=='M'&&order==2){
-//                Data.setPoint2(Data.getPoint2()-1);
-//                Data.setMine2(Data.getMine2()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)=='M'&&order==3){
-//                Data.setPoint3(Data.getPoint3()-1);
-//                Data.setMine3(Data.getMine3()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)=='M'&&order==4){
-//                Data.setPoint4(Data.getPoint4()+1);
-//                Data.setMine4(Data.getMine4()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)!='M'&&order==1){
-//                Data.setPoint1(Data.getPoint1()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)!='M'&&order==2){
-//                Data.setPoint2(Data.getPoint2()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)!='M'&&order==3){
-//                Data.setPoint3(Data.getPoint3()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(map.getMap(r,c)!='M'&&order==4){
-//                Data.setPoint4(Data.getPoint4()+1);
-//                Data.HasClicked(r,c);
-//            }
-//            if(button==3){
-//                if(map.getMap(r,c)=='M'&&order==1){
-//                    Data.setPoint1(Data.getPoint1()+2);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)=='M'&&order==2){
-//                    Data.setPoint2(Data.getPoint2()+2);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)=='M'&&order==3){
-//                    Data.setPoint3(Data.getPoint3()+2);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)=='M'&&order==4){
-//                    Data.setPoint4(Data.getPoint4()+2);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)!='M'&&order==1){
-//                    Data.setMistake1(Data.getMistake1()+1);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)!='M'&&order==2){
-//                    Data.setMistake2(Data.getMistake2()+1);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)!='M'&&order==3){
-//                    Data.setMistake3(Data.getMistake3()+1);
-//                    Data.HasClicked(r,c);
-//                }
-//                if(map.getMap(r,c)!='M'&&order==4){
-//                    Data.setMistake4(Data.getMistake4()+1);
-//                    Data.HasClicked(r,c);
-//                }
-//            }
-//        }
-
+        Data.addOrder();
+        Data.HasClicked(r,c);
     }
 
     @Override
-    public int[] getMistakes() {
-     return Data.getMistake();
+    public int whichStep() {
+        return Data.getOrder() % Data.getClick();
     }
+
 
     @Override
     public int getTurn() {
         return Data.getClick();
+    }
+
+    @Override
+    public Player whoseTurn() {
+        return Data.getPlayers().get(Data.getOrder() / Data.getClick() % Data.getPlayers().size());
+    }
+
+    @Override
+    public void save() {
+
     }
 }

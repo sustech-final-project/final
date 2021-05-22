@@ -49,7 +49,6 @@ public class F00 extends JFrame {
         public void layoutContainer(Container parent) {
             int width = parent.getWidth();
             int height = parent.getHeight();
-            System.out.println(width + " " + height);
 
             if (label.isVisible()) {
                 Dimension size = label.getPreferredSize();

@@ -41,8 +41,8 @@ public class Winner {
 //        else setWinner ="There's no winner!!";
 for(int i=0;i<Data.getPlayers().size();i++){
     int sc=0;
-    if(Data.getScore()[i]>=sc){
-            sc=Data.getScore()[i];
+    if(Data.getPlayers().get(i).getScore()>=sc){
+            sc=Data.getPlayers().get(i).getScore();
     }
     for (int j=0;j<Data.getPlayers().size();j++){
         Player player = Data.getPlayers().get(i);

@@ -18,42 +18,24 @@ public class Data {
     private static int mines = 0;     //雷的个数
     private static int click =0;     //每回合点击次数
     private static ArrayList<Player> players = new ArrayList<>();
-    private static int[] Score=new int[players.size()];
-    private static int[] Mistake=new int[players.size()];
-    public static int[] getScore() {
-        return Score;
-
-    }
-
-    public  void setScore() {
-        int i=0;
-        for (Player player : players){
-            player.score=Score[i];
-            i++;
-        }
-    }
 
     public static void initializeData(int row,int column){
         HasClicked = new int[row][column];
         tool = new int[row][column];
     }
 
-    public static int[] getMistake() {
-        return Mistake;
+    public static void addOrder() {
+        order++;
     }
+
+
 
     //        for (int i=0;i<players.size();i++){
 //            Player player = players.get(i);
 //            player.score=Score[i];
 //        }
 //    }
-    public void setMistake(){
-        int i=0;
-        for(Player player : players){
-            player.mistake=Mistake[i];
-            i++;
-        }
-    }
+
 
     public void addPlayer(String name){
         players.add(new Player(name));
@@ -128,8 +110,11 @@ public class Data {
      */
 
     public static int getHasClicked(int row,int column){
-        System.out.println(Arrays.deepToString(HasClicked));
-        return HasClicked[row][column];
+        try {
+            return HasClicked[row][column];
+        } catch (Exception e){
+            return 1;
+        }
     }
 
     /**

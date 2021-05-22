@@ -1,5 +1,7 @@
 package Games.listener;
 
+import Games.Map.Player;
+
 import java.util.ArrayList;
 
 public interface GameController {
@@ -89,13 +91,7 @@ public interface GameController {
      * 获得玩家列表
      * @return 玩家列表
      */
-    String[] getPlayers();
-
-    /**
-     * 获得分数列表（顺序与上方相同）
-     * @return 分数列表
-     */
-    int[] getScores();
+    ArrayList<Player> getPlayers();
 
     /**
      * 点击(r,c)处时进行的所有数值改变，包括order等
@@ -109,7 +105,12 @@ public interface GameController {
      * 获得错误次数列表（顺序与上方相同）
      * @return 出现错误次数列表
      */
-    int[] getMistakes();
+
+    int whichStep();
 
     int getTurn();
+
+    Player whoseTurn();
+
+    void save();
 }

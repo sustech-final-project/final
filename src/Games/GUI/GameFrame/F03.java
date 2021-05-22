@@ -2,6 +2,7 @@ package Games.GUI.GameFrame;
 
 import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
+import Games.Map.Player;
 import Games.Map.Timer;
 import Games.listener.GameController;
 
@@ -10,6 +11,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static Games.GUI.GameFrame.MainLocal.f03;
@@ -26,9 +28,7 @@ public class F03 extends JFrame {
     JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
     JPanel board = new JPanel(new VerticalFlowLayout(VerticalFlowLayout.TOP, 0, 0));
-    String[] players;
-    int[] scores;
-    int[] mistakes;
+    ArrayList<Player> players;
 
     public F03(String title, GameController gc) {
         super(title);
@@ -79,12 +79,10 @@ public class F03 extends JFrame {
         JPanel score = new JPanel(new AfYLayout());
         score.setBorder(new LineBorder(Color.BLACK, 2));
         players = gc.getPlayers();
-        playerInf = new JLabel[players.length];
-        mistakes = gc.getMistakes();
-        scores = gc.getScores();
+        playerInf = new JLabel[players.size()];
 
-        for (int i = 0; i < players.length; i++) {
-            score.add(playerInf[i] = new JLabel("Player:" + players[i] + "       Score:" + scores[i] + "       Mistake:" + mistakes[i]), (int) (1 / (double) (players.length) * 100) + "%" );
+        for (int i = 0; i < players.size(); i++) {
+            score.add(playerInf[i] = new JLabel("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake()), (int) (1 / (double) (players.size()) * 100) + "%" );
         }
         left.add(score, "30%");
         contentPane.add(left, "1w");
@@ -106,7 +104,6 @@ public class F03 extends JFrame {
                     }
                 }
             }
-            System.out.println(order);
                 if (order == 0) gc.createMap(r, c);
 
                 if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
@@ -120,12 +117,11 @@ public class F03 extends JFrame {
 //                }
                 buttons[r][c].setEnabled(false);
                 gc.Click(r, c, e.getButton());
-                for (int i = 0; i < players.length; i++) {
-                    playerInf[i].setText("Player:" + players[i] + "       Score:" + scores[i] + "       Mistake:" + mistakes[i]);
+                for (int i = 0; i < players.size(); i++) {
+                    playerInf[i].setText("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake());
                 }
-            System.out.println(gc.getTurn() + "\t" + players.length);
-                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(Color.blue);
-                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(null);
+//                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(Color.blue);
+//                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(null);
 
                 if (gc.isEnd()) {
                     SwingUtilities.invokeLater(new Runnable() {
@@ -140,8 +136,6 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
-        System.out.println(gc.getChar(r, c));
-        System.out.println(Arrays.deepToString(gc.getMap()));
         buttons[r][c].setLabel(gc.getChar(r, c));
         buttons[r][c].setEnabled(false);
         if (buttons[r][c].getLabel().equals("0")){
