@@ -70,7 +70,6 @@ public class ListenerClient extends Thread{
                     addClientName(msg.substring(4));
                 }
                 UpdateList();
-
             } catch (IOException e) {
                 println(e.toString());
                 break;
