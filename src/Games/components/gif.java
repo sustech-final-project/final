@@ -18,6 +18,4 @@ public class gif {
         if(name=="background") return imageIconBackGround;
         else return null;
     }
-
-
 }

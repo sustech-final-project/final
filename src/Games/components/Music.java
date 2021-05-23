@@ -55,7 +55,18 @@ public class Music extends Applet {
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
-
+                }
+                else if ("realBoom".equals(str)){
+                    f = new File("src\\音效\\tnt.wav");
+                    cb = f.toURL();
+                    auu = Applet.newAudioClip(cb);
+                    auu.play();
+                }
+                else if ("BGM".equals(str)){
+                    f = new File("src\\音效\\bgm.wav");
+                    cb = f.toURL();
+                    auu = Applet.newAudioClip(cb);
+                    auu.play();
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
