@@ -7,10 +7,18 @@ import Games.listener.GameController;
 import javax.swing.*;
 import java.awt.*;
 
+import static Games.GUI.GameFrame.Fgif.Open;
+
 public class MainLocal {
     private static final GameController gc = new Games.Map.GameController();
 
     public static void begin() {
+        try {
+            Open();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

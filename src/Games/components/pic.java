@@ -15,7 +15,4 @@ public class pic {
     final ImageIcon block = new ImageIcon("src\\Games\\image\\正常方块.png");
     final ImageIcon blank = new ImageIcon("src\\Games\\image\\空白.png");
     final ImageIcon Xuanfu = new ImageIcon("src\\Games\\image\\上方.png");
-
-
-
 }

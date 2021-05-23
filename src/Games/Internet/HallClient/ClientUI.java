@@ -100,6 +100,8 @@ public class ClientUI extends JFrame {
                     name = "匿名者";
                 }
                 server.sendMsg("over" +" " + name);
+                //Todo:
+                
                // tfSend.setText("");
                 System.exit(0);
             }
