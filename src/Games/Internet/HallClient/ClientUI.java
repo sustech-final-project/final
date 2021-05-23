@@ -1,9 +1,13 @@
 package Games.Internet.HallClient;
 
 
+import Games.Internet.GameClient.Muti;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import static Games.GUI.GameFrame.MainLocal.f04;
 
 public class ClientUI extends JFrame {
 
@@ -101,7 +105,13 @@ public class ClientUI extends JFrame {
                 }
                 server.sendMsg("over" +" " + name);
                 //Todo:
-
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        dispose();
+                        new Muti("Game");
+                    }
+                });
                // tfSend.setText("");
                 System.exit(0);
             }
