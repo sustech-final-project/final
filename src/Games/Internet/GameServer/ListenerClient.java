@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ListenerClient extends Thread{
+    static int id = 1;
 
     BufferedReader reader;
     PrintWriter writer;
@@ -37,6 +38,11 @@ public class ListenerClient extends Thread{
                 writer = new PrintWriter(client.getOutputStream(), true);
                 msg = reader.readLine();
                 String [] arr = msg.split("\\s+");//msg的格式为"play 玩家编号 点击位置"
+                if (arr[0].equals("getid")){
+                    sendMsg("id"+" "+id+" "+arr[1]);
+                    if (id==1) id=2;
+                    if (id==2) id=1;
+                }
                 if (arr[0].equals("play")){
                     int row = Integer.parseInt(arr[2]);
                     int column = Integer.parseInt(arr[3]);

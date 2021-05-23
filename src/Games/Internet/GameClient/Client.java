@@ -29,6 +29,7 @@ public class Client extends Thread {
             reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
             writer = new PrintWriter(client.getOutputStream(), true);
             String name = Data.getPlayer().name;
+            sendMsg("getid"+" "+name);
         } catch (NumberFormatException nu) {
             println("端口请输入正确.......");
             nu.printStackTrace();
@@ -51,6 +52,13 @@ public class Client extends Thread {
             }
             Player player = Data.getPlayer();
             String [] arr = msg.split("\\s+");
+            if (arr[0].equals("id")){
+                if (arr[2].equals(Data.getPlayername())){
+                    int id = Integer.parseInt(arr[1]);
+                    Player player1 = new Player(Data.getPlayername(),id);
+                    Data.setPlayer(player1);
+                }
+            }
             if (arr[0].equals("play")){
                 Data.setaChar(arr[2].charAt(0));//Todo:这里应该改成显示之类的，或者给一个扳机，触发ui重写
                 Data.setRow(Integer.parseInt(arr[3]));
