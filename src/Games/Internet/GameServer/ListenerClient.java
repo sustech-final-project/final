@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.regex.Pattern;
 
 public class ListenerClient extends Thread{
     static int id = 1;
@@ -70,49 +71,75 @@ public class ListenerClient extends Thread{
     }
 
     public void judge1(int row, int column, String clickType) {
-        Data.HasClicked(row,column);
-        if (map.getMap(row,column)=='M'&&clickType.equals("LEFT_CLICK")) {
-            Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1-1);
-            sendMsg("play " + 1 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
-        }
-        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
-            //Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1+1);
-            sendMsg("play " + 1 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
-        }
-        if (map.getMap(row,column)!='M'&&clickType.equals("LEFT_CLICK")) {
-            //Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1+1);
-            sendMsg("play " + 1 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
-        }
-        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
-            Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1-1);
-            sendMsg("play " + 1 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        if (map.getMap(row, column) == '0') {
+            kaizero(row, column, 1);
+        } else {
+            Data.HasClicked(row, column);
+            if (map.getMap(row, column) == 'M' && clickType.equals("LEFT_CLICK")) {
+                Data.setMistake1(Data.mistake1 + 1);
+                Data.setPoint1(Data.point1 - 1);
+                sendMsg("play " + 1 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) == 'M' && clickType.equals("RIGHT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 1 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) != 'M' && clickType.equals("LEFT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 1 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) != 'M' && clickType.equals("RIGHT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 1 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
         }
     }
     public void judge2(int row, int column, String clickType) {
-        Data.HasClicked(row,column);
-        if (map.getMap(row,column)=='M'&&clickType.equals("LEFT_CLICK")) {
-            Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1-1);
-            sendMsg("play " + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        if (map.getMap(row,column)=='0'){
+            kaizero(row,column,2);
         }
-        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
-            //Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1+1);
-            sendMsg("play " + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+        else {
+            Data.HasClicked(row, column);
+            if (map.getMap(row, column) == 'M' && clickType.equals("LEFT_CLICK")) {
+                Data.setMistake1(Data.mistake1 + 1);
+                Data.setPoint1(Data.point1 - 1);
+                sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) == 'M' && clickType.equals("RIGHT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) != 'M' && clickType.equals("LEFT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
+            if (map.getMap(row, column) != 'M' && clickType.equals("RIGHT_CLICK")) {
+                //Data.setMistake1(Data.mistake1+1);
+                Data.setPoint1(Data.point1 + 1);
+                sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+            }
         }
-        if (map.getMap(row,column)!='M'&&clickType.equals("LEFT_CLICK")) {
-            //Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1+1);
-            sendMsg("play " + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
-        }
-        if (map.getMap(row,column)=='M'&&clickType.equals("RIGHT_CLICK")) {
-            Data.setMistake1(Data.mistake1+1);
-            Data.setPoint1(Data.point1-1);
-            sendMsg("play " + 2 + " " + map.getMap(row,column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+    }
+
+    public void kaizero(int row,int column,int playerid){
+        if (map.getMap(row,column)=='0'&&Data.getHasClicked(row,column)==0){
+            Data.HasClicked(row,column);
+            kaizero(row-1,column,playerid);
+            kaizero(row,column+1,playerid);
+            kaizero(row,column-1,playerid);
+            kaizero(row+1,column,playerid);
+            if (playerid==1){
+                sendMsg("play "+1+" "+map.getMap(row,column)+" "+row+" "+column+" "+Data.mistake1 + " " + Data.point1);
+            }
+            if (playerid==2){
+                sendMsg("play "+1+" "+map.getMap(row,column)+" "+row+" "+column+" "+Data.mistake2 + " " + Data.point2);
+            }
+
         }
     }
 

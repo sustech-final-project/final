@@ -13,7 +13,7 @@ public class Data {
     private static int[][] HasClicked; //判断位置是否被遍历
     public static int point1=0;      //玩家1的分数
     public static int point2=0;      //玩家2的分数
-    private static int order=1;       //下一步的次序
+ //   private static int order=1;       //下一步的次序
     private static ArrayList<String> history = new ArrayList<>();
 
 
@@ -117,13 +117,17 @@ public class Data {
         point2 = point;
     }
 
-    public static int getOrder() {
-        return order;
+    public static void initializeData(){
+        HasClicked = new int[16][16];
+        //tool = new int[row][column];
     }
-
-    public static void setOrder(int order1) {
-        order = order1;
-    }
+//    public static int getOrder() {
+//        return order;
+//    }
+//
+//    public static void setOrder(int order1) {
+//        order = order1;
+//    }
 
     public static ArrayList<String> getHistory() {
         return history;

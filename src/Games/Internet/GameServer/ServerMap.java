@@ -13,6 +13,7 @@ public class ServerMap {
         column=16;
         num =40;
         Map map = new Map(a,b,row,column,num);
+        Data.initializeData();
         filename = MapSaver.createRandomStr();
         Save.Save(filename);
         return map;
