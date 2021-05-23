@@ -17,16 +17,16 @@ public class Fgif extends JFrame{
     ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\开头.gif");
 
     /**
-     * @param args
+     * @param
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void Open() throws InterruptedException {
 // TODO Auto-generated method stub
         final JFrame frame = new JFrame();
         frame.setUndecorated(true);
-        Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
+       // Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
         final JPanel panel = new JPanel();
         panel.setSize(2000,1000);
-        panel.setBorder(b);
+      //  panel.setBorder(b);
 
 
         panel.addMouseMotionListener(new MouseAdapter() {
@@ -97,7 +97,7 @@ public class Fgif extends JFrame{
         JLabel label = new JLabel(new Fgif().imageIcon);
         panel.add(label);
         frame.setLocation(200,100);
-        frame.getContentPane().add(panel);
+        frame.setContentPane(panel);
         frame.setSize(2000,1000);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
