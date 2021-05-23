@@ -32,7 +32,8 @@ public class MainLocal {
     public static void f00() {
         F00 f00 = new F00("欢迎", gc);
         f00.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f00.setBounds(600, 400, 289, 153);
+        f00.setSize(289, 153);
+        f00.setLocationRelativeTo(null);
         f00.setVisible(true);
     }
 
@@ -46,14 +47,16 @@ public class MainLocal {
     public static void f02() {
         F02 f02 = new F02("游戏设置", gc);
         f02.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f02.setBounds(600, 400, 417, 159);
+        f02.setSize(470, 170);
+        f02.setLocationRelativeTo(null);
         f02.setVisible(true);
     }
 
     public static void f03() {
         F03 f03 = new F03("扫雷", gc);
         f03.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f03.setBounds(600, 400, 1000, 700);
+        f03.setSize(gc.getMap()[0].length * (int) (43.0 / 0.7), gc.getMap().length * 42 + 60);
+        f03.setLocationRelativeTo(null);
         f03.setVisible(true);
     }
 
@@ -61,7 +64,6 @@ public class MainLocal {
         F04 f04 = new F04("Congratulation", gc);
         f04.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f04.setBounds(600, 400, 289, 153);
-        f04.setVisible(true);
     }
 
 //    public static void f05() {

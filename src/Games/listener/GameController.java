@@ -73,7 +73,7 @@ public interface GameController {
      *
      * @param player 玩家昵称
      */
-    void addPlayer(String player);
+    void addPlayer(String player, String characteristic);
 
     /**
      * 设置游戏中一人一轮点击次数
@@ -102,15 +102,26 @@ public interface GameController {
     void Click(int r, int c, int button);
 
     /**
-     * 获得错误次数列表（顺序与上方相同）
-     * @return 出现错误次数列表
+     *
+     * @return 返回现在是这一轮的第几步
      */
-
     int whichStep();
 
     int getTurn();
 
+    /**
+     *
+     * @return 这是哪个玩家的行动轮
+     */
     Player whoseTurn();
 
+    /**
+     * 保存当前棋盘
+     */
     void save();
+
+    /**
+     * 清除所有数据，准备重开
+     */
+    void clear();
 }

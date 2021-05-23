@@ -98,8 +98,8 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public void addPlayer( String player) {
-        Data.getPlayers().add(new Player(player));
+    public void addPlayer( String player, String characteristic) {
+        Data.getPlayers().add(new Player(player, characteristic));
     }
 
     @Override
@@ -163,6 +163,11 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void save() {
+        Save.Save();
+    }
+
+    @Override
+    public void clear() {
 
     }
 }

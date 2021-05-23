@@ -85,7 +85,7 @@ public class Save<choosenFile> extends Map {
             for (int i=0;i<platernumbers;i++){
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -156,7 +156,7 @@ public class Save<choosenFile> extends Map {
             for (int i=0;i<platernumbers;i++){
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -234,7 +234,7 @@ public class Save<choosenFile> extends Map {
             for (int i=0;i<platernumbers;i++){
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -314,7 +314,7 @@ public class Save<choosenFile> extends Map {
             for (int i=0;i<platernumbers;i++){
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();

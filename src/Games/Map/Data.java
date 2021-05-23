@@ -37,11 +37,11 @@ public class Data {
 //    }
 
 
-    public void addPlayer(String name){
-        players.add(new Player(name));
+    public void addPlayer(String name, String characteristic){
+        players.add(new Player(name, characteristic));
     }
-    public void addPlayer(String name,int score,int mistake){
-        players.add(new Player(name));
+    public void addPlayer(String name,String characteristic, int score,int mistake){
+        players.add(new Player(name, characteristic, score, mistake));
     }
 
     public static ArrayList<Player> getPlayers() {
