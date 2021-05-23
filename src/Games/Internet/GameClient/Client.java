@@ -52,6 +52,16 @@ public class Client extends Thread {
             }
             Player player = Data.getPlayer();
             String [] arr = msg.split("\\s+");
+            if (arr[0].equals("people")){
+                if (arr[1].equals(Data.getPlayername())){
+                    Player player1 = new Player(arr[2],2);
+                    Data.setRival(player1);
+                }
+                else if (arr[2].equals(Data.getPlayername())){
+                    Player player1 = new Player(arr[1],1);
+                    Data.setRival(player1);
+                }
+            }
             if (arr[0].equals("id")){
                 if (arr[2].equals(Data.getPlayername())){
                     int id = Integer.parseInt(arr[1]);
@@ -66,6 +76,7 @@ public class Client extends Thread {
                 if (player.id==Integer.parseInt(arr[1])){
                     player.mistake=Integer.parseInt(arr[5]);
                     player.score=Integer.parseInt(arr[6]);
+                    Data.setPlayer(player);
                 }
             }
             else if (msg != null && msg.trim() != "") {
