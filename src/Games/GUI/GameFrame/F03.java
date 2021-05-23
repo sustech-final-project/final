@@ -6,6 +6,7 @@ import Games.Map.Player;
 import Games.Map.Timer;
 import Games.listener.GameController;
 
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -186,7 +187,9 @@ public class F03 extends JFrame {
                     left(r, c);
 
                 } else if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                    buttons.get(listeners.indexOf(this)).setText("F");
+                    //buttons.get(listeners.indexOf(this)).setText("F");
+                    ImageIcon Chaqi = new ImageIcon("src\\Games\\image\\方块插旗.png");
+                    buttons.get(listeners.indexOf(this)).setIcon(Chaqi);
                 }
 
                 buttons.get(listeners.indexOf(this)).setEnabled(false);
@@ -207,6 +210,14 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
+        ImageIcon num1 = new ImageIcon("src\\Games\\image\\1.png");
+        ImageIcon num2 = new ImageIcon("src\\Games\\image\\2.png");
+        ImageIcon num3 = new ImageIcon("src\\Games\\image\\3.png");
+        ImageIcon num4 = new ImageIcon("src\\Games\\image\\4.png");
+        ImageIcon num5 = new ImageIcon("src\\Games\\image\\5.png");
+        ImageIcon num6 = new ImageIcon("src\\Games\\image\\6.png");
+        ImageIcon num7 = new ImageIcon("src\\Games\\image\\7.png");
+        if (gc.getChar(r,c)==1)
         buttons.get(r * map[0].length + c).setText(gc.getChar(r, c));
         buttons.get(r * map[0].length + c).setEnabled(false);
         if (buttons.get(r * map[0].length + c).getText().equals("0")){
