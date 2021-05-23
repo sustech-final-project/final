@@ -2,7 +2,7 @@ package Games.components;
 
 import javax.swing.*;
 
-public class Gif {
+public class gif {
     public ImageIcon gifGetter(String name){
         ImageIcon imageIconTnt = new ImageIcon("src\\Games\\gif\\tnt_3 5.gif");
         ImageIcon imageIconLose = new ImageIcon("src\\Games\\gif\\You  lose 2.5.gif");
