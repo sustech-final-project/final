@@ -15,7 +15,7 @@ public class Client extends Thread {
     Socket client;
     BufferedReader reader;
     PrintWriter writer;
-    int port = 8001;
+    int port = 8003;
 
     public Client() {
   //      this.ui = ui;
@@ -23,12 +23,12 @@ public class Client extends Thread {
             String ip = "127.0.0.1"; //得到输入的ip地址
             //InetAddress ip = Inet4Address.getByName("chat.sustc.icu");
             //int port = Integer.parseInt(ui.tfPort.getText()); //得到输入的端口
-            int port = 8001;
+            int port = 8003;
             client = new Socket(ip, port);//这里设置连接服务器端的IP的端口
             println("连接服务器 gamehall.sustc.icu 成功，服务器端口地址：" + port);
             reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
             writer = new PrintWriter(client.getOutputStream(), true);
-            String name = Data.getPlayer().name;
+            String name = Data.Playername;
             sendMsg("getid"+" "+name);
         } catch (NumberFormatException nu) {
             println("端口请输入正确.......");
@@ -73,16 +73,29 @@ public class Client extends Thread {
                 Data.setaChar(arr[2].charAt(0));//Todo:这里应该改成显示之类的，或者给一个扳机，触发ui重写
                 Data.setRow(Integer.parseInt(arr[3]));
                 Data.setColumn(Integer.parseInt(arr[4]));
-                if (player.id==Integer.parseInt(arr[1])){
-                    player.mistake=Integer.parseInt(arr[5]);
-                    player.score=Integer.parseInt(arr[6]);
-                    Data.setPlayer(player);
+                if (Integer.parseInt(arr[1])==1){
+                    //player.mistake=Integer.parseInt(arr[5]);
+                    //player.score=Integer.parseInt(arr[6]);
+                   // Data.setPlayer(player);
+                    Data.mistake1=Integer.parseInt(arr[5]);
+                    Data.point1=Integer.parseInt(arr[6]);
                 }
                 else {
-                    Player player1 = Data.getRival();
-                    player1.mistake=Integer.parseInt(arr[5]);
-                    player1.score=Integer.parseInt(arr[6]);
-                    Data.setPlayer(player1);
+//                    Player player1 = Data.getRival();
+//                    player1.mistake=Integer.parseInt(arr[5]);
+//                    player1.score=Integer.parseInt(arr[6]);
+//                    Data.setPlayer(player1);
+                    Data.mistake2=Integer.parseInt(arr[5]);
+                    Data.point2=Integer.parseInt(arr[6]);
+                }
+                Muti.update();
+            }
+            if (arr[0].equals("end")){
+                if (Integer.parseInt(arr[1])==1) {
+                    new Win();
+                }
+                else {
+                    new Lose();
                 }
             }
             else if (msg != null && msg.trim() != "") {

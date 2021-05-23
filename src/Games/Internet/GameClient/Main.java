@@ -11,7 +11,11 @@ public class Main {
         //new ClientUI();
         Player player = new Player("dgy",1);
         Data.setPlayer(player);
-        Client client = new Client();
-        client.sendMsg("abcd "+Data.getPlayer().name);
+        Data.setPlayername("dgy");
+//        Client client = new Client();
+        Player player1 = new Player("a",2);
+        Data.setRival(player1);
+        //client.sendMsg("abcd "+Data.getPlayer().name);
+        Muti muti = new Muti(" ");
     }
 }

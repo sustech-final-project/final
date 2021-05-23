@@ -23,7 +23,7 @@ public class Save extends Map {
         int point2 = Data.getPoint2();
         //int order = Data.getOrder();
         try {
-            String s = filename;
+            String s = "ServerMap/"+filename+".txt";
             File file = new File(s);
             PrintStream writer = new PrintStream(new FileOutputStream(file));
             writer.println(map1.length + " " + map1[0].length);

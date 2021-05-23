@@ -105,13 +105,19 @@ public class ClientUI extends JFrame {
                 }
                 server.sendMsg("over" +" " + name);
                 //Todo:
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        dispose();
-                        new Muti("Game");
-                    }
-                });
+                try {
+                    Thread.sleep(5000);
+                }catch (Exception exception){
+
+                }
+//                SwingUtilities.invokeLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        dispose();
+//                        new Muti("Game");
+//                    }
+//                });
+                new Muti("Game");
                // tfSend.setText("");
                 System.exit(0);
             }
@@ -122,7 +128,7 @@ public class ClientUI extends JFrame {
                 int a = JOptionPane.showConfirmDialog(null, "确定关闭吗？", "温馨提示",
                         JOptionPane.YES_NO_OPTION);
                 if (a == 1) {
-                    server.sendMsg("quit" + name);
+                   // server.sendMsg("quit" + name);
                     System.exit(0); // 关闭
                 }
             }
