@@ -4,8 +4,10 @@ import Games.Map.Map;
 import Games.listener.GameController;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 import static Games.GUI.GameFrame.MainLocal.f01;
 import static Games.GUI.GameFrame.MainLocal.f02;

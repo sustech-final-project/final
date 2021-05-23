@@ -1,6 +1,7 @@
 package Games.Internet.GameClient;
 
 
+import Games.utils.ClickType;
 import Games.utils.GameStatus;
 
 import java.io.BufferedReader;
@@ -73,9 +74,9 @@ public class Client extends Thread {
         }
     }
 
-    public void gaming(GameStatus gameStatus,int playernumber,int row,int column) {
+    public void gaming(GameStatus gameStatus,int playernumber,int row,int column,ClickType clickType) {
         try {
-            writer.println("play " + playernumber + " " + row + " " + column);
+            writer.println("play " + playernumber + " " + row + " " + column+" "+ clickType);
         } catch (Exception e) {
         }
     }

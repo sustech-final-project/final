@@ -26,7 +26,7 @@ public class test {
   //      players.add(player);
    //     Data.setPlayers(players);
        // map.mapWriter("test15.txt");
-        Save.Save("test19.txt");
+        Save.Save("test1.txt");
 
 
 
