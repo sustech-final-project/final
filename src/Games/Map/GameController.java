@@ -143,6 +143,11 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void save() {
+        Save.Save();
+    }
+
+    @Override
+    public void clear() {
 
     }
 }

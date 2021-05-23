@@ -1,4 +1,4 @@
-package Games.GUI.GameFrame;
+package Games.GUI.GameFrame.layout;
 
 import java.awt.Component;
 import java.awt.Container;

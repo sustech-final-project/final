@@ -63,7 +63,7 @@ public class F02 extends JFrame {
             type.add(new JComboBox<String>(typeList));
             type.get(i).setSelectedIndex(1);
             characteristic.add(new JComboBox<String>(characteristicList));
-            name.add(new JTextField("请在此处输入昵称"));
+            name.add(new JTextField("昵称"));
             sub_1[0].add(type.get(i), "20%");
             sub_1[1].add(name.get(i), "20%");
             sub_1[2].add(characteristic.get(i), "20%");

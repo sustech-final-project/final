@@ -14,8 +14,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Games.GUI.GameFrame.MainLocal.f03;
-import static Games.GUI.GameFrame.MainLocal.f04;
+import static Games.GUI.GameFrame.MainLocal.*;
 
 
 public class F03 extends JFrame {
@@ -54,7 +53,6 @@ public class F03 extends JFrame {
                 }
                 buttons.get(i).setFocusable(false);
                 buttons.get(i).addMouseListener(listeners.get(i));
-                buttons.get(i).setPreferredSize(new Dimension(42, 42));
                 board.add(buttons.get(i));
             }
         }//建立board
@@ -72,7 +70,7 @@ public class F03 extends JFrame {
             Dimension size = timerPanel.getPreferredSize();
             timerPanel.setBounds(43 * map.length,0,size.width * 2,size.height);
         }
-        contentPane.add(board, "50%");
+        contentPane.add(board, "70%");
         JPanel left = new JPanel(new AfYLayout());
         left.add(timerPanel, "20%");
         JPanel score = new JPanel(new AfYLayout());
@@ -86,6 +84,92 @@ public class F03 extends JFrame {
         left.add(score, "30%");
         contentPane.add(left, "1w");
 
+
+        JMenuBar bar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("文件");
+        JMenu viewMenu = new JMenu("视图");
+        JMenu helpMenu = new JMenu("帮助");
+
+        JMenuItem save        = new JMenuItem("保存");
+        JMenuItem restart     = new JMenuItem("新游戏");
+        JMenuItem reLoad      = new JMenuItem("载入");
+        JMenuItem cheat       = new JMenuItem("作弊模式");
+        JMenuItem creator     = new JMenuItem("制作人的话");
+        JMenuItem about       = new JMenuItem("关于...");
+        JMenuItem changeTheme = new JMenuItem("更换主题");
+
+        fileMenu.add(save);
+        fileMenu.add(reLoad);
+        fileMenu.addSeparator();
+        fileMenu.add(restart);
+        helpMenu.add(cheat);
+        helpMenu.addSeparator();
+        helpMenu.add(creator);
+        helpMenu.add(about);
+
+        JMenuItem Theme1 = new JMenuItem("主题1");
+        JMenuItem Theme2 = new JMenuItem("主题2");
+        JMenuItem Theme3 = new JMenuItem("主题3");
+        changeTheme.add(Theme1);
+        changeTheme.add(Theme2);
+        changeTheme.add(Theme3);
+
+        viewMenu.add(changeTheme);
+
+        save.addActionListener(listener ->{
+            gc.save();
+        });
+
+        restart.addActionListener(listener ->{
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                gc.clear();
+                f02();
+            }
+        });
+        });
+        reLoad     .addActionListener(listener ->{
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                gc.clear();
+                f01();
+            }
+        });
+        });
+
+        cheat      .addActionListener(listener ->{
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                f00();
+            }
+        });
+        });
+        creator    .addActionListener(listener ->{
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                f00();
+            }
+        });
+        });
+        about      .addActionListener(listener ->{
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                f00();
+            }
+        });
+        });
+
+        bar.add(fileMenu);
+        bar.add(viewMenu);
+        bar.add(helpMenu);
+
+        this.setJMenuBar(bar);
     }
 
 
