@@ -7,26 +7,26 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
-public class Fgif {
+public class Fgif extends JFrame{
+    ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\开头.gif");
 
     /**
-     * @param args
+     * @param
      */
-    public static void main(String[] args) {
+    public static void Open() throws InterruptedException {
 // TODO Auto-generated method stub
         final JFrame frame = new JFrame();
         frame.setUndecorated(true);
-        Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
+       // Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
         final JPanel panel = new JPanel();
-        panel.setSize(200,100);
-        panel.setBorder(b);
+        panel.setSize(2000,1000);
+      //  panel.setBorder(b);
 
 
         panel.addMouseMotionListener(new MouseAdapter() {
@@ -94,12 +94,16 @@ public class Fgif {
             }
         });
 
+        JLabel label = new JLabel(new Fgif().imageIcon);
+        panel.add(label);
         frame.setLocation(200,100);
-        frame.getContentPane().add(panel);
-        frame.setSize(200,100);
+        frame.setContentPane(panel);
+        frame.setSize(2000,1000);
+        frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.show();
-
+        Thread.sleep(4700);
+        System.exit(0);
     }
 
 }
