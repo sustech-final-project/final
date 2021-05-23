@@ -99,7 +99,7 @@ public class Client extends Thread {
         }
     }
 
-    public void gaming(GameStatus gameStatus,int playernumber,int row,int column,ClickType clickType) {
+    public void gaming(int playernumber,int row,int column,ClickType clickType) {
         try {
             writer.println("play " + playernumber + " " + row + " " + column+" "+ clickType);
         } catch (Exception e) {

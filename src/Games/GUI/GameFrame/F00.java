@@ -11,6 +11,7 @@ import java.io.File;
 
 import static Games.GUI.GameFrame.MainLocal.f01;
 import static Games.GUI.GameFrame.MainLocal.f02;
+import static Games.Internet.HallClient.Main.mai;
 
 public class F00 extends JFrame {
     JLabel label = new JLabel("请选择游戏类型");
@@ -40,6 +41,16 @@ public class F00 extends JFrame {
                     } else {
                         f02();
                     }
+                }
+            });
+        });
+
+        net.addActionListener(lis -> {
+            this.dispose();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    mai();
                 }
             });
         });
