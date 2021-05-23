@@ -55,7 +55,7 @@ public class MainLocal {
     public static void f03() {
         F03 f03 = new F03("扫雷", gc);
         f03.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f03.setSize(600, 400);
+        f03.setSize(gc.getMap()[0].length * 84, gc.getMap().length * 42 + 70);
         f03.setLocationRelativeTo(null);
         f03.setVisible(true);
     }

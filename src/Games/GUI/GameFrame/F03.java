@@ -22,13 +22,15 @@ public class F03 extends JFrame {
     int order = 0;
     GameController gc;
     char[][] map;
-    MouseListener[][] listeners;
-    JButton[][] buttons;
+//    MouseListener[][] listeners;
+//    JButton[][] buttons;
+    ArrayList<MouseListener> listeners = new ArrayList<>();
+    ArrayList<JButton> buttons = new ArrayList<>();
     JPanel[] panels;
     JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
-    JPanel board = new JPanel(new VerticalFlowLayout(VerticalFlowLayout.TOP, 0, 0));
-    ArrayList<Player> players;
+    JPanel board = new JPanel();
+    ArrayList<Player> players = new ArrayList<>();
 
     public F03(String title, GameController gc) {
         super(title);
@@ -37,25 +39,23 @@ public class F03 extends JFrame {
             contentPane.setLayout(new AfXLayout());
         {
             map = gc.getMap();
-            buttons = new JButton[map.length][map[0].length];
-            listeners = new MouseListener[map.length][map[0].length];
+            System.out.println(Arrays.deepToString(map));
+            board.setLayout(new GridLayout(map.length, map[0].length));
             panels = new JPanel[map.length];
-            for (int i = 0; i < map.length; i++) {
-                panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-                for (int j = 0; j < map[0].length; j++) {
-                    buttons[i][j] = new JButton("");
-                    order = gc.getOrder();
-                    if (order != 0 && gc.isPrint(i, j)) {
-                        buttons[i][j].setLabel(map[i][j] + "");
-                        buttons[i][j].setEnabled(false);
-                    }
-                    buttons[i][j].setFocusable(false);
-                    listeners[i][j] = new MouseListener();
-                    buttons[i][j].setPreferredSize(new Dimension(42, 42));
-                    buttons[i][j].addMouseListener(listeners[i][j]);
-                    panels[i].add(buttons[i][j]);
+            order = gc.getOrder();
+            for (int i = 0; i < map.length * map[0].length; i++) {
+                int row = i / map[0].length;
+                int column = i % map[0].length;
+                buttons.add(new JButton(""));
+                listeners.add(new MouseListener());
+                if (order != 0 && gc.isPrint(row, column)) {
+                    buttons.get(i).setText(map[row][column] + "");
+                    buttons.get(i).setEnabled(false);
                 }
-                board.add(panels[i]);
+                buttons.get(i).setFocusable(false);
+                buttons.get(i).addMouseListener(listeners.get(i));
+                buttons.get(i).setPreferredSize(new Dimension(42, 42));
+                board.add(buttons.get(i));
             }
         }//建立board
 
@@ -72,7 +72,7 @@ public class F03 extends JFrame {
             Dimension size = timerPanel.getPreferredSize();
             timerPanel.setBounds(43 * map.length,0,size.width * 2,size.height);
         }
-        contentPane.add(board);
+        contentPane.add(board, "50%");
         JPanel left = new JPanel(new AfYLayout());
         left.add(timerPanel, "20%");
         JPanel score = new JPanel(new AfYLayout());
@@ -93,35 +93,23 @@ public class F03 extends JFrame {
         @Override
         public void mouseClicked(MouseEvent e) {
             order = gc.getOrder();
-            int r = 0;
-            int c = 0;
-            for (int i = 0; i < listeners.length; i++) {
-                for (int j = 0; j < listeners[0].length; j++) {
-                    if (listeners[i][j].equals(this)) {
-                        r = i;
-                        c = j;
-                    }
-                }
-            }
+            int r = listeners.indexOf(this) / map[0].length;
+            int c = listeners.indexOf(this) % map[0].length;
+
                 if (order == 0) gc.createMap(r, c);
 
-                if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
+                if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
 
-                } else if (!buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                    buttons[r][c].setLabel("F");
+                } else if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON3){
+                    buttons.get(listeners.indexOf(this)).setText("F");
                 }
-//                else if (buttons[r][c].getLabel().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-//                    buttons[r][c].setLabel("");
-//                }
-                buttons[r][c].setEnabled(false);
+
+                buttons.get(listeners.indexOf(this)).setEnabled(false);
                 gc.Click(r, c, e.getButton());
                 for (int i = 0; i < players.size(); i++) {
                     playerInf[i].setText("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake());
                 }
-//                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(Color.blue);
-//                playerInf[(gc.getOrder() / gc.getTurn()) % players.length].setBackground(null);
-
                 if (gc.isEnd()) {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
@@ -135,9 +123,9 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
-        buttons[r][c].setLabel(gc.getChar(r, c));
-        buttons[r][c].setEnabled(false);
-        if (buttons[r][c].getLabel().equals("0")){
+        buttons.get(r * map[0].length + c).setText(gc.getChar(r, c));
+        buttons.get(r * map[0].length + c).setEnabled(false);
+        if (buttons.get(r * map[0].length + c).getText().equals("0")){
             if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
             if (!gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
             if (!gc.isPrint(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {}
