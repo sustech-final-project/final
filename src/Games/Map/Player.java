@@ -2,18 +2,29 @@ package Games.Map;
 
 public class Player {
     String name;
+    String characteristic;
     int score;
     int mistake;
-    public Player(String name){
+    public Player(String name, String characteristic){
         this.name=name;
+        this.characteristic = characteristic;
         this.score=0;
         this.mistake=0;
     }
 
-    public Player(String name, int score, int mistake) {
+    public Player(String name, String characteristic, int score, int mistake) {
         this.name = name;
+        this.characteristic = characteristic;
         this.score = score;
         this.mistake = mistake;
+    }
+
+    public String getCharacteristic() {
+        return characteristic;
+    }
+
+    public void setCharacteristic(String characteristic) {
+        this.characteristic = characteristic;
     }
 
     public String getName() {

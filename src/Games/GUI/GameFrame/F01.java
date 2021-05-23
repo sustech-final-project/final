@@ -43,7 +43,6 @@ public class F01 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-
                     f02();
                 }
             });

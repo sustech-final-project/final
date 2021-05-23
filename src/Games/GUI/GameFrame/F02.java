@@ -1,105 +1,112 @@
- package Games.GUI.GameFrame;
+package Games.GUI.GameFrame;
 
+import Games.GUI.GameFrame.layout.AfXLayout;
+import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.listener.GameController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import static Games.GUI.GameFrame.MainLocal.*;
 
 public class F02 extends JFrame {
     GameController gc;
-    JRadioButton easy = new JRadioButton("简单", true);
-    JRadioButton middle = new JRadioButton("中等");
-    JRadioButton hard = new JRadioButton("困难");
-    JRadioButton other = new JRadioButton("自定义");
-    ButtonGroup group = new ButtonGroup();
+    String[] typeList = new String[]{"无","玩家", "简单人机", "中级人机", "高级人机"};
+    String[] characteristicList = new String[]{"无", "角色1","角色2"};
+    JPanel[] sub_1 = new JPanel[4];
+    ArrayList<JComboBox<String>> type = new ArrayList<>();
+    ArrayList<JComboBox<String>> characteristic = new ArrayList<>();
+    ArrayList<JTextField> name = new ArrayList<>();
     JLabel row = new JLabel("行数：");
     JLabel column = new JLabel("列数：");
     JLabel mine = new JLabel("雷数：");
-    JLabel player = new JLabel("游戏人数：");
-    JLabel turn = new JLabel("每人一轮点击数：");
-    JTextField nR = new JFormattedTextField("100");
-    JTextField nC = new JFormattedTextField("100");
-    JTextField nM = new JFormattedTextField("30");
-    JTextField nP = new JFormattedTextField("2");
-    JTextField nT = new JFormattedTextField("5");
-    JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JPanel panel5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    int people = 0;
-
-
-    JButton oK = new JButton("OK");
+    JLabel turn = new JLabel("回合数：");
+    JTextField nR = new JFormattedTextField("10");
+    JTextField nC = new JFormattedTextField("10");
+    JTextField nM = new JFormattedTextField("10");
+    JTextField nT = new JFormattedTextField("3");
+    JPanel LRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel LColumn = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel LMine = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel LTurn = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
     public F02(String title, GameController gc) {
         super(title);
         this.gc = gc;
+        nR.setPreferredSize(new Dimension(40,20));
+        nC.setPreferredSize(new Dimension(40,20));
+        nM.setPreferredSize(new Dimension(40,20));
+        nT.setPreferredSize(new Dimension(40,20));
+        LRow.add(row);
+        LRow.add(nR);
+        LColumn.add(column);
+        LColumn.add(nC);
+        LMine.add(mine);
+        LMine.add(nM);
+        LTurn.add(turn);
+        LTurn.add(nT);
+        for (int i = 0; i < sub_1.length; i++) {
+            sub_1[i] = new JPanel(new AfYLayout());
+        }
+        sub_1[0].add(new JLabel("玩家类型"), "20%");
+        sub_1[1].add(new JLabel("昵称"), "20%");
+        sub_1[2].add(new JLabel("人物"), "20%");
+        sub_1[3].add(LRow, "20%");
+        sub_1[3].add(LColumn, "20%");
+        sub_1[3].add(LMine, "20%");
+        sub_1[3].add(LTurn, "20%");
+        JButton begin = new JButton("开始游戏");
+        sub_1[3].add(begin, "20%");
+        for (int i = 0; i < 4; i++) {
+            type.add(new JComboBox<String>(typeList));
+            type.get(i).setSelectedIndex(1);
+            characteristic.add(new JComboBox<String>(characteristicList));
+            name.add(new JTextField("请在此处输入昵称"));
+            sub_1[0].add(type.get(i), "20%");
+            sub_1[1].add(name.get(i), "20%");
+            sub_1[2].add(characteristic.get(i), "20%");
+        }
+        JPanel main = new JPanel(new AfXLayout(10));
+        for (JPanel panel : sub_1) {
+            main.add(panel, "25%");
+        }
         Container contentPane = getContentPane();
-        Layout layout = new Layout();
-        contentPane.setLayout(layout);
-        group.add(easy);
-        group.add(middle);
-        group.add(hard);
-        group.add(other);
-        contentPane.add(easy);
-        contentPane.add(middle);
-        contentPane.add(hard);
-        contentPane.add(other);
-        panel1.add(row);
-        panel1.add(nR);
-        panel2.add(column);
-        panel2.add(nC);
-        panel3.add(mine);
-        panel3.add(nM);
-        panel4.add(player);
-        panel4.add(nP);
-        contentPane.add(panel1);
-        contentPane.add(panel2);
-        contentPane.add(panel3);
-        contentPane.add(panel4);
-        contentPane.add(oK);
-        nR.setEnabled(false);
-        nC.setEnabled(false);
-        nM.setEnabled(false);
-        panel5.add(turn);
-        panel5.add(nT);
-        contentPane.add(panel5);
+        contentPane.setLayout(new BorderLayout());
+        main.setSize(1000,500);
+        contentPane.add(main, BorderLayout.CENTER);
 
+        type.forEach(ty -> {
+            ty.addActionListener(listener -> {
+                if (ty.getSelectedIndex() == 0) {
+                    name.get(type.indexOf(ty)).setText("无");
+                    name.get(type.indexOf(ty)).setEnabled(false);
+                    characteristic.get(type.indexOf(ty)).setSelectedIndex(0);
+                    characteristic.get(type.indexOf(ty)).setEnabled(false);
+                } else {
+                    name.get(type.indexOf(ty)).setEnabled(true);
+                    characteristic.get(type.indexOf(ty)).setEnabled(true);
+                }
+            });
+        });
 
-        other.addActionListener((e) -> {
-            nR.setEnabled(true);
-            nC.setEnabled(true);
-            nM.setEnabled(true);
-        });
-        easy.addActionListener((e) -> {
-            nR.setEnabled(false);
-            nC.setEnabled(false);
-            nM.setEnabled(false);
-        });
-        middle.addActionListener((e) -> {
-            nR.setEnabled(false);
-            nC.setEnabled(false);
-            nM.setEnabled(false);
-        });
-        hard.addActionListener((e) -> {
-            nR.setEnabled(false);
-            nC.setEnabled(false);
-            nM.setEnabled(false);
-        });
-        oK.addActionListener((e -> {
+        begin.addActionListener(listener -> {
+            this.dispose();
+            type.forEach(ty ->{
+                if (!Objects.equals(ty.getSelectedItem(), "无")) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+            });
+
             int row = 0;
             int column = 0;
             int mine = 0;
             int turn = 0;
-            int error = 0;
             try {
-                people = Integer.parseInt(nP.getText());
+                row = Integer.parseInt(nR.getText());
+                column = Integer.parseInt(nC.getText());
+                mine = Integer.parseInt(nM.getText());
                 turn = Integer.parseInt(nT.getText());
             } catch (Exception e1) {
-                error++;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -107,149 +114,16 @@ public class F02 extends JFrame {
                     }
                 });
             }
-            if (other.isSelected()) {
-                try {
-                    row = Integer.parseInt(nR.getText());
-                    column = Integer.parseInt(nC.getText());
-                    mine = Integer.parseInt(nM.getText());
 
-                } catch (Exception e1) {
-                    error++;
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            exception();
-                        }
-                    });
+            gc.setSize(row, column, mine);
+            gc.setTurns(turn);
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    f03();
                 }
-            } else if (easy.isSelected()) {
-                row = 9;
-                column = 9;
-                mine = 10;
-            } else if (middle.isSelected()) {
-                row = 16;
-                column = 16;
-                mine = 40;
-            } else {
-                row = 16;
-                column = 33;
-                mine = 99;
-            }
-
-            if (error == 0) {
-                gc.setSize(row, column, mine);
-                gc.setTurns(turn);
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        String str = "";
-                        String str1 = null;
-                        for (int i = 0; i < people && str != null; i++) {
-                            gc.addPlayer( str = JOptionPane.showInputDialog(str1 +"输入玩家" + (i + 1) +"的昵称:", "昵称"));
-                            if(str == null) {
-                                str1 = "输入无效，请重新";
-                                i --;
-                            } else str1 = null;
-                        }
-                        f03();
-                    }
-                });
-                this.dispose();
-            }
-        }));
-
-
+            });
+        });
     }
-
-
-    private class Layout implements LayoutManager {
-
-        @Override
-        public void layoutContainer(Container parent) {
-            int width = parent.getWidth();
-            int height = parent.getHeight();
-//            System.out.println(width + " " + height);
-            {
-                Dimension size = easy.getPreferredSize();
-                int x = (width - size.width) / 4;
-                int y = (height - size.height) / 5;
-                easy.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = middle.getPreferredSize();
-                int x = 2 * (width - size.width) / 4;
-                int y = (height - size.height) / 5;
-                middle.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = hard.getPreferredSize();
-                int x = 3 * (width - size.width) / 4;
-                int y = (height - size.height) / 5;
-                hard.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = other.getPreferredSize();
-                int x = (width - size.width) / 4;
-                int y = 2 * (height - size.height) / 5;
-                other.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = panel1.getPreferredSize();
-                int x = (width - size.width) / 4;
-                int y = 3 * (height - size.height) / 5;
-                panel1.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = panel2.getPreferredSize();
-                int x = 2 * (width - size.width) / 4;
-                int y = 3 * (height - size.height) / 5;
-                panel2.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = panel3.getPreferredSize();
-                int x = 3 * (width - size.width) / 4;
-                int y = 3 * (height - size.height) / 5;
-                panel3.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = oK.getPreferredSize();
-                int x = 3 * (width - size.width) / 4;
-                int y = 4 * (height - size.height) / 5;
-                oK.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = panel4.getPreferredSize();
-                int x = (width - size.width) / 4;
-                int y = 4 * (height - size.height) / 5;
-                panel4.setBounds(x, y, size.width, size.height);
-            }
-            {
-                Dimension size = panel5.getPreferredSize();
-                int x = 3 * (width - size.width) / 4;
-                int y = 2 * (height - size.height) / 5;
-                panel5.setBounds(x, y, size.width, size.height);
-            }
-        }
-
-        @Override
-        public void addLayoutComponent(String name, Component comp) {
-
-        }
-
-        @Override
-        public void removeLayoutComponent(Component comp) {
-
-        }
-
-        @Override
-        public Dimension preferredLayoutSize(Container parent) {
-            return null;
-        }
-
-        @Override
-        public Dimension minimumLayoutSize(Container parent) {
-            return null;
-        }
-    }
-
 }

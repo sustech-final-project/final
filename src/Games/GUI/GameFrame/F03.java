@@ -23,7 +23,7 @@ public class F03 extends JFrame {
     GameController gc;
     char[][] map;
     MouseListener[][] listeners;
-    Button[][] buttons;
+    JButton[][] buttons;
     JPanel[] panels;
     JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
@@ -33,18 +33,17 @@ public class F03 extends JFrame {
     public F03(String title, GameController gc) {
         super(title);
             this.gc = gc;
-            setLocationRelativeTo(null);
             Container contentPane = getContentPane();
             contentPane.setLayout(new AfXLayout());
         {
             map = gc.getMap();
-            buttons = new Button[map.length][map[0].length];
+            buttons = new JButton[map.length][map[0].length];
             listeners = new MouseListener[map.length][map[0].length];
             panels = new JPanel[map.length];
             for (int i = 0; i < map.length; i++) {
                 panels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
                 for (int j = 0; j < map[0].length; j++) {
-                    buttons[i][j] = new Button("");
+                    buttons[i][j] = new JButton("");
                     order = gc.getOrder();
                     if (order != 0 && gc.isPrint(i, j)) {
                         buttons[i][j].setLabel(map[i][j] + "");
@@ -52,7 +51,7 @@ public class F03 extends JFrame {
                     }
                     buttons[i][j].setFocusable(false);
                     listeners[i][j] = new MouseListener();
-                    buttons[i][j].setPreferredSize(new Dimension(41, 41));
+                    buttons[i][j].setPreferredSize(new Dimension(42, 42));
                     buttons[i][j].addMouseListener(listeners[i][j]);
                     panels[i].add(buttons[i][j]);
                 }

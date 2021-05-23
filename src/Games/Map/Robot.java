@@ -19,9 +19,9 @@ public class Robot {
 //    private static String nameMd ="不太容易被击败的玩家";
 //    private static String nameHa ="强大的机器人玩家";
 //    private static String winner ="";
-     Player Hdrobot=new Player("困难AI");
-     Player Mdrobot=new Player("中等AI");
-     Player Ezrobot=new Player("简单AI");
+     Player Hdrobot=new Player("困难AI", "No characteristic" );
+     Player Mdrobot=new Player("中等AI", "No characteristic" );
+     Player Ezrobot=new Player("简单AI","No characteristic" );
     Games.Internet.GameServer.Map map =new Games.Internet.GameServer.Map();
 
     public Games.Internet.GameServer.Map getMap() {

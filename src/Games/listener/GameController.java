@@ -73,7 +73,7 @@ public interface GameController {
      *
      * @param player 玩家昵称
      */
-    void addPlayer(String player);
+    void addPlayer(String player, String characteristic);
 
     /**
      * 设置游戏中一人一轮点击次数
