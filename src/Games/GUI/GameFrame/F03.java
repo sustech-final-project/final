@@ -188,7 +188,8 @@ public class F03 extends JFrame {
 
                 } else if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON3){
                     //buttons.get(listeners.indexOf(this)).setText("F");
-                    ImageIcon Chaqi = new ImageIcon("src\\Games\\image\\方块插旗.png");
+                    ImageIcon Chaqi = new ImageIcon("src\\Games\\image\\方块插旗.jpg");
+                    //Chaqi.setImage(Chaqi.getImage().getScaledInstance(10,10,Image.SCALE_DEFAULT));
                     buttons.get(listeners.indexOf(this)).setIcon(Chaqi);
                 }
 
@@ -211,14 +212,14 @@ public class F03 extends JFrame {
 
     private void left(int r, int c) {
         ImageIcon show = null;
-        ImageIcon num0 = new ImageIcon("src\\Games\\image\\空白.png");
-        ImageIcon num1 = new ImageIcon("src\\Games\\image\\1.png");
-        ImageIcon num2 = new ImageIcon("src\\Games\\image\\2.png");
-        ImageIcon num3 = new ImageIcon("src\\Games\\image\\3.png");
-        ImageIcon num4 = new ImageIcon("src\\Games\\image\\4.png");
-        ImageIcon num5 = new ImageIcon("src\\Games\\image\\5.png");
-        ImageIcon num6 = new ImageIcon("src\\Games\\image\\6.png");
-        ImageIcon num7 = new ImageIcon("src\\Games\\image\\7.png");
+        ImageIcon num0 = new ImageIcon("src\\Games\\image\\空白.jpg");
+        ImageIcon num1 = new ImageIcon("src\\Games\\image\\1.jpg");
+        ImageIcon num2 = new ImageIcon("src\\Games\\image\\2.jpg");
+        ImageIcon num3 = new ImageIcon("src\\Games\\image\\3.jpg");
+        ImageIcon num4 = new ImageIcon("src\\Games\\image\\4.jpg");
+        ImageIcon num5 = new ImageIcon("src\\Games\\image\\5.jpg");
+        ImageIcon num6 = new ImageIcon("src\\Games\\image\\6.jpg");
+        ImageIcon num7 = new ImageIcon("src\\Games\\image\\7.jpg");
         if (gc.getChar(r,c).equals("0")) show=num0;
         if (gc.getChar(r,c).equals("1")) show=num1;
         if (gc.getChar(r,c).equals("2")) show=num2;
@@ -229,7 +230,8 @@ public class F03 extends JFrame {
         if (gc.getChar(r,c).equals("7")) show=num7;
 
         buttons.get(r * map[0].length + c).setIcon(show);
-        buttons.get(r * map[0].length + c).setEnabled(false);
+        buttons.get(r * map[0].length + c).setText(gc.getChar(r, c));
+       // buttons.get(r * map[0].length + c).setEnabled(false);
         if (buttons.get(r * map[0].length + c).getText().equals("0")){
             if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
             if (!gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}

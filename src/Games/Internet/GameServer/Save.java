@@ -21,14 +21,14 @@ public class Save extends Map {
         char map1[][] = getMap();
         int point1 = Data.getPoint1();
         int point2 = Data.getPoint2();
-        int order = Data.getOrder();
+        //int order = Data.getOrder();
         try {
             String s = filename;
             File file = new File(s);
             PrintStream writer = new PrintStream(new FileOutputStream(file));
             writer.println(map1.length + " " + map1[0].length);
             writer.println(point1 + " " + point2);
-            writer.println(order);
+     //       writer.println(order);
             for (int i = 0; i < map1.length; i++) {
                 for (int j = 0; j < map1[i].length; j++) {
                     writer.write(map1[i][j]);
@@ -66,7 +66,7 @@ public class Save extends Map {
             int point1 = Integer.parseInt(arr1[0]);
             int point2 = Integer.parseInt(arr1[1]);
             str = in.readLine();
-            int order = Data.getOrder();
+            //int order = Data.getOrder();
             char [][] map1 = new char[a][b];
             int [][] HasClicked1 = new int[a][b];
             int i = 0;
@@ -88,7 +88,7 @@ public class Save extends Map {
             Data.setPoint1(point1);
             Data.setPoint2(point2);
             Data.setHasClicked(HasClicked1);
-            Data.setOrder(order);
+           // Data.setOrder(order);
         } catch (IOException e) {
             System.out.println("reader");
         }

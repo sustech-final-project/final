@@ -30,7 +30,7 @@ public class MainLocal {
     public static void exception() {
         JFrame frame = new JFrame("Error");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setBounds(600, 400, 289, 153);
+        frame.setBounds(1200, 800, 289, 153);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
         JLabel l = new JLabel("请输入数字!");
         frame.add(l);

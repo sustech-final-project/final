@@ -139,7 +139,6 @@ public class ListenerClient extends Thread{
             if (playerid==2){
                 sendMsg("play "+1+" "+map.getMap(row,column)+" "+row+" "+column+" "+Data.mistake2 + " " + Data.point2);
             }
-
         }
     }
 
