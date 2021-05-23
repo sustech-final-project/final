@@ -5,6 +5,8 @@ public class Data {
 
     public static Player player;
 
+    public static Player rival;
+
     public static int row;
 
     public static int column;
@@ -49,5 +51,13 @@ public class Data {
 
     public static void setFilename(String filename1) {
         filename = filename1;
+    }
+
+    public static Player getRival() {
+        return rival;
+    }
+
+    public static void setRival(Player rival) {
+        Data.rival = rival;
     }
 }

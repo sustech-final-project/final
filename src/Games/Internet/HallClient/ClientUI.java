@@ -101,7 +101,7 @@ public class ClientUI extends JFrame {
                 }
                 server.sendMsg("over" +" " + name);
                 //Todo:
-                
+
                // tfSend.setText("");
                 System.exit(0);
             }
