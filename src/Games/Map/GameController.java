@@ -69,7 +69,27 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public boolean isEnd() {
-        return false;
+        char map[][] = Games.Internet.GameServer.Map.getMap();
+        int i=0;
+        int r=0;
+        int c=0;
+        for(;r< map.length;){
+            for(;c<map[0].length; ){
+                if(Data.getHasClicked(r,c)==1){
+                    i++;
+                    r++;
+                    c++;
+                }
+                else {
+                    r++;
+                    c++;
+                }
+            }
+        }
+        if(i==r*c){
+            return true;
+        }
+        else return false;
     }
 
     @Override
