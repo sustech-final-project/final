@@ -147,7 +147,7 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public void clear() {
+    public void clear(){
 
     }
 }
