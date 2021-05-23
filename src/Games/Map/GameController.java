@@ -69,7 +69,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public boolean isEnd() {
-        char map[][] = Games.Internet.GameServer.Map.getMap();
+        char map[][] = Map.getMap();
         int i=0;
         int r=0;
         int c=0;
