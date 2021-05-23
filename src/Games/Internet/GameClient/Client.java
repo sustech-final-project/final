@@ -78,6 +78,12 @@ public class Client extends Thread {
                     player.score=Integer.parseInt(arr[6]);
                     Data.setPlayer(player);
                 }
+                else {
+                    Player player1 = Data.getRival();
+                    player1.mistake=Integer.parseInt(arr[5]);
+                    player1.score=Integer.parseInt(arr[6]);
+                    Data.setPlayer(player1);
+                }
             }
             else if (msg != null && msg.trim() != "") {
                 println(msg);
