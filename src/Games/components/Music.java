@@ -1,5 +1,8 @@
 package Games.components;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.io.File;
@@ -68,10 +71,45 @@ public class Music extends Applet {
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 }
+                else if ("Begin".equals(str)){
+                    f = new File("src\\音效\\开头.wav");
+                    cb = f.toURL();
+                    auu = Applet.newAudioClip(cb);
+                    auu.play();
+                }
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
         }
     }
+
+        public static void playCircleMusic(String musicLocation)
+        {
+            try
+            {
+                File musicPath = new File(musicLocation);
+
+                if(musicPath.exists())
+                {
+                    AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioInput);
+                    clip.start();
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                }
+                else
+                {
+
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+
+
+
     public static void stopMusic() { auu.stop(); }
 }

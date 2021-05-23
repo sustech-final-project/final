@@ -210,6 +210,8 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
+        ImageIcon show = null;
+        ImageIcon num0 = new ImageIcon("src\\Games\\image\\空白.png");
         ImageIcon num1 = new ImageIcon("src\\Games\\image\\1.png");
         ImageIcon num2 = new ImageIcon("src\\Games\\image\\2.png");
         ImageIcon num3 = new ImageIcon("src\\Games\\image\\3.png");
@@ -217,8 +219,16 @@ public class F03 extends JFrame {
         ImageIcon num5 = new ImageIcon("src\\Games\\image\\5.png");
         ImageIcon num6 = new ImageIcon("src\\Games\\image\\6.png");
         ImageIcon num7 = new ImageIcon("src\\Games\\image\\7.png");
-        if (gc.getChar(r,c)==1)
-        buttons.get(r * map[0].length + c).setText(gc.getChar(r, c));
+        if (gc.getChar(r,c).equals("0")) show=num0;
+        if (gc.getChar(r,c).equals("1")) show=num1;
+        if (gc.getChar(r,c).equals("2")) show=num2;
+        if (gc.getChar(r,c).equals("3")) show=num3;
+        if (gc.getChar(r,c).equals("4")) show=num4;
+        if (gc.getChar(r,c).equals("5")) show=num5;
+        if (gc.getChar(r,c).equals("6")) show=num6;
+        if (gc.getChar(r,c).equals("7")) show=num7;
+
+        buttons.get(r * map[0].length + c).setIcon(show);
         buttons.get(r * map[0].length + c).setEnabled(false);
         if (buttons.get(r * map[0].length + c).getText().equals("0")){
             if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}

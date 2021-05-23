@@ -1,5 +1,7 @@
 package Games.GUI.GameFrame;
 
+import Games.components.Music;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -95,6 +97,7 @@ public class Fgif extends JFrame{
         });
 
         JLabel label = new JLabel(new Fgif().imageIcon);
+        Music.playMusic("Begin");
         panel.add(label);
         frame.setLocation(200,100);
         frame.setContentPane(panel);
@@ -103,6 +106,7 @@ public class Fgif extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.show();
         Thread.sleep(4700);
+        Music.stopMusic();
         frame.dispose();
     }
 
