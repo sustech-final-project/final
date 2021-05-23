@@ -103,7 +103,7 @@ public class Fgif extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.show();
         Thread.sleep(4700);
-        System.exit(0);
+        frame.dispose();
     }
 
 }

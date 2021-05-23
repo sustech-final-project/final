@@ -29,7 +29,7 @@ public class ListenerClient extends Thread{
     //msg的形式为
     @Override
     public void run() {
-
+        startgame();
         String msg = "";
         while (true) {
             try {

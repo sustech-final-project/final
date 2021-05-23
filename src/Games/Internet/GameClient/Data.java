@@ -1,9 +1,11 @@
 package Games.Internet.GameClient;
 
 public class Data {
-    public static String filename = "";
+    public static String Playername = "";
 
     public static Player player;
+
+    public static Player rival;
 
     public static int row;
 
@@ -43,11 +45,19 @@ public class Data {
         Data.player = player;
     }
 
-    public static String getFilename() {
-        return filename;
+    public static String getPlayername() {
+        return Playername;
     }
 
-    public static void setFilename(String filename1) {
-        filename = filename1;
+    public static void setPlayername(String playername) {
+        Playername = playername;
+    }
+
+    public static Player getRival() {
+        return rival;
+    }
+
+    public static void setRival(Player rival) {
+        Data.rival = rival;
     }
 }

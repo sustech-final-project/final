@@ -1,11 +1,15 @@
 package Games.Internet.HallClient;
 
 
+import Games.Internet.GameClient.Data;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+
 
 public class Client extends Thread {
 
@@ -31,6 +35,7 @@ public class Client extends Thread {
                 name = "匿名者";
             }
             sendMsg("abcd"+name);
+            Data.setPlayername(name);
             ui.btStart.setEnabled(false);
             ui.tfName.setEditable(false);
             // 如果为 true，则 println、printf 或 format 方法将刷新输出缓冲区

@@ -7,6 +7,11 @@ public class ServerMap {
     public static int num;//雷数
     public static int point1,point2,mistake1,mistake2;
     public static Map severmap(){
+        int a=1;
+        b=1;
+        row=16;
+        column=16;
+        num =40;
         Map map = new Map(a,b,row,column,num);
         filename = MapSaver.createRandomStr();
         Save.Save(filename);
