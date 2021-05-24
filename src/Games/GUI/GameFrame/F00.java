@@ -38,10 +38,10 @@ public class F00 extends JFrame {
                 @Override
                 public void run() {
                     if (gc.isSaveExist()) {         ////////////////////////////
-                        Data.setOrder(0);
+                        gc.clear();
                         f01();
                     } else {
-                        Data.setOrder(0);
+                        gc.clear();
                         f02();
                     }
                 }

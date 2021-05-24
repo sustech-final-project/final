@@ -84,9 +84,24 @@ public class F02 extends JFrame {
                     name.get(type.indexOf(ty)).setEnabled(false);
                     characteristic.get(type.indexOf(ty)).setSelectedIndex(0);
                     characteristic.get(type.indexOf(ty)).setEnabled(false);
-                } else {
+                } else if (ty.getSelectedIndex() == 1) {
                     name.get(type.indexOf(ty)).setEnabled(true);
                     characteristic.get(type.indexOf(ty)).setEnabled(true);
+                } else if (ty.getSelectedIndex() == 2) {
+                    name.get(type.indexOf(ty)).setText("简单人机 " + type.indexOf(ty));
+                    name.get(type.indexOf(ty)).setEnabled(false);
+                    characteristic.get(type.indexOf(ty)).setSelectedIndex(0);
+                    characteristic.get(type.indexOf(ty)).setEnabled(false);
+                } else if (ty.getSelectedIndex() == 3) {
+                    name.get(type.indexOf(ty)).setText("普通人机 " + type.indexOf(ty));
+                    name.get(type.indexOf(ty)).setEnabled(false);
+                    characteristic.get(type.indexOf(ty)).setSelectedIndex(0);
+                    characteristic.get(type.indexOf(ty)).setEnabled(false);
+                } else {
+                    name.get(type.indexOf(ty)).setText("困难人机 " + type.indexOf(ty));
+                    name.get(type.indexOf(ty)).setEnabled(false);
+                    characteristic.get(type.indexOf(ty)).setSelectedIndex(0);
+                    characteristic.get(type.indexOf(ty)).setEnabled(false);
                 }
             });
         });
@@ -94,7 +109,10 @@ public class F02 extends JFrame {
         begin.addActionListener(listener -> {
             this.dispose();
             type.forEach(ty ->{
-                if (!Objects.equals(ty.getSelectedItem(), "无")) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+                if (!Objects.equals(ty.getSelectedItem(), "无")) {
+                    if (Objects.equals(ty.getSelectedItem(), "简单人机") || Objects.equals(ty.getSelectedItem(), "高级人机") || Objects.equals(ty.getSelectedItem(), "中级人机"))gc.addRobot(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+                    if (Objects.equals(ty.getSelectedItem(), "玩家")) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+                }
             });
 
             int row = 0;

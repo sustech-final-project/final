@@ -95,6 +95,11 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
+    public void addRobot(String player, String characteristic) {
+        Data.getPlayers().add(new Robot(player, characteristic));
+    }
+
+    @Override
     public void setTurns(int turn) {
         Data.setClick(turn);
     }

@@ -88,6 +88,7 @@ public class F03 extends JFrame {
         }
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+        Border border1 = BorderFactory.createLineBorder(Color.RED, 2);
         Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
         board.setBorder(border);
         timerPanel.setBorder(border);
@@ -109,9 +110,11 @@ public class F03 extends JFrame {
         players = gc.getPlayers();
         playerInf = new JLabel[players.size()];
 
+        System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
             score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%" );
         }
+        playerInf[players.indexOf(gc.whoseTurn())].setBorder(border1);
         left.add(score, "1w");
         contentPane.add(left, "1w");
 
@@ -258,8 +261,11 @@ public class F03 extends JFrame {
             int index = listeners.indexOf(this);
             int r = index / map[0].length;
             int c = index % map[0].length;
-
-                if (order == 0) gc.createMap(r, c);
+            Border border = BorderFactory.createLineBorder(Color.RED, 2);
+            Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
+                if (order == 0){
+                    gc.createMap(r, c);
+                }
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
@@ -301,7 +307,14 @@ public class F03 extends JFrame {
                 for (int i = 0; i < players.size(); i++) {
                     playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
                 }
-                if (gc.isEnd()) {
+            playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
+            playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
+
+//            try{
+//                String move = gc.whoseTurn().Aiclick
+//            }catch ()
+
+            if (gc.isEnd()) {
                     dispose();
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
