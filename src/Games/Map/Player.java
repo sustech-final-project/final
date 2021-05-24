@@ -73,7 +73,6 @@ public class Player {
 
     public String AiClick(char[][] map) {
         Random random = new Random();
-        System.out.println(level);
         if (level == 1) {
             int r = random.nextInt(map.length);
             int c = random.nextInt(map[0].length);
@@ -92,42 +91,13 @@ public class Player {
 
             return null;
         } else if (level == 3){
-            int r = 0;
-            int c = 0;
-            int t = random.nextInt(2);
-            if (t == 1){
-                t = 3;
-                for (int i = 0; i < map.length; i++) {
-                    int check = 0;
-                    for (int j = 0; j < map[0].length; j++) {
-                        if (map[i][j] != 'M'){
-                            check++;
-                            r = i;
-                            c = j;
-                            break;
-                        }
-                    }
-                    if (check == 1) break;
-                }
-            }
-            if (t == 0) {
-                t = 1;
-                for (int i = 0; i < map.length; i++) {
-                    int check = 0;
-                    for (int j = 0; j < map[0].length; j++) {
-                        if (map[i][j] == 'M'){
-                            check++;
-                            r = i;
-                            c = j;
-                            break;
-                        }
-                    }
-                    if (check == 1) break;
-                }
-            }
+            int r = random.nextInt(map.length);
+            int c = random.nextInt(map[0].length);
+            int t;
+            if (map[r][c] == 'M') t = 3;
+            else t = 1;
             if(Data.getHasClicked(r, c) == 1) return AiClick(map);
             else return r + " " + c + " " + t;
-
         }
         System.out.println("no entry");
         return null;

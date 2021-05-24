@@ -272,13 +272,30 @@ public class F03 extends JFrame {
             System.out.println(gc.whoseTurn().getLevel());
             while (gc.whoseTurn().getLevel() != 0) {
                 System.out.println("进入");
+                if (gc.isEnd()) {
+                    dispose();
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            f04();
+                        }
+                    });
+                }
                 String[] str = gc.whoseTurn().AiClick(gc.getMap()).split(" ");
                 int row = Integer.parseInt(str[0]);
                 int column = Integer.parseInt(str[1]);
                 int type = Integer.parseInt(str[2]);
                 click(row, column, type);
             }
-
+            if (gc.isEnd()) {
+                dispose();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        f04();
+                    }
+                });
+            }
         }
     }
 
@@ -330,15 +347,7 @@ public class F03 extends JFrame {
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
 
-        if (gc.isEnd()) {
-            dispose();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    f04();
-                }
-            });
-        }
+
 
     }
 
