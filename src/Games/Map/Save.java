@@ -27,9 +27,8 @@ public class Save<choosenFile> extends Map {
         int playernumber = players.size();
 //        int point1 = Data.getPoint1();
 //        int point2 = Data.getPoint2();
-        int order = Data.getOrder();
         try {
-            String s = "buffer/" + filename;
+            String s = "save/" + filename;
             File file = new File(s);
             PrintStream writer = new PrintStream(new FileOutputStream(file));
             writer.println(map1.length+" "+map1[0].length+" "+Data.getMines()+" "+playernumber+" "+Data.getOrder()+" "+Data.getClick());

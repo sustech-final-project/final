@@ -89,6 +89,8 @@ public interface GameController {
      */
     int getOrder();
 
+    //void setorder(int i);
+
     /**
      * 获得玩家列表
      * @return 玩家列表

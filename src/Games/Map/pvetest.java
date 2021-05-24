@@ -21,7 +21,7 @@ public class pvetest extends DoubleClick{
                 }
             }
         }
-        else str = null;
+        else str = pvemiddle();
         return str;
     }
 

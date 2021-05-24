@@ -19,9 +19,7 @@ public class Fgif extends JFrame{
     ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\开头.gif");
     ImageIcon tnt = new ImageIcon("src\\Games\\gif\\tnt_3 5.gif");
     ImageIcon chaqi = new ImageIcon("src\\Games\\gif\\转换 2s.gif");
-    /**
-     * @param
-     */
+
     public static void Open() throws InterruptedException {
 // TODO Auto-generated method stub
         final JFrame frame = new JFrame();
@@ -111,10 +109,10 @@ public class Fgif extends JFrame{
         frame.dispose();
     }
     public static void Tnt() throws InterruptedException {
-        final JFrame frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setUndecorated(true);
         // Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
-        final JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setSize(2000,1000);
         //  panel.setBorder(b);
 
@@ -184,7 +182,7 @@ public class Fgif extends JFrame{
             }
         });
 
-        JLabel label = new JLabel(new Fgif().tnt);
+        JLabel label = new JLabel(new Fgif().imageIcon);
         Music.playMusic("realBoom");
         panel.add(label);
         frame.setContentPane(panel);
@@ -197,12 +195,11 @@ public class Fgif extends JFrame{
         Music.stopMusic();
         frame.dispose();
     }
-
     public static void Chaqi() throws InterruptedException {
-        final JFrame frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setUndecorated(true);
         // Border b = new CompoundBorder(new EtchedBorder(),new LineBorder(Color.RED));
-        final JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setSize(2000,1000);
         //  panel.setBorder(b);
 
@@ -273,7 +270,7 @@ public class Fgif extends JFrame{
         });
 
         JLabel label = new JLabel(new Fgif().chaqi);
-        Music.playMusic("failmine");
+        Music.playMusic("refreshmap");
         panel.add(label);
         frame.setLocationRelativeTo(null);
         frame.setContentPane(panel);

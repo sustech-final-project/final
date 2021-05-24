@@ -35,6 +35,10 @@ public class Data {
         players = new ArrayList<>();
     }
 
+    public static void resetorder(){
+        order = 0;
+    }
+
 
     //        for (int i=0;i<players.size();i++){
 //            Player player = players.get(i);

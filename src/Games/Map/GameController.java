@@ -109,6 +109,8 @@ public class GameController implements Games.listener.GameController {
         return Data.getOrder();
     }
 
+
+
     @Override
     public ArrayList<Player> getPlayers() {
         return Data.getPlayers();
@@ -130,11 +132,13 @@ public class GameController implements Games.listener.GameController {
     @Override
     public void Click(int r, int c, int button) {
         if (button == 1 && map.getMap(r,c) != 'M') {
-
+            whoseTurn().addScore(1);
         } else if (button == 3 && map.getMap(r,c) != 'M'){
             whoseTurn().addMistake();
+            whoseTurn().loseScore(1);
         } else if (button == 1 && map.getMap(r,c) == 'M'){
             whoseTurn().loseScore(1);
+            whoseTurn().addMistake();
         } else if (button == 3 && map.getMap(r,c) == 'M'){
             whoseTurn().addScore(1);
         }

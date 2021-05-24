@@ -1,5 +1,6 @@
 package Games.GUI.GameFrame;
 
+import Games.Map.Data;
 import Games.Map.Map;
 import Games.listener.GameController;
 
@@ -33,6 +34,7 @@ public class F01 extends JFrame {
                 @Override
                 public void run() {
                     gc.choseSave();
+                    //Data.resetorder();
                     f03();
                 }
             });

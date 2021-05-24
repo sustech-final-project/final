@@ -4,6 +4,7 @@ import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Player;
 import Games.Map.Timer;
+import Games.components.Music;
 import Games.listener.GameController;
 
 
@@ -14,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import static Games.GUI.GameFrame.Fgif.Open;
 import static Games.GUI.GameFrame.MainLocal.*;
 
 
@@ -110,7 +112,7 @@ public class F03 extends JFrame {
         players = gc.getPlayers();
         playerInf = new JLabel[players.size()];
 
-        System.out.println(players.size());
+        //System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
             score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%" );
         }
@@ -269,17 +271,16 @@ public class F03 extends JFrame {
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
-
-                        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Fgif.Tnt();
-                                } catch (InterruptedException interruptedException) {
-                                    interruptedException.printStackTrace();
-                                }
-                                                            }
-                        });
+                       // javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                          //  @Override
+                           // public void run() {
+                        try {
+                            Fgif.Tnt();
+                        } catch (InterruptedException exception) {
+                            exception.printStackTrace();
+                        }
+                          //                                  }
+                       // });
                     }
                 }
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){

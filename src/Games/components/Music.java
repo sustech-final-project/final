@@ -27,56 +27,66 @@ public class Music extends Applet {
             try {
                 File f = null;
                 if ("boom".equals(str)) {
-                    f = new File("final\\src\\音效\\单个爆炸音.wav");
+                    //f = new File("final\\src\\音效\\单个爆炸音.wav");
+                    f = new File("src\\音效\\单个爆炸音.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.loop();
                 } else if ("leftclick".equals(str)) {
-                    f = new File("final\\src\\音效\\左键单击.wav");
+                    //f = new File("final\\src\\音效\\左键单击.wav");
+                    f = new File("src\\音效\\左键单击.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 } else if ("refreshmap".equals(str)) {
-                    f = new File("final\\src\\音效\\开局刷新地图.wav");
+                   // f = new File("final\\src\\音效\\开局刷新地图.wav");
+                    f = new File("src\\音效\\开局刷新地图.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 } else if ("successmine".equals(str)) {
-                    f = new File("final\\src\\音效\\扫雷成功.wav");
+                    //f = new File("final\\src\\音效\\扫雷成功.wav");
+                    f = new File("src\\音效\\扫雷成功.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
 
                 }else if ("failmine".equals(str)){
-                    f = new File("final\\src\\音效\\点错音效");
+                    //f = new File("final\\src\\音效\\点错音效");
+                    f = new File("src\\音效\\点错音效");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
 
                 }else if ("boom2".equals(str)){
-                    f = new File("final\\src\\音效\\爆炸尾音.wav");
+                    //f = new File("final\\src\\音效\\爆炸尾音.wav");
+                    f = new File("src\\音效\\爆炸尾音.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 }
                 else if ("realBoom".equals(str)){
-                    f = new File("final\\src\\音效\\tnt.wav");
+                    //f = new File("final\\src\\音效\\tnt.wav");
+                    f = new File("src\\音效\\tnt.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 }
                 else if ("BGM".equals(str)){
-                    f = new File("final\\src\\音效\\bgm.wav");
+                    //f = new File("final\\src\\音效\\bgm.wav");
+                    f = new File("src\\音效\\bgm.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 }
                 else if ("Begin".equals(str)){
-                    f = new File("final\\src\\音效\\开头.wav");
+                    //f = new File("final\\src\\音效\\开头.wav");
+                    f = new File("src\\音效\\开头.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();
                 }
+
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
