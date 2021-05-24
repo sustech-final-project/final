@@ -81,8 +81,6 @@ public class Fgif extends JFrame{
 
                     dimension.setSize(dimension.getWidth() - e.getX() ,dimension.getHeight() );
                     frame.setSize(dimension);
-
-
                     frame.setLocation(frame.getLocationOnScreen().x + e.getX(),frame.getLocationOnScreen().y );
 
                 }else if(right){
