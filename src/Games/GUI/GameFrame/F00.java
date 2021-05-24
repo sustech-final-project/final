@@ -1,5 +1,6 @@
 package Games.GUI.GameFrame;
 
+import Games.Map.Data;
 import Games.Map.Map;
 import Games.listener.GameController;
 
@@ -37,8 +38,10 @@ public class F00 extends JFrame {
                 @Override
                 public void run() {
                     if (gc.isSaveExist()) {         ////////////////////////////
+                        Data.setOrder(0);
                         f01();
                     } else {
+                        Data.setOrder(0);
                         f02();
                     }
                 }

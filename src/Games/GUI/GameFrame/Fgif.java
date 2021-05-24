@@ -98,7 +98,7 @@ public class Fgif extends JFrame{
         JLabel label = new JLabel(new Fgif().imageIcon);
         Music.playMusic("Begin");
         panel.add(label);
-        frame.setLocation(200,100);
+        frame.setLocationRelativeTo(null);
         frame.setContentPane(panel);
         frame.setSize(2000,1000);
         frame.pack();

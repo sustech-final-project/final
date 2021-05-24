@@ -30,7 +30,8 @@ public class MainLocal {
     public static void exception() {
         JFrame frame = new JFrame("Error");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setBounds(1200, 800, 289, 153);
+        frame.setSize(289, 153);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
         JLabel l = new JLabel("请输入数字!");
         frame.add(l);
@@ -48,7 +49,8 @@ public class MainLocal {
     public static void f01() {
         F01 f01 = new F01("是否继续上次游戏", gc);
         f01.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f01.setBounds(600, 400, 289, 153);
+        f01.setSize(289, 153);
+        f01.setLocationRelativeTo(null);
         f01.setVisible(true);
     }
 
@@ -71,7 +73,7 @@ public class MainLocal {
     public static void f04() {
         F04 f04 = new F04("Congratulation", gc);
         f04.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f04.setBounds(600, 400, 289, 153);
+        f04.setSize( 289, 153);
         f04.setLocationRelativeTo(null);
         f04.setVisible(true);
     }
