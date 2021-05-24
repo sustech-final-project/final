@@ -12,6 +12,7 @@ public class Map {
     private static char[][] map;
     private int row, column, num;
 
+
     public void setRow(int row) {
         this.row = row;
     }
