@@ -83,7 +83,7 @@ public class F03 extends JFrame {
             int row = i / map[0].length;
             int column = i % map[0].length;
             System.out.println(order);
-            if (order != 0 && gc.isPrint(row, column)) {
+            if (order != 0 && gc.isPrint(row, column)) {//Todo:修复读档的bug
                 showNum(i);
             }
         }
@@ -248,8 +248,7 @@ public class F03 extends JFrame {
     private void showNum(int index) {
         //todo 显示该位置的数字
         ImageIcon show = Pic.getIcon(gc.getChar(index / map[0].length, index % map[0].length));
-        Dimension size = cardContainer.get(index).getSize();
-        show.setImage(show.getImage().getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT));
+        show.setImage(show.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         labels.get(index).setIcon(show);
         layouts.get(index).last(cardContainer.get(index));
     }
