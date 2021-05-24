@@ -1,18 +1,13 @@
 package Games.GUI.GameFrame;
 
-import Games.Map.Data;
-import Games.Map.Map;
 import Games.listener.GameController;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 import static Games.GUI.GameFrame.MainLocal.f01;
 import static Games.GUI.GameFrame.MainLocal.f02;
-import static Games.Internet.HallClient.Main.mai;
 
 public class F00 extends JFrame {
     JLabel label = new JLabel("请选择游戏类型");
@@ -55,6 +50,16 @@ public class F00 extends JFrame {
                 public void run() {
                    // mai();
                     Games.Internet.GameClient.Main.mai();
+                }
+            });
+        });
+        solo.addActionListener(lis -> {
+            this.dispose();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    // mai();
+                    MainLocal.solo();
                 }
             });
         });

@@ -14,8 +14,6 @@ import java.util.ArrayList;
  */
 public class Winner {
     private static ArrayList<String> winner = new ArrayList<>();
-
-
     public static void setWinner() {
 
 //        if(Math.max(Data.getPoint1(),Math.max(Data.getPoint2(),Math.max(Data.getPoint3(),Data.getPoint4())))==Data.getPoint1())
@@ -39,7 +37,6 @@ public class Winner {
 //                && Math.min(Data.getMistake1(),Math.min(Data.getMistake2(),Math.min(Data.getMistake3(),Data.getMistake4())))==Data.getMistake4())
 //            setWinner =""+Data.getName4();
 //        else setWinner ="There's no winner!!";
-
 
     }
 

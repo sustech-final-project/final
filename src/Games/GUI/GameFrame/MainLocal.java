@@ -62,6 +62,14 @@ public class MainLocal {
         f02.setVisible(true);
     }
 
+    public static void solo() {
+        Solo solo = new Solo("单人模式", gc);
+        solo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        solo.setSize(30 * (int) (70.0/0.7), 16*70+60);
+        solo.setLocationRelativeTo(null);
+        solo.setVisible(true);
+    }
+
     public static void f03() {
         F03 f03 = new F03("扫雷", gc);
         f03.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
