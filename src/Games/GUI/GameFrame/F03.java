@@ -157,6 +157,7 @@ public class F03 extends JFrame {
             public void run() {
                 gc.clear();
                 f02();
+                dispose();
             }
         });
         });
@@ -174,7 +175,44 @@ public class F03 extends JFrame {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                f00();//Todo:修改
+                //f00();
+                //Todo:修改作弊模式
+                for (int i=0;i<map.length;i++){
+                    for (int j=0;j<map.length;j++){
+                        int index = i*map[0].length+j;
+                        JButton button = buttons.get(index);
+                        button.doClick();
+                        {
+                        //    order = gc.getOrder();
+                            //int index = listeners.indexOf(this);
+                            int r = index / map[0].length;
+                            int c = index % map[0].length;
+
+                          //  if (order == 0) gc.createMap(r, c);
+                            if (buttons.get(index).isVisible() && gc.getChar(r,c)!="M") {
+                                left(r, c);
+                            } else if (buttons.get(index).isVisible()){
+                                ImageIcon show = Pic.FLAG.getIcon();
+                                Dimension size = cardContainer.get(index).getSize();
+                                show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+                                labels.get(index).setIcon(show);
+                                layouts.get(index).last(cardContainer.get(index));
+                            }
+
+
+                            buttons.get(index).setEnabled(false);
+//                            if (gc.isEnd()) {
+//                                dispose();
+//                                SwingUtilities.invokeLater(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        f04();
+//                                    }
+//                                });
+//                            }
+                        }
+                    }
+                }
             }
         });
         });
@@ -224,7 +262,6 @@ public class F03 extends JFrame {
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
-
                 } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
                     ImageIcon show = Pic.FLAG.getIcon();
                     Dimension size = cardContainer.get(index).getSize();

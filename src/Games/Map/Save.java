@@ -362,6 +362,17 @@ public class Save<choosenFile> extends Map {
             Data.setTool(tool);
         }  catch (Exception e){
             System.out.println("数据不合法，请重新选择");
+            //new error("error");
+            int a = JOptionPane.showConfirmDialog(null, "数据不合法", "数据不合法",
+                    JOptionPane.YES_NO_OPTION);
+            if (a == 1) {
+                System.exit(0); // 关闭
+            }
+            else {
+                System.exit(0);
+            }
+            return Filechosser();
+
         }
         return map;
     }

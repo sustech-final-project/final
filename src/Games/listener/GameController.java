@@ -101,6 +101,7 @@ public interface GameController {
      */
     void Click(int r, int c, int button);
 
+
     /**
      *
      * @return 返回现在是这一轮的第几步
