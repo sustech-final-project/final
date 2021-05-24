@@ -86,7 +86,7 @@ public class F03 extends JFrame {
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
         Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
-        board.setBorder(empty);
+        board.setBorder(border);
         timerPanel.setBorder(border);
 
         if (board.isVisible()) {
@@ -107,9 +107,9 @@ public class F03 extends JFrame {
         playerInf = new JLabel[players.size()];
 
         for (int i = 0; i < players.size(); i++) {
-            score.add(playerInf[i] = new JLabel("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake()), (int) (1 / (double) (players.size()) * 100) + "%" );
+            score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%" );
         }
-        left.add(score, "30%");
+        left.add(score, "1w");
         contentPane.add(left, "1w");
 
 
@@ -234,7 +234,7 @@ public class F03 extends JFrame {
                 buttons.get(index).setEnabled(false);
                 gc.Click(r, c, e.getButton());
                 for (int i = 0; i < players.size(); i++) {
-                    playerInf[i].setText("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake());
+                    playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
                 }
                 if (gc.isEnd()) {
                     dispose();
