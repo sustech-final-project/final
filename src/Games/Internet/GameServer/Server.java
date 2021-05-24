@@ -24,18 +24,18 @@ public class Server extends Thread{
     @Override
     public void run() {
         try {
-            ss = new ServerSocket(8002);
+            ss = new ServerSocket(8003);
             ui.clients=new ArrayList<>();
-            println("启动服务器成功：端口8002");
+            println("启动服务器成功：端口8003");
             while (true) {
                 println("等待客户端链接.......................................");
                 Socket client = ss.accept();
                 ui.clients.add(client);
-                println("连接成功，客户端请求服务端的详细信息：" + client.toString());
+         //       println("连接成功，客户端请求服务端的详细信息：" + client.toString());
                 new ListenerClient(ui, client);
             }
         } catch (IOException e) {
-            println("启动服务器失败：端口8002");
+            println("启动服务器失败：端口8003");
             println(e.toString());
             e.printStackTrace();
         }

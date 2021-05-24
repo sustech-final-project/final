@@ -36,6 +36,7 @@ public class Client extends Thread {
             }
             sendMsg("abcd"+name);
             Data.setPlayername(name);
+            System.out.println(Data.getPlayername());
             ui.btStart.setEnabled(false);
             ui.tfName.setEditable(false);
             // 如果为 true，则 println、printf 或 format 方法将刷新输出缓冲区

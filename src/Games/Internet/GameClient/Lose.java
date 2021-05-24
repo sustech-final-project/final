@@ -1,22 +1,14 @@
-package Games.GUI.GameFrame;
+package Games.Internet.GameClient;
 
 import Games.components.Music;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Point;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-
-public class Fgif extends JFrame{
-    ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\开头.gif");
+public class Lose extends JFrame{
+    ImageIcon imageIcon = new ImageIcon("src\\Games\\gif\\You  lose 2.5.gif");
 
     /**
      * @param
@@ -96,8 +88,8 @@ public class Fgif extends JFrame{
             }
         });
 
-        JLabel label = new JLabel(new Fgif().imageIcon);
-        Music.playMusic("Begin");
+        JLabel label = new JLabel(new Lose().imageIcon);
+        //Music.playMusic("Begin");
         panel.add(label);
         frame.setLocation(200,100);
         frame.setContentPane(panel);
@@ -105,8 +97,8 @@ public class Fgif extends JFrame{
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.show();
-        Thread.sleep(3700);
-        Music.stopMusic();
+        Thread.sleep(3000);
+       // Music.stopMusic();
         frame.dispose();
     }
 

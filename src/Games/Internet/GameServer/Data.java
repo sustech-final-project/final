@@ -10,13 +10,39 @@ import java.util.ArrayList;
  */
 public class Data {
 
+    private static Map map;
+    static int id = 1;
+    static String[] name1 = new String[4];
+
     private static int[][] HasClicked; //判断位置是否被遍历
     public static int point1=0;      //玩家1的分数
     public static int point2=0;      //玩家2的分数
  //   private static int order=1;       //下一步的次序
     private static ArrayList<String> history = new ArrayList<>();
 
+    public static Map getMap() {
+        return map;
+    }
 
+    public static void setMap(Map map) {
+        Data.map = map;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Data.id = id;
+    }
+
+    public static String[] getName1() {
+        return name1;
+    }
+
+    public static void setName1(String[] name1) {
+        Data.name1 = name1;
+    }
 
     public static String getFilename() {
         return filename;

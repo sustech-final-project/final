@@ -1,5 +1,7 @@
 package Games.Internet.GameServer;
 
+import Games.Internet.GameClient.Player;
+
 /**
  * 作者：戴郭轶
  * 日期：2021.5.2
@@ -7,6 +9,15 @@ package Games.Internet.GameServer;
  */
 public class Main {
     public static void main(String[] args) {
+        Player player = new Player("dgy",1);
+        Player player1 = new Player("dgy1",2);
+
+
+        startgame();
         new ServerUI();
+       // new ListenerClient();
+    }
+    public static void startgame(){
+        Data.setMap(ServerMap.severmap());
     }
 }

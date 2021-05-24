@@ -10,4 +10,8 @@ public class Main {
     public static void mai() {
         new ClientUI();
     }
+
+    public static void main(String[] args) {
+        new ClientUI();
+    }
 }

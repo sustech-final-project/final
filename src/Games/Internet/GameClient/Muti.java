@@ -22,12 +22,12 @@ import static Games.utils.ClickType.RIGHT_CLICK;
 public class Muti extends JFrame {
 
     ArrayList<MouseListener> listeners = new ArrayList<>();
-    ArrayList<JButton> buttons = new ArrayList<>();
+    static ArrayList<JButton> buttons = new ArrayList<>();
     JPanel[] panels;
-    JLabel[] playerInf;
+    static JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
     JPanel board = new JPanel();
-    ArrayList<Player> players = new ArrayList<>();
+    static ArrayList<Player> players = new ArrayList<>();
     Client client = new Client();
 
     public Muti(String title) {
@@ -37,8 +37,6 @@ public class Muti extends JFrame {
         Container contentPane = getContentPane();
         contentPane.setLayout(new AfXLayout());
         {
-
-
             board.setLayout(new GridLayout(16, 16));
             panels = new JPanel[16];
             for (int i = 0; i < 16 * 16; i++) {
@@ -130,30 +128,42 @@ public class Muti extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
+
+    public static void update(){
+        int r = Data.row;
+        int c = Data.column;
+        char c1 = Data.aChar;
+        JButton button = buttons.get(r*16+c);
+        button.setText(c1+"");
+        button.setEnabled(false);
+            playerInf[0].setText("Player:" + players.get(0).getName() + "       Score:" + Data.point1 + "       Mistake:" + Data.mistake1);
+            playerInf[1].setText("Player:" + players.get(1).getName() + "       Score:" + Data.point2 + "       Mistake:" + Data.mistake2);
+    }
+
+
     private class MouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
             int r = listeners.indexOf(this) / 16;
             int c = listeners.indexOf(this) % 16;
-
             if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
-                client.gaming(players.get(1).getId(), r, c, LEFT_CLICK);
+                client.gaming(Data.playerid, r, c, LEFT_CLICK);
                 if (Data.getaChar() == 'M') {
-                    buttons.get(listeners.indexOf(this)).setText("M");
+                    //buttons.get(listeners.indexOf(this)).setText("M");
                 } else {
-                    buttons.get(listeners.indexOf(this)).setText(Data.getaChar() + "");
+                   // buttons.get(listeners.indexOf(this)).setText(Data.getaChar() + "");
                 }
 
             } else if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                client.gaming(players.get(1).getId(), r, c, RIGHT_CLICK);
+                client.gaming(Data.playerid, r, c, RIGHT_CLICK);
                 if (Data.getaChar() == 'M') {
-                    buttons.get(listeners.indexOf(this)).setText("F");
+                  //  buttons.get(listeners.indexOf(this)).setText("F");
                 } else {
-                    buttons.get(listeners.indexOf(this)).setText(Data.getaChar() + "");
+                   // buttons.get(listeners.indexOf(this)).setText(Data.getaChar() + "");
                 }
             }
 
-            buttons.get(listeners.indexOf(this)).setEnabled(false);
+            //buttons.get(listeners.indexOf(this)).setEnabled(false);
             for (int i = 0; i < players.size(); i++) {
                 playerInf[i].setText("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake());
             }
