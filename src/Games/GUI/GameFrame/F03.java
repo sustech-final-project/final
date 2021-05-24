@@ -269,7 +269,6 @@ public class F03 extends JFrame {
                 if (order == 0){
                     gc.createMap(r, c);
                 }
-
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
                        // javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -277,6 +276,13 @@ public class F03 extends JFrame {
                            // public void run() {
                         try {
                             Fgif.Tnt();
+//                            ImageIcon tnt = new ImageIcon("src\\Games\\gif\\tnt_3 5.gif");
+//                            JButton button = new JButton();
+//                            button.setIcon(tnt);
+//                            button.setContentAreaFilled(false);
+//                            button.setVisible(true);
+//                            Music.playMusic("realBoom");
+//                            Thread.sleep(2000);
                         } catch (InterruptedException exception) {
                             exception.printStackTrace();
                         }
@@ -289,15 +295,22 @@ public class F03 extends JFrame {
                     try {
                         Fgif.Chaqi();
                     }catch (Exception exception){
-
+                        exception.printStackTrace();
                     }
                 }
             }
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
-                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
+                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3 && gc.getChar(r,c).equals("M") ){
                     ImageIcon show = Pic.FLAG.getIcon();
+                    Dimension size = cardContainer.get(index).getSize();
+                    show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+                    labels.get(index).setIcon(show);
+                    layouts.get(index).last(cardContainer.get(index));
+                }
+                else {
+                    ImageIcon show = Pic.MINE.getIcon();
                     Dimension size = cardContainer.get(index).getSize();
                     show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
                     labels.get(index).setIcon(show);
