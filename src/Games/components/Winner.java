@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * 5.20在新增player类后重写
  */
 public class Winner {
-    private static ArrayList<String> winner;
+    private static ArrayList<String> winner = new ArrayList<>();
 
 
     public static void setWinner() {
@@ -39,24 +39,23 @@ public class Winner {
 //                && Math.min(Data.getMistake1(),Math.min(Data.getMistake2(),Math.min(Data.getMistake3(),Data.getMistake4())))==Data.getMistake4())
 //            setWinner =""+Data.getName4();
 //        else setWinner ="There's no winner!!";
-        for (int i = 0; i < Data.getPlayers().size(); i++) {
-            int sc = 0;
-            if (Data.getPlayers().get(i).getScore() >= sc) {
-                sc = Data.getPlayers().get(i).getScore();
-            }
-            for (int j = 0; j < Data.getPlayers().size(); j++) {
-                Player player = Data.getPlayers().get(i);
-                if (player.getScore() == sc) {
-                    winner.add(player.getName());
-                }
-            }
 
-
-        }
 
     }
 
     public static ArrayList<String> getWinner() {
+        int sc = 0;
+        for (int i = 0; i < Data.getPlayers().size(); i++) {
+            if (Data.getPlayers().get(i).getScore() >= sc) {
+                sc = Data.getPlayers().get(i).getScore();
+            }
+        }
+        for (int i = 0; i < Data.getPlayers().size(); i++) {
+            Player player = Data.getPlayers().get(i);
+            if (player.getScore() == sc) {
+                winner.add(player.getName());
+            }
+        }
         return winner;
     }
 }

@@ -28,6 +28,12 @@ public class Data {
         order++;
     }
 
+    public static void clear() {
+        order =0;
+        mines = 0;
+        click =0;
+        players = new ArrayList<>();
+    }
 
 
     //        for (int i=0;i<players.size();i++){

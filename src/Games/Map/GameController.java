@@ -9,7 +9,9 @@ import java.util.Arrays;
  */
 public class GameController implements Games.listener.GameController {
     Map map;
-    int order;//点击的次数
+    int row;
+    int column;
+
     @Override
   /**
     *Reader 更改为boolean类型且可以直接导出
@@ -23,6 +25,8 @@ public class GameController implements Games.listener.GameController {
     @Override
     public void choseSave() {
         map = Save.filechosser();
+        row = map.getRow();
+        column = map.getColumn();
     }
 
     @Override
@@ -37,6 +41,8 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void createMap(int r, int c) {
+        row = r;
+        column = c;
         map.createMap(r,c);
         Data.setHasClicked(map.getRow(),map.getColumn());
     }
@@ -154,6 +160,6 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public void clear(){
-
+        Data.clear();
     }
 }

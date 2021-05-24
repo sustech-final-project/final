@@ -54,7 +54,9 @@ public class F03 extends JFrame {
         for (int i = 0; i < map.length * map[0].length; i++) {
             //初始化
             //todo
-            buttons.add(new JButton(/*Pic.BLANK.getIcon()*/));
+            ImageIcon show = Pic.BLANK.getIcon();
+            show.setImage(show.getImage().getScaledInstance(70, 70,Image.SCALE_DEFAULT ));
+            buttons.add(new JButton(show));
             labels.add(new JLabel());
             layouts.add(new CardLayout());
             upperPanel.add(new JPanel(new GridLayout(1,1)));
@@ -96,7 +98,7 @@ public class F03 extends JFrame {
 
         if (timerPanel.isVisible()){
             Dimension size = timerPanel.getPreferredSize();
-            timerPanel.setBounds(43 * map.length,0,size.width * 2,size.height);
+            timerPanel.setBounds(70 * map.length,0,size.width * 2,size.height);
         }
         contentPane.add(board, "70%");
         JPanel left = new JPanel(new AfYLayout());
