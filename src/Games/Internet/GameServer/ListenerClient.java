@@ -166,6 +166,15 @@ public class ListenerClient extends Thread{
                     sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake2 + " " + Data.point2);
                 }
             }
+            if (map.getMap(row, column) != 'M' && Data.getHasClicked(row, column) == 0) {
+                Data.HasClicked(row, column);
+                if (playerid == 1) {
+                    sendMsg("play " + 1 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake1 + " " + Data.point1);
+                }
+                if (playerid == 2) {
+                    sendMsg("play " + 2 + " " + map.getMap(row, column) + " " + row + " " + column + " " + Data.mistake2 + " " + Data.point2);
+                }
+            }
         }
     }
 

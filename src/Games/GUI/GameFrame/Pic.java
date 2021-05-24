@@ -3,17 +3,17 @@ package Games.GUI.GameFrame;
 import javax.swing.*;
 
 public enum Pic {
-    NUM0(new ImageIcon("final\\src\\Games\\image\\0.jpg")),
-    NUM1(new ImageIcon("final\\src\\Games\\image\\1.jpg")),
-    NUM2(new ImageIcon("final\\src\\Games\\image\\2.jpg")),
-    NUM3(new ImageIcon("final\\src\\Games\\image\\3.png")),
-    NUM4(new ImageIcon("final\\src\\Games\\image\\4.jpg")),
-    NUM5(new ImageIcon("final\\src\\Games\\image\\5.jpg")),
-    NUM6(new ImageIcon("final\\src\\Games\\image\\6.jpg")),
-    NUM7(new ImageIcon("final\\src\\Games\\image\\7.jpg")),
-    MINE(new ImageIcon("final\\src\\Games\\image\\tnt.jpg")),
-    FLAG(new ImageIcon("final\\src\\Games\\image\\方块插旗.jpg")),
-    BLANK(new ImageIcon("final\\src\\Games\\image\\正常方块.jpg"));
+    NUM0(new ImageIcon("src\\Games\\image\\0.jpg")),
+    NUM1(new ImageIcon("src\\Games\\image\\1.jpg")),
+    NUM2(new ImageIcon("src\\Games\\image\\2.jpg")),
+    NUM3(new ImageIcon("src\\Games\\image\\3.png")),
+    NUM4(new ImageIcon("src\\Games\\image\\4.jpg")),
+    NUM5(new ImageIcon("src\\Games\\image\\5.jpg")),
+    NUM6(new ImageIcon("src\\Games\\image\\6.jpg")),
+    NUM7(new ImageIcon("src\\Games\\image\\7.jpg")),
+    MINE(new ImageIcon("src\\Games\\image\\tnt.jpg")),
+    FLAG(new ImageIcon("src\\Games\\image\\方块插旗.jpg")),
+    BLANK(new ImageIcon("src\\Games\\image\\正常方块.jpg"));
 
     private final ImageIcon icon;
 

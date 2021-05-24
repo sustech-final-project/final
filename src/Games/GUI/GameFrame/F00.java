@@ -50,7 +50,8 @@ public class F00 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    mai();
+                   // mai();
+                    Games.Internet.GameClient.Main.mai();
                 }
             });
         });

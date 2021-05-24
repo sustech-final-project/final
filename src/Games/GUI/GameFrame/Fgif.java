@@ -16,7 +16,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 public class Fgif extends JFrame{
-    ImageIcon imageIcon = new ImageIcon("final\\src\\Games\\pic\\开头.gif");
+    ImageIcon imageIcon = new ImageIcon("src\\Games\\pic\\开头.gif");
     /**
      * @param
      */
