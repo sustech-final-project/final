@@ -76,7 +76,7 @@ public interface GameController {
     void addPlayer(String player, String characteristic);
 
 
-    void addRobot(String player, String characteristic);
+    void addRobot(String player, String characteristic, int level);
     /**
      * 设置游戏中一人一轮点击次数
      * @param turn 游戏中一人一轮点击次数
@@ -88,8 +88,6 @@ public interface GameController {
      * @return 现在点击的次数
      */
     int getOrder();
-
-    //void setorder(int i);
 
     /**
      * 获得玩家列表
