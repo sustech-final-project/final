@@ -53,14 +53,16 @@ public class F03 extends JFrame {
         board.setLayout(new GridLayout(map.length, map[0].length));
         for (int i = 0; i < map.length * map[0].length; i++) {
             //初始化
-            buttons.add(new JButton(Pic.BLANK.getIcon()));
+            //todo
+            buttons.add(new JButton(/*Pic.BLANK.getIcon()*/));
             labels.add(new JLabel());
             layouts.add(new CardLayout());
-            upperPanel.add(new JPanel());
-            imagePanel.add(new JPanel());
+            upperPanel.add(new JPanel(new GridLayout(1,1)));
+            imagePanel.add(new JPanel(new GridLayout(1,1)));
             cardContainer.add(new JPanel(layouts.get(i)));
 
             //加入组件
+            buttons.get(i).setSize(upperPanel.get(i).getSize());
             upperPanel.get(i).add(buttons.get(i));
             imagePanel.get(i).add(labels.get(i));
             cardContainer.get(i).add(upperPanel.get(i));
@@ -218,11 +220,15 @@ public class F03 extends JFrame {
 
                 if (order == 0) gc.createMap(r, c);
 
-                if (e.getButton() == MouseEvent.BUTTON1) {
+                if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
 
-                } else if (e.getButton() == MouseEvent.BUTTON3){
-
+                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
+                    ImageIcon show = Pic.FLAG.getIcon();
+                    Dimension size = cardContainer.get(index).getSize();
+                    show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+                    labels.get(index).setIcon(show);
+                    layouts.get(index).last(cardContainer.get(index));
                 }
 
                 buttons.get(index).setEnabled(false);
