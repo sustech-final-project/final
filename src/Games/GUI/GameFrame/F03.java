@@ -81,6 +81,7 @@ public class F03 extends JFrame {
             //如有存档初始化地图
             int row = i / map[0].length;
             int column = i % map[0].length;
+            System.out.println(order);
             if (order != 0 && gc.isPrint(row, column)) {
                 showNum(i);
             }

@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Data {
     private static int[][] HasClicked;//判断位置是否被遍历
     private static int[][] tool;      //道具
-    private static int order =0;       //下一步的次序
+    private static int order = 0;       //下一步的次序
     private static int mines = 0;     //雷的个数
     private static int click =0;     //每回合点击次数
     private static ArrayList<Player> players = new ArrayList<>();
@@ -147,6 +147,7 @@ public class Data {
     }
 
     public static void setOrder(int order1) {
+        System.out.println("set order: " + order1);
         order = order1;
     }
 
