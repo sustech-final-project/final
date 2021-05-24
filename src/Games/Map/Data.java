@@ -103,7 +103,6 @@ public class Data {
      * @param column   棋盘的列数
      */
     public static void setHasClicked(int row,int column) {
-        System.out.println(row + "\t" + column);
         HasClicked = new int[row][column];
     }
 
@@ -147,7 +146,6 @@ public class Data {
     }
 
     public static void setOrder(int order1) {
-        System.out.println("set order: " + order1);
         order = order1;
     }
 

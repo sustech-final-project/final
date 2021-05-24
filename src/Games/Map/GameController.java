@@ -101,7 +101,6 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public int getOrder() {
-        System.out.println("GC get order: " + Data.getOrder());
         return Data.getOrder();
     }
 

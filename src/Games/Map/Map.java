@@ -60,7 +60,6 @@ public class Map {
 
     public Map(int row, int column, int num) {
         map = new char[row][column];
-        System.out.println(Arrays.deepToString(map));
         this.row = row;
         this.column = column;
         this.num = num;

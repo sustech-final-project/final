@@ -263,11 +263,17 @@ public class F03 extends JFrame {
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
-                        try {
-                            Fgif.Tnt();
-                        }catch (Exception exception){
 
-                        }
+                        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Fgif.Tnt();
+                                } catch (InterruptedException interruptedException) {
+                                    interruptedException.printStackTrace();
+                                }
+                                                            }
+                        });
                     }
                 }
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
