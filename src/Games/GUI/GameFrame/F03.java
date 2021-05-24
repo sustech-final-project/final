@@ -173,6 +173,7 @@ public class F03 extends JFrame {
             public void run() {
                 gc.clear();
                 f01();
+                dispose();
             }
         });
         });
