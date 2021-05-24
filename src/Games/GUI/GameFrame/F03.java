@@ -190,7 +190,7 @@ public class F03 extends JFrame {
                             int c = index % map[0].length;
 
                           //  if (order == 0) gc.createMap(r, c);
-                            if (buttons.get(index).isVisible() && gc.getChar(r,c)!="M") {
+                            if (buttons.get(index).isVisible() && !gc.getChar(r, c).equals("M")) {
                                 left(r, c);
                             } else if (buttons.get(index).isVisible()){
                                 ImageIcon show = Pic.FLAG.getIcon();
@@ -260,6 +260,25 @@ public class F03 extends JFrame {
             int c = index % map[0].length;
 
                 if (order == 0) gc.createMap(r, c);
+
+                if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
+                    if (gc.getChar(r,c).equals("M")) {
+                        try {
+                            Fgif.Tnt();
+                        }catch (Exception exception){
+
+                        }
+                    }
+                }
+                if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
+                if (!gc.getChar(r,c).equals("M")) {
+                    try {
+                        Fgif.Chaqi();
+                    }catch (Exception exception){
+
+                    }
+                }
+            }
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
