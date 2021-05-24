@@ -95,8 +95,8 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public void addRobot(String player, String characteristic) {
-        Data.getPlayers().add(new Robot(player, characteristic));
+    public void addRobot(String player, String characteristic, int level) {
+        Data.getPlayers().add(new Player(player, characteristic, level));
     }
 
     @Override
@@ -108,8 +108,6 @@ public class GameController implements Games.listener.GameController {
     public int getOrder() {
         return Data.getOrder();
     }
-
-
 
     @Override
     public ArrayList<Player> getPlayers() {
@@ -132,13 +130,11 @@ public class GameController implements Games.listener.GameController {
     @Override
     public void Click(int r, int c, int button) {
         if (button == 1 && map.getMap(r,c) != 'M') {
-            whoseTurn().addScore(1);
+
         } else if (button == 3 && map.getMap(r,c) != 'M'){
             whoseTurn().addMistake();
-            whoseTurn().loseScore(1);
         } else if (button == 1 && map.getMap(r,c) == 'M'){
             whoseTurn().loseScore(1);
-            whoseTurn().addMistake();
         } else if (button == 3 && map.getMap(r,c) == 'M'){
             whoseTurn().addScore(1);
         }

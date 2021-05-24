@@ -110,8 +110,8 @@ public class F02 extends JFrame {
             this.dispose();
             type.forEach(ty ->{
                 if (!Objects.equals(ty.getSelectedItem(), "无")) {
-                    if (Objects.equals(ty.getSelectedItem(), "简单人机") || Objects.equals(ty.getSelectedItem(), "高级人机") || Objects.equals(ty.getSelectedItem(), "中级人机"))gc.addRobot(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
-                    if (Objects.equals(ty.getSelectedItem(), "玩家")) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+                    if (Objects.equals(ty.getSelectedItem(), "简单人机") || Objects.equals(ty.getSelectedItem(), "高级人机") || Objects.equals(ty.getSelectedItem(), "中级人机"))gc.addRobot(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem(), ty.getSelectedIndex() - 1);
+                    if (ty.getSelectedIndex() == 1) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
                 }
             });
 

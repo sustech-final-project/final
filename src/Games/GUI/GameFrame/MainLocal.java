@@ -1,6 +1,6 @@
 package Games.GUI.GameFrame;
 
-import Games.Map.Map;
+import Games.Map.*;
 import Games.listener.GameController;
 
 
