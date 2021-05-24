@@ -13,55 +13,80 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static Games.GUI.GameFrame.MainLocal.*;
 
 
 public class F03 extends JFrame {
+    //参数
     int order = 0;
     GameController gc;
     char[][] map;
-//    MouseListener[][] listeners;
-//    JButton[][] buttons;
+
+
+    //游戏面板组件
     ArrayList<MouseListener> listeners = new ArrayList<>();
     ArrayList<JButton> buttons = new ArrayList<>();
-    JPanel[] panels;
+    ArrayList<JPanel> imagePanel = new ArrayList<>();
+    ArrayList<JLabel> labels = new ArrayList<>();
+    ArrayList<JPanel> upperPanel = new ArrayList<>();
+    ArrayList<JPanel> cardContainer  = new ArrayList<>();
+    ArrayList<CardLayout> layouts= new ArrayList<>();
+    JPanel board = new JPanel(new GridLayout());
+
+    //其他组件
     JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
-    JPanel board = new JPanel();
     ArrayList<Player> players = new ArrayList<>();
 
     public F03(String title, GameController gc) {
+        //初始化参数
         super(title);
-            this.gc = gc;
-            Container contentPane = getContentPane();
-            contentPane.setLayout(new AfXLayout());
-        {
-            map = gc.getMap();
-            System.out.println(Arrays.deepToString(map));
-            board.setLayout(new GridLayout(map.length, map[0].length));
-            panels = new JPanel[map.length];
-            order = gc.getOrder();
-            for (int i = 0; i < map.length * map[0].length; i++) {
-                int row = i / map[0].length;
-                int column = i % map[0].length;
-                buttons.add(new JButton(""));
-                listeners.add(new MouseListener());
-                if (order != 0 && gc.isPrint(row, column)) {
-                    buttons.get(i).setText(map[row][column] + "");
-                    buttons.get(i).setEnabled(false);
-                }
-                buttons.get(i).setFocusable(false);
-                buttons.get(i).addMouseListener(listeners.get(i));
-                board.add(buttons.get(i));
+        this.gc = gc;
+        order = gc.getOrder();
+        map = gc.getMap();
+
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new AfXLayout());
+
+        //建立游戏面板
+        board.setLayout(new GridLayout(map.length, map[0].length));
+        for (int i = 0; i < map.length * map[0].length; i++) {
+            //初始化
+            buttons.add(new JButton(Pic.BLANK.getIcon()));
+            labels.add(new JLabel());
+            layouts.add(new CardLayout());
+            upperPanel.add(new JPanel());
+            imagePanel.add(new JPanel());
+            cardContainer.add(new JPanel(layouts.get(i)));
+
+            //加入组件
+            upperPanel.get(i).add(buttons.get(i));
+            imagePanel.get(i).add(labels.get(i));
+            cardContainer.get(i).add(upperPanel.get(i));
+            cardContainer.get(i).add(imagePanel.get(i));
+
+            //监听
+            listeners.add(new MouseListener());
+            buttons.get(i).setFocusable(false);
+            buttons.get(i).addMouseListener(listeners.get(i));
+
+            //整体封装
+            board.add(cardContainer.get(i));
+
+            //如有存档初始化地图
+            int row = i / map[0].length;
+            int column = i % map[0].length;
+            if (order != 0 && gc.isPrint(row, column)) {
+                showNum(i);
             }
-        }//建立board
+        }
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
         Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
-        board.setBorder(border);
+        board.setBorder(empty);
         timerPanel.setBorder(border);
+
         if (board.isVisible()) {
             Dimension size = board.getPreferredSize();
             board.setBounds(0, 0, size.width, size.height);
@@ -173,35 +198,43 @@ public class F03 extends JFrame {
         this.setJMenuBar(bar);
     }
 
+    private void showNum(int index) {
+        //todo 显示该位置的数字
+        ImageIcon show = Pic.getIcon(gc.getChar(index / map[0].length, index % map[0].length));
+        Dimension size = cardContainer.get(index).getSize();
+        show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+        labels.get(index).setIcon(show);
+        layouts.get(index).last(cardContainer.get(index));
+    }
+
 
     private class MouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
             order = gc.getOrder();
-            int r = listeners.indexOf(this) / map[0].length;
-            int c = listeners.indexOf(this) % map[0].length;
+            int index = listeners.indexOf(this);
+            int r = index / map[0].length;
+            int c = index % map[0].length;
 
                 if (order == 0) gc.createMap(r, c);
 
-                if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON1) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
 
-                } else if (!buttons.get(listeners.indexOf(this)).getText().equals("F") && e.getButton() == MouseEvent.BUTTON3){
-                    //buttons.get(listeners.indexOf(this)).setText("F");
-                    ImageIcon Chaqi = new ImageIcon("src\\Games\\image\\方块插旗.png");
-                    buttons.get(listeners.indexOf(this)).setIcon(Chaqi);
+                } else if (e.getButton() == MouseEvent.BUTTON3){
+
                 }
 
-                buttons.get(listeners.indexOf(this)).setEnabled(false);
+                buttons.get(index).setEnabled(false);
                 gc.Click(r, c, e.getButton());
                 for (int i = 0; i < players.size(); i++) {
                     playerInf[i].setText("Player:" + players.get(i).getName() + "       Score:" + players.get(i).getScore() + "       Mistake:" + players.get(i).getMistake());
                 }
                 if (gc.isEnd()) {
+                    dispose();
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            dispose();
                             f04();
                         }
                     });
@@ -210,27 +243,9 @@ public class F03 extends JFrame {
     }
 
     private void left(int r, int c) {
-        ImageIcon show = null;
-        ImageIcon num0 = new ImageIcon("src\\Games\\image\\空白.png");
-        ImageIcon num1 = new ImageIcon("src\\Games\\image\\1.png");
-        ImageIcon num2 = new ImageIcon("src\\Games\\image\\2.png");
-        ImageIcon num3 = new ImageIcon("src\\Games\\image\\3.png");
-        ImageIcon num4 = new ImageIcon("src\\Games\\image\\4.png");
-        ImageIcon num5 = new ImageIcon("src\\Games\\image\\5.png");
-        ImageIcon num6 = new ImageIcon("src\\Games\\image\\6.png");
-        ImageIcon num7 = new ImageIcon("src\\Games\\image\\7.png");
-        if (gc.getChar(r,c).equals("0")) show=num0;
-        if (gc.getChar(r,c).equals("1")) show=num1;
-        if (gc.getChar(r,c).equals("2")) show=num2;
-        if (gc.getChar(r,c).equals("3")) show=num3;
-        if (gc.getChar(r,c).equals("4")) show=num4;
-        if (gc.getChar(r,c).equals("5")) show=num5;
-        if (gc.getChar(r,c).equals("6")) show=num6;
-        if (gc.getChar(r,c).equals("7")) show=num7;
-
-        buttons.get(r * map[0].length + c).setIcon(show);
-        buttons.get(r * map[0].length + c).setEnabled(false);
-        if (buttons.get(r * map[0].length + c).getText().equals("0")){
+        int index = r * map[0].length + c;
+        showNum(index);
+        if (map[r][c] == '0'){
             if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
             if (!gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
             if (!gc.isPrint(r - 1, c - 1)) try {left(r - 1, c - 1);} catch (Exception ignored) {}
@@ -242,6 +257,8 @@ public class F03 extends JFrame {
             if (!gc.isPrint(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {}
         }
     }
+
+
 }
 
 

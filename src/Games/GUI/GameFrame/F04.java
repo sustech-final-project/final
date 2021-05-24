@@ -19,7 +19,7 @@ public class F04 extends JFrame {
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         contentPane.setLayout(new Layout());
-        label = new JLabel("Congratulation, " + gc.whoWin() + ", wins!");
+        label = new JLabel("Congratulation, " + gc.whoWin().toString() + ", wins!");
         play = new JButton("Play Again.");
         play.addActionListener(e -> {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
