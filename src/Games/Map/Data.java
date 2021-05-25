@@ -61,6 +61,7 @@ public class Data {
         mines = 0;
         click =0;
         players = new ArrayList<>();
+
     }
 
     public static void resetorder(){

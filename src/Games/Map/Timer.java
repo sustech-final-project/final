@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class Timer implements Runnable							//计时器类
 {
-    private static int time;													//计时变量
+    private static double time;													//计时变量
 
     static JPanel panel1;												//面板
 
@@ -48,7 +48,6 @@ public class Timer implements Runnable							//计时器类
         TimerField.setEditable(false);
         TimerField.setFocusable(false);
         panel1.add(TimerField);									//添加至主面板中
-
         TimerThread = new Thread(this,"TimerThread");			//创建新线程
         TimerThread.start();									//开启线程
     }
@@ -67,7 +66,7 @@ public class Timer implements Runnable							//计时器类
 
     public int getTime()
     {
-        return time;
+        return (int)time;
     }
 
     @Override
@@ -78,8 +77,8 @@ public class Timer implements Runnable							//计时器类
             try
             {
                 Thread.sleep(1000);								//每次停顿一秒
-                time += 1;										//计时变量+1
-                TimerField.setText(String.valueOf(time));       //显示计时
+                time += 0.5;										//计时变量+1
+                TimerField.setText(String.valueOf((int)time));       //显示计时
                 if (time==30){
                     ResetTimer();
                     GameController.setOrder(Data.getOrder()+1);

@@ -29,6 +29,7 @@ public class F04 extends JFrame {
                 public void run() {
                     dispose();
                     gc.clear();
+                    F03.clear();
                     f02();
                 }
             });

@@ -47,8 +47,10 @@ public class F00 extends JFrame {
                 public void run() {
                     if (gc.isSaveExist()) {         ////////////////////////////
                         gc.clear();
+                        F03.clear();
                         f01();
                     } else {
+                        F03.clear();
                         gc.clear();
                         f02();
                     }
