@@ -8,6 +8,7 @@ import Games.Map.Player;
 import Games.Map.Timer;
 import Games.components.CountDown;
 import Games.components.Music;
+import Games.components.pic;
 import Games.listener.GameController;
 
 
@@ -37,6 +38,8 @@ public class F03 extends JFrame {
     static ArrayList<JPanel> cardContainer = new ArrayList<>();
     static ArrayList<CardLayout> layouts = new ArrayList<>();
     static JPanel board = new JPanel(new GridLayout());
+    ImageIcon timer1 = pic.getTimer();
+    ImageIcon Player1 = pic.getPlayer();
 
     //其他组件
     static JLabel[] playerInf;
@@ -44,10 +47,13 @@ public class F03 extends JFrame {
     //CountDown timer = new CountDown();
    static ArrayList<Player> players = new ArrayList<>();
 
+
     public F03() {}
     public F03(String title, GameController gc) {
         //初始化参数
         super(title);
+        timer1.setImage(timer1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
+        Player1.setImage(Player1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
         F03.gc = gc;
         order = gc.getOrder();
         map = gc.getMap();
@@ -108,6 +114,7 @@ public class F03 extends JFrame {
             Dimension size = timerPanel.getPreferredSize();
             timerPanel.setBounds(70 * map.length, 0, size.width * 2, size.height);
         }
+        timerPanel.add(new JLabel(timer1));
         contentPane.add(board, "70%");
         JPanel left = new JPanel(new AfYLayout());
         left.add(timerPanel, "20%");
@@ -115,10 +122,12 @@ public class F03 extends JFrame {
         score.setBorder(new LineBorder(Color.BLACK, 2));
         players = gc.getPlayers();
         playerInf = new JLabel[players.size()];
+        score.add(new JLabel(Player1));
 
         System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
             score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%");
+
         }
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border1);
         left.add(score, "1w");
@@ -358,22 +367,20 @@ public class F03 extends JFrame {
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
             if (!gc.getChar(row, column).equals("M")) {
-
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            Thread thread = new Thread() {
-                                public void run() {
-                                    try {
-                                        Fgif.Chaqi();
-                                    } catch (InterruptedException exception) {
-                                        exception.printStackTrace();
-                                    }
-                                }
-                            };
-
-
+//                            Thread thread = new Thread() {
+//                                public void run() {
+//                                    try {
+//                                        Fgif.Chaqi();
+//                                    } catch (InterruptedException exception) {
+//                                        exception.printStackTrace();
+//                                    }
+//                                }
+//                            };
+                            Fgif.Chaqi();
                         } catch (Exception interruptedException) {
                             interruptedException.printStackTrace();
                         }
@@ -382,23 +389,31 @@ public class F03 extends JFrame {
 
             }
         }
-
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
             left(row, column);
-        } else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
+        } else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3 && gc.getChar(row,column).equals("M") ) {
             ImageIcon show = Pic.FLAG.getIcon();
             Dimension size = cardContainer.get(index).getSize();
             show.setImage(show.getImage().getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT));
             labels.get(index).setIcon(show);
             layouts.get(index).last(cardContainer.get(index));
         }
-
+        else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1 && gc.getChar(row,column).equals("M")){
+            ImageIcon show = Pic.MINE.getIcon();
+            Dimension size = cardContainer.get(index).getSize();
+            show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+            labels.get(index).setIcon(show);
+            layouts.get(index).last(cardContainer.get(index));
+        }
+        else {
+            int index123 = row * map[0].length + column;
+            showNum(index123);
+        }
         buttons.get(index).setEnabled(false);
         gc.Click(row, column, type);
         for (int i = 0; i < players.size(); i++) {
             playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
         }
-
         Border border = BorderFactory.createLineBorder(Color.RED, 2);
         Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);

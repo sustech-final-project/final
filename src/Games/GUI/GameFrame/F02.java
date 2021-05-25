@@ -2,10 +2,18 @@ package Games.GUI.GameFrame;
 
 import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
+import Games.Map.Data;
+import Games.Map.Player;
+import Games.Map.Timer;
+import Games.components.Music;
 import Games.listener.GameController;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -144,4 +152,5 @@ public class F02 extends JFrame {
             });
         });
     }
+
 }

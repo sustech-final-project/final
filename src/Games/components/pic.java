@@ -37,7 +37,15 @@ public class pic {
     static final ImageIcon No = new ImageIcon("src\\Games\\image\\NO.png");
     static final ImageIcon Yes = new ImageIcon("src\\Games\\image\\YES.png");
     static   final ImageIcon JuQing = new ImageIcon("src\\Games\\image\\剧情模式.png");
+    static   final ImageIcon Timer = new ImageIcon("src\\Games\\image\\计时器.png");
+    static   final ImageIcon Player = new ImageIcon("src\\Games\\image\\玩家.png");
+    public static ImageIcon getTimer() {
+        return Timer;
+    }
 
+    public static ImageIcon getPlayer() {
+        return Player;
+    }
 
     public static ImageIcon getBG1() {
         return BG1;
