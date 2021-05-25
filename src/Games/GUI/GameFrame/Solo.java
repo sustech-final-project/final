@@ -2,6 +2,7 @@ package Games.GUI.GameFrame;
 
 import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
+import Games.Map.Data;
 import Games.Map.Player;
 import Games.Map.Timer;
 import Games.listener.GameController;
@@ -24,6 +25,8 @@ import static Games.GUI.GameFrame.MainLocal.*;
         int order = 0;
         GameController gc;
         char[][] map;
+        int heartNum = 3;
+        int DunNum = 0;
 
 
         //游戏面板组件
@@ -35,6 +38,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
         ArrayList<JPanel> cardContainer  = new ArrayList<>();
         ArrayList<CardLayout> layouts= new ArrayList<>();
         JPanel board = new JPanel(new GridLayout());
+        ArrayList<JLabel> tool = new ArrayList<>();
 
         //其他组件
         JLabel[] playerInf;
@@ -47,6 +51,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
             this.gc = gc;
             order = gc.getOrder();
             map = gc.getMap();
+            Data.initializeData(map.length,map[0].length);
 
             Container contentPane = getContentPane();
             contentPane.setLayout(new AfXLayout());
@@ -108,6 +113,18 @@ import static Games.GUI.GameFrame.MainLocal.*;
             JPanel left = new JPanel(new AfYLayout());
 //            left.add(timerPanel, "20%");
             JPanel score = new JPanel(new AfYLayout());
+            JPanel heart = new JPanel(new FlowLayout());
+            JPanel dun = new JPanel(new FlowLayout());
+            for (int i = 0; i < 3; i++) {
+                ImageIcon h = Pic.XIN.getIcon();
+                ImageIcon d = Pic.DUN.getIcon();
+                h.setImage(h.getImage().getScaledInstance(40, 40,Image.SCALE_DEFAULT ));
+                d.setImage(d.getImage().getScaledInstance(40, 40,Image.SCALE_DEFAULT ));
+                tool.add(new JLabel(h));
+                heart.add(tool.get(2 * i));
+                tool.add(new JLabel(d));
+                dun.add(tool.get(2 * i + 1));
+            }
             score.setBorder(new LineBorder(Color.BLACK, 2));
             players = gc.getPlayers();
             playerInf = new JLabel[players.size()];
@@ -117,6 +134,8 @@ import static Games.GUI.GameFrame.MainLocal.*;
                 score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%" );
             }
             playerInf[players.indexOf(gc.whoseTurn())].setBorder(border1);
+            left.add(heart, "10%");
+            left.add(dun, "10%");
             left.add(score, "1w");
             contentPane.add(left, "1w");
 
@@ -245,6 +264,38 @@ import static Games.GUI.GameFrame.MainLocal.*;
             bar.add(helpMenu);
 
             this.setJMenuBar(bar);
+
+            if (heartNum == 1){
+                tool.get(0).setVisible(true);
+                tool.get(2).setVisible(false);
+                tool.get(4).setVisible(false);
+            } else if (heartNum == 2){
+                tool.get(0).setVisible(true);
+                tool.get(2).setVisible(true);
+                tool.get(4).setVisible(false);
+            } else if (heartNum == 3) {
+                tool.get(0).setVisible(true);
+                tool.get(2).setVisible(true);
+                tool.get(4).setVisible(true);
+            }
+            if (DunNum == 0){
+                tool.get(1).setVisible(false);
+                tool.get(3).setVisible(false);
+                tool.get(5).setVisible(false);
+            }
+            else if (DunNum == 1){
+                tool.get(1).setVisible(true);
+                tool.get(3).setVisible(false);
+                tool.get(5).setVisible(false);
+            } else if (DunNum == 2){
+                tool.get(1).setVisible(true);
+                tool.get(3).setVisible(true);
+                tool.get(5).setVisible(false);
+            } else if (DunNum == 3) {
+                tool.get(1).setVisible(true);
+                tool.get(3).setVisible(true);
+                tool.get(5).setVisible(true);
+            }
         }
 
         private void showNum(int index) {
@@ -269,9 +320,31 @@ import static Games.GUI.GameFrame.MainLocal.*;
                 if (order == 0){
                     gc.createMap(r, c);
                 }
+                if (heartNum < 4 && Data.getTool(r,c) == 1){
+                    heartNum++;
+                    System.out.println("heart++");
+                }
+                if (DunNum < 4 && Data.getTool(r,c) == 2){
+                    DunNum++;
+                    System.out.println("DUN++");
+                }
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
+                        if(DunNum > 0){
+                            DunNum--;
+                        } else if (heartNum > 0) {
+                            heartNum--;
+                        } else {
+                            //TODO 结束游戏
+                            dispose();
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    f04();
+                                }
+                            });
+                        }
                         // javax.swing.SwingUtilities.invokeLater(new Runnable() {
                         //  @Override
                         // public void run() {
@@ -321,16 +394,38 @@ import static Games.GUI.GameFrame.MainLocal.*;
 //            try{
 //                String move = gc.whoseTurn().Aiclick
 //            }catch ()
-
-                if (gc.isEnd()) {
-                    dispose();
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            f04();
-                        }
-                    });
+                if (heartNum == 1){
+                    tool.get(0).setVisible(true);
+                    tool.get(2).setVisible(false);
+                    tool.get(4).setVisible(false);
+                } else if (heartNum == 2){
+                    tool.get(0).setVisible(true);
+                    tool.get(2).setVisible(true);
+                    tool.get(4).setVisible(false);
+                } else if (heartNum == 3) {
+                    tool.get(0).setVisible(true);
+                    tool.get(2).setVisible(true);
+                    tool.get(4).setVisible(true);
                 }
+                if (DunNum == 0){
+                    tool.get(1).setVisible(false);
+                    tool.get(3).setVisible(false);
+                    tool.get(5).setVisible(false);
+                }
+                else if (DunNum == 1){
+                    tool.get(1).setVisible(true);
+                    tool.get(3).setVisible(false);
+                    tool.get(5).setVisible(false);
+                } else if (DunNum == 2){
+                    tool.get(1).setVisible(true);
+                    tool.get(3).setVisible(true);
+                    tool.get(5).setVisible(false);
+                } else if (DunNum == 3) {
+                    tool.get(1).setVisible(true);
+                    tool.get(3).setVisible(true);
+                    tool.get(5).setVisible(true);
+                }
+                
             }
         }
 

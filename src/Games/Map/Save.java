@@ -240,7 +240,7 @@ public class Save<choosenFile> extends Map {
 //            String[] arr1 = str.split("\\s+");
 //            int point1 = Integer.parseInt(arr1[0]);
 //            int point2 = Integer.parseInt(arr1[1]);
-        str = in.readLine();
+       // str = in.readLine();
 //            int order = Data.getOrder();
         char[][] map1 = new char[a][b];
         int[][] HasClicked1 = new int[a][b];

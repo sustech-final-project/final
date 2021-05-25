@@ -16,7 +16,8 @@ public enum Pic {
     MINE(new ImageIcon("src\\Games\\image\\tnt.jpg")),
     FLAG(new ImageIcon("src\\Games\\image\\方块插旗.jpg")),
     BLANK(new ImageIcon("src\\Games\\image\\正常方块.jpg")),
-
+    DUN(new ImageIcon("src\\Games\\image\\盾牌.png")),
+    XIN(new ImageIcon("src\\Games\\image\\红心.png")),
     NUM10(new ImageIcon("src\\Games\\image\\blank.jpg")),
     NUM11(new ImageIcon("src\\Games\\image\\转换\\1.jpg")),
     NUM12(new ImageIcon("src\\Games\\image\\转换\\2.jpg")),

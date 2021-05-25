@@ -2,6 +2,7 @@ package Games.Map;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 作者：戴郭轶
@@ -23,6 +24,32 @@ public class Data {
     public static void initializeData(int row,int column){
         HasClicked = new int[row][column];
         tool = new int[row][column];
+        for (int i = 0; i < tool.length; i++) {
+            for (int j = 0; j < tool[0].length; j++) {
+                tool[i][j] = 0;
+            }
+        }
+        Random random = new Random();
+        int r = random.nextInt(row);
+        int c = random.nextInt(column);
+        int check = 0;
+        while (tool[r][c] == 0 && check < 3) {
+            if (tool[r][c] == 0){
+                tool[r][c] = 1;
+                check++;
+            }
+            r = random.nextInt(row);
+            c = random.nextInt(column);
+        }
+        check = 0;
+        while (tool[r][c] == 0 && check < 3) {
+            if (tool[r][c] == 0){
+                tool[r][c] = 2;
+                check++;
+            }
+            r = random.nextInt(row);
+            c = random.nextInt(column);
+        }
     }
 
     public static void addOrder() {
@@ -181,6 +208,10 @@ public class Data {
 
     public static int[][] getTool() {
         return tool;
+    }
+
+    public static int getTool(int r , int c){
+        return tool[r][c];
     }
 
     public static void setTool(int[][] tool) {

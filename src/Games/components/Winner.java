@@ -16,6 +16,8 @@ public class Winner {
     private static ArrayList<String> winner = new ArrayList<>();
     public static void setWinner() {
 
+    }
+
 //        if(Math.max(Data.getPoint1(),Math.max(Data.getPoint2(),Math.max(Data.getPoint3(),Data.getPoint4())))==Data.getPoint1())
 //            setWinner =""+Data.getName1();
 //        if(Math.max(Data.getPoint1(),Math.max(Data.getPoint2(),Math.max(Data.getPoint3(),Data.getPoint4())))==Data.getPoint2())
@@ -38,20 +40,28 @@ public class Winner {
 //            setWinner =""+Data.getName4();
 //        else setWinner ="There's no winner!!";
 
-    }
-
     public static ArrayList<String> getWinner() {
         int sc = 0;
+        int mistake = 0;
+        winner = new ArrayList<>();
         for (int i = 0; i < Data.getPlayers().size(); i++) {
             if (Data.getPlayers().get(i).getScore() >= sc) {
                 sc = Data.getPlayers().get(i).getScore();
             }
+            if (Data.getPlayers().get(i).getScore() <= mistake){
+                mistake = Data.getPlayers().get(i).getScore();
+            }
         }
         for (int i = 0; i < Data.getPlayers().size(); i++) {
             Player player = Data.getPlayers().get(i);
-            if (player.getScore() == sc) {
+            if (player.getScore() == sc && player.getMistake()==mistake) {
                 winner.add(player.getName());
             }
+        }
+
+        if (winner.size()==0){
+            winner=new ArrayList<>();
+            winner.add("平局");
         }
         return winner;
     }
