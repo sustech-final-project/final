@@ -271,17 +271,8 @@ public class F03 extends JFrame {
 
 
             System.out.println(gc.whoseTurn().getLevel());
-            while (gc.whoseTurn().getLevel() != 0) {
+            while (gc.whoseTurn().getLevel() != 0 && !gc.isEnd()) {
                 System.out.println("进入");
-                if (gc.isEnd()) {
-                    dispose();
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            f04();
-                        }
-                    });
-                }
                 String[] str = gc.whoseTurn().AiClick(gc.getMap()).split(" ");
                 int row = Integer.parseInt(str[0]);
                 int column = Integer.parseInt(str[1]);
@@ -302,6 +293,7 @@ public class F03 extends JFrame {
 
     private void click(int row, int column, int type) {
         int index = row * map[0].length + column;
+        if (type == 0) return;
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
             if (gc.getChar(row, column).equals("M")) {
 
