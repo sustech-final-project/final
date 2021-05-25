@@ -21,20 +21,20 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
 public class F03 extends JFrame {
     //参数
-    int order = 0;
+    static int order = 0;
     static GameController gc;
-    char[][] map;
+    static char[][] map;
 
 
     //游戏面板组件
-    ArrayList<MouseListener> listeners = new ArrayList<>();
-    ArrayList<JButton> buttons = new ArrayList<>();
-    ArrayList<JPanel> imagePanel = new ArrayList<>();
-    ArrayList<JLabel> labels = new ArrayList<>();
-    ArrayList<JPanel> upperPanel = new ArrayList<>();
-    ArrayList<JPanel> cardContainer = new ArrayList<>();
-    ArrayList<CardLayout> layouts = new ArrayList<>();
-    JPanel board = new JPanel(new GridLayout());
+    static ArrayList<MouseListener> listeners = new ArrayList<>();
+    static ArrayList<JButton> buttons = new ArrayList<>();
+    static ArrayList<JPanel> imagePanel = new ArrayList<>();
+    static ArrayList<JLabel> labels = new ArrayList<>();
+    static ArrayList<JPanel> upperPanel = new ArrayList<>();
+    static ArrayList<JPanel> cardContainer = new ArrayList<>();
+    static ArrayList<CardLayout> layouts = new ArrayList<>();
+    static JPanel board = new JPanel(new GridLayout());
 
     //其他组件
     static JLabel[] playerInf;
@@ -42,10 +42,11 @@ public class F03 extends JFrame {
     //CountDown timer = new CountDown();
    static ArrayList<Player> players = new ArrayList<>();
 
+    public F03() {}
     public F03(String title, GameController gc) {
         //初始化参数
         super(title);
-        this.gc = gc;
+        F03.gc = gc;
         order = gc.getOrder();
         map = gc.getMap();
 
@@ -271,14 +272,7 @@ public class F03 extends JFrame {
 
 
             System.out.println(gc.whoseTurn().getLevel());
-            while (gc.whoseTurn().getLevel() != 0 && !gc.isEnd()) {
-                System.out.println("进入");
-                String[] str = gc.whoseTurn().AiClick(gc.getMap()).split(" ");
-                int row = Integer.parseInt(str[0]);
-                int column = Integer.parseInt(str[1]);
-                int type = Integer.parseInt(str[2]);
-                click(row, column, type);
-            }
+            AIClick();
             if (gc.isEnd()) {
                 dispose();
                 SwingUtilities.invokeLater(new Runnable() {
@@ -289,6 +283,18 @@ public class F03 extends JFrame {
                 });
             }
         }
+    }
+
+    public void AIClick() {
+        while (gc.whoseTurn().getLevel() != 0 && !gc.isEnd()) {
+            System.out.println("进入");
+            String[] str = gc.whoseTurn().AiClick(gc.getMap()).split(" ");
+            int row = Integer.parseInt(str[0]);
+            int column = Integer.parseInt(str[1]);
+            int type = Integer.parseInt(str[2]);
+            click(row, column, type);
+        }
+
     }
 
     private void click(int row, int column, int type) {
@@ -339,7 +345,16 @@ public class F03 extends JFrame {
         Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
-
+        
+        if (gc.isEnd()) {
+            dispose();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    f04();
+                }
+            });
+        }
 
 
     }
@@ -349,6 +364,9 @@ public class F03 extends JFrame {
         Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
+        if (gc.whoseTurn().getLevel() != 0) {
+            Connection.connect();
+        }
     }
 
     private void left(int r, int c) {

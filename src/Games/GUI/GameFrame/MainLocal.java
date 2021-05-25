@@ -10,8 +10,8 @@ import java.awt.*;
 import static Games.GUI.GameFrame.Fgif.Open;
 
 public class MainLocal {
+    static F03 f03 = new F03();
     private static final GameController gc = new Games.Map.GameController();
-
     public static void begin() {
         try {
             Open();
@@ -19,13 +19,14 @@ public class MainLocal {
             e.printStackTrace();
         }
 
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 f00();
             }
         });
     }
+
 
     public static void exception() {
         JFrame frame = new JFrame("Error");
@@ -70,8 +71,12 @@ public class MainLocal {
         solo.setVisible(true);
     }
 
+    public static F03 getF03() {
+        return f03;
+    }
+
     public static void f03() {
-        F03 f03 = new F03("扫雷", gc);
+        f03 = new F03("扫雷", gc);
         f03.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f03.setSize(gc.getMap()[0].length * (int) (70.0 / 0.7), gc.getMap().length * 70 + 60);
         f03.setLocationRelativeTo(null);

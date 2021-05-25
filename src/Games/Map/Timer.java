@@ -72,7 +72,7 @@ public class Timer implements Runnable							//计时器类
                 TimerField.setText(String.valueOf(time));       //显示计时
                 if (time==3){
                     ResetTimer();
-                    Data.setOrder(Data.getOrder()+1);
+                    GameController.setOrder(Data.getOrder()+1);
                     F03.resetBorder();
                 }
 

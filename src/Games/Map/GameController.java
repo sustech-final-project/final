@@ -12,6 +12,10 @@ public class GameController implements Games.listener.GameController {
     int row;
     int column;
 
+    public static void setOrder(int i) {
+        Data.setOrder(i);
+    }
+
     @Override
   /**
     *Reader 更改为boolean类型且可以直接导出
