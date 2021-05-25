@@ -18,7 +18,7 @@ public class test {
  //       Save.filechosser();
 //        Music.playMusic("boom");
  //       Map map = new Map(10,10,10);
-        Save.Filechosser();
+  //      Save.Filechosser();
  //       map.createMap(10,10);
  //       Data.initializeData(10,10);
   //      Player player = new Player("dgy");

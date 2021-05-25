@@ -27,7 +27,7 @@ public class GameController implements Games.listener.GameController {
     }
 
     @Override
-    public void choseSave() {
+    public void choseSave() throws Exception{
         map = Save.filechosser();
         row = map.getRow();
         column = map.getColumn();

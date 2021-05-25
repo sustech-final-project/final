@@ -31,11 +31,11 @@ public class Save<choosenFile> extends Map {
             String s = "save/" + filename;
             File file = new File(s);
             PrintStream writer = new PrintStream(new FileOutputStream(file));
-            writer.println(map1.length+" "+map1[0].length+" "+Data.getMines()+" "+playernumber+" "+Data.getOrder()+" "+Data.getClick());
+            writer.println(map1.length + " " + map1[0].length + " " + Data.getMines() + " " + playernumber + " " + Data.getOrder() + " " + Data.getClick());
 //            writer.println(point1 + " " + point2);
-            for (int i=0;i<playernumber;i++){
+            for (int i = 0; i < playernumber; i++) {
                 Player player = players.get(i);
-                writer.println(player.name+" "+player.score+" "+player.mistake);
+                writer.println(player.name + " " + player.score + " " + player.mistake);
             }
 //            writer.println(order);
             for (int i = 0; i < map1.length; i++) {
@@ -81,10 +81,10 @@ public class Save<choosenFile> extends Map {
             int order = Integer.parseInt(arr[4]);
             int clicks = Integer.parseInt(arr[5]);
             ArrayList<Player> players = new ArrayList<>();
-            for (int i=0;i<platernumbers;i++){
+            for (int i = 0; i < platernumbers; i++) {
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0], "No characteristic", Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -152,10 +152,10 @@ public class Save<choosenFile> extends Map {
             int order = Integer.parseInt(arr[4]);
             int clicks = Integer.parseInt(arr[5]);
             ArrayList<Player> players = new ArrayList<>();
-            for (int i=0;i<platernumbers;i++){
+            for (int i = 0; i < platernumbers; i++) {
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0], "No characteristic", Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -204,7 +204,7 @@ public class Save<choosenFile> extends Map {
         return map;
     }
 
-    public static Map filechosser() {
+    public static Map filechosser() throws Exception {
         JFileChooser chooser = new JFileChooser(new File("save"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 // 保存所选目录chooser.showSaveDialog(parent);
@@ -219,72 +219,74 @@ public class Save<choosenFile> extends Map {
             //System.exit(0);
         }
         Map map = new Map();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(selectPath));
-            String str = in.readLine();
-            String[] arr = str.split("\\s+");
-            int a = Integer.parseInt(arr[0]);
-            int b = Integer.parseInt(arr[1]);
-            int mines = Integer.parseInt(arr[2]);
-            int platernumbers = Integer.parseInt(arr[3]);
-            int order = Integer.parseInt(arr[4]);
-            int clicks = Integer.parseInt(arr[5]);
-            ArrayList<Player> players = new ArrayList<>();
-            for (int i=0;i<platernumbers;i++){
-                str = in.readLine();
-                arr = str.split("\\s+");
-                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
-                players.add(player);
-            }
+
+        BufferedReader in = new BufferedReader(new FileReader(selectPath));
+        String str = in.readLine();
+        String[] arr = str.split("\\s+");
+        int a = Integer.parseInt(arr[0]);
+        int b = Integer.parseInt(arr[1]);
+        int mines = Integer.parseInt(arr[2]);
+        int platernumbers = Integer.parseInt(arr[3]);
+        int order = Integer.parseInt(arr[4]);
+        int clicks = Integer.parseInt(arr[5]);
+        ArrayList<Player> players = new ArrayList<>();
+        for (int i = 0; i < platernumbers; i++) {
+            str = in.readLine();
+            arr = str.split("\\s+");
+            Player player = new Player(arr[0], "No characteristic", Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
+            players.add(player);
+        }
 //            str = in.readLine();
 //            String[] arr1 = str.split("\\s+");
 //            int point1 = Integer.parseInt(arr1[0]);
 //            int point2 = Integer.parseInt(arr1[1]);
-            str = in.readLine();
+        str = in.readLine();
 //            int order = Data.getOrder();
-            char[][] map1 = new char[a][b];
-            int[][] HasClicked1 = new int[a][b];
-            int[][] tool = new int[a][b];
-            int i = 0;
-            while ((str = in.readLine()) != null && i < a) {
-                for (int j = 0; j < b; j++) {
-                    map1[i][j] = str.charAt(j);
-                }
-                i++;
+        char[][] map1 = new char[a][b];
+        int[][] HasClicked1 = new int[a][b];
+        int[][] tool = new int[a][b];
+        int i = 0;
+        while ((str = in.readLine()) != null && i < a) {
+            for (int j = 0; j < b; j++) {
+                map1[i][j] = str.charAt(j);
             }
-            i = 0;
-            while ((str = in.readLine()) != null && i < a) {
-                for (int j = 0; j < b; j++) {
-                    HasClicked1[i][j] = str.charAt(j) - '0';
-                }
-                i++;
+            i++;
+        }
+        i = 0;
+        while ((str = in.readLine()) != null && i < a) {
+            for (int j = 0; j < b; j++) {
+                HasClicked1[i][j] = str.charAt(j) - '0';
             }
-            i = 0;
-            while ((str = in.readLine()) != null && i < a) {
-                for (int j = 0; j < b; j++) {
-                    tool[i][j] = str.charAt(j) - '0';
-                }
-                i++;
+            i++;
+        }
+        i = 0;
+        while ((str = in.readLine()) != null && i < a) {
+            for (int j = 0; j < b; j++) {
+                tool[i][j] = str.charAt(j) - '0';
             }
+            i++;
+        }
 
-            setMap(map1);
-            map.setRow(a);
-            map.setColumn(b);
-            map.setNum(mines);
+        setMap(map1);
+        map.setRow(a);
+        map.setColumn(b);
+        map.setNum(mines);
 //            Data.setPoint1(point1);
 //            Data.setPoint2(point2);
-            Data.setMines(mines);
-            Data.setClick(clicks);
-            Data.setPlayers(players);
-            Data.setHasClicked(HasClicked1);
-            Data.setOrder(order);
-            Data.setTool(tool);
-        }  catch (Exception e){
-            System.out.println("数据不合法，请重新选择");
-        }
+        Data.setMines(mines);
+        Data.setClick(clicks);
+        Data.setPlayers(players);
+        Data.setHasClicked(HasClicked1);
+        Data.setOrder(order);
+        Data.setTool(tool);
+
+//        catch (Exception e){
+//            System.out.println("数据不合法，请重新选择");
+//        }
         return map;
     }
-    public static Map Filechosser() {
+
+    public static Map Filechosser() throws Exception {
         JFileChooser chooser = new JFileChooser(new File("save"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 // 保存所选目录chooser.showSaveDialog(parent);
@@ -299,7 +301,7 @@ public class Save<choosenFile> extends Map {
             //System.exit(0);
         }
         Map map = new Map();
-        try {
+   //     try {
             BufferedReader in = new BufferedReader(new FileReader(selectPath));
             String str = in.readLine();
             String[] arr = str.split("\\s+");
@@ -310,10 +312,10 @@ public class Save<choosenFile> extends Map {
             int order = Integer.parseInt(arr[4]);
             int clicks = Integer.parseInt(arr[5]);
             ArrayList<Player> players = new ArrayList<>();
-            for (int i=0;i<platernumbers;i++){
+            for (int i = 0; i < platernumbers; i++) {
                 str = in.readLine();
                 arr = str.split("\\s+");
-                Player player = new Player(arr[0],"No characteristic" ,Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+                Player player = new Player(arr[0], "No characteristic", Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
                 players.add(player);
             }
 //            str = in.readLine();
@@ -359,19 +361,20 @@ public class Save<choosenFile> extends Map {
             Data.setHasClicked(HasClicked1);
             Data.setOrder(order);
             Data.setTool(tool);
-        }  catch (Exception e){
-            System.out.println("数据不合法，请重新选择");
-            //new error("error");
-            int a = JOptionPane.showConfirmDialog(null, "数据不合法", "数据不合法", JOptionPane.YES_NO_OPTION);
-            if (a == 1) {
-                System.exit(0); // 关闭
-            }
-            else {
-                System.exit(0);
-            }
-            return Filechosser();
-
+//        }  catch (Exception e){
+//            System.out.println("数据不合法，请重新选择");
+//            //new error("error");
+//            int a = JOptionPane.showConfirmDialog(null, "数据不合法", "数据不合法", JOptionPane.YES_NO_OPTION);
+//            if (a == 1) {
+//                System.exit(0); // 关闭
+//            }
+//            else {
+//                System.exit(0);
+//            }
+//            return Filechosser();
+//
+//        }
+            return map;
         }
-        return map;
     }
-}
+

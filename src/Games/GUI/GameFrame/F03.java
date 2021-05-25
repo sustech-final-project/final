@@ -307,8 +307,18 @@ public class F03 extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            Fgif.Tnt();
-                        } catch (InterruptedException interruptedException) {
+                            Thread thread = new Thread(){
+                               public void run(){
+                                   try {
+                                       Fgif.Tnt();
+                                   } catch (InterruptedException exception) {
+                                       exception.printStackTrace();
+                                   }
+                               }
+                            };
+
+
+                        } catch (Exception interruptedException) {
                             interruptedException.printStackTrace();
                         }
                     }

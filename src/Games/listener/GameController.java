@@ -15,7 +15,7 @@ public interface GameController {
     /**
      * 选择存档，载入地图
      */
-    void choseSave();
+    void choseSave() throws Exception;
 
     /**
      * 获得已载入的地图

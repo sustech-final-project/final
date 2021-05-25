@@ -181,6 +181,7 @@ public class Fgif extends JFrame{
         });
 
         JLabel label = new JLabel(new Fgif().imageIcon);
+        frame.setAlwaysOnTop(true);
         Music.playMusic("realBoom");
         panel.add(label);
         frame.setContentPane(panel);
