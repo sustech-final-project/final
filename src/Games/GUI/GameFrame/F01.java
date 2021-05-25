@@ -1,16 +1,25 @@
 package Games.GUI.GameFrame;
 
+import Games.GUI.GameFrame.layout.AfXLayout;
+import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Data;
 import Games.Map.Map;
+import Games.Map.Player;
+import Games.Map.Timer;
+import Games.components.Music;
 import Games.components.pic;
 import Games.listener.GameController;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Games.GUI.GameFrame.MainLocal.f02;
-import static Games.GUI.GameFrame.MainLocal.f03;
+import static Games.GUI.GameFrame.MainLocal.*;
 
 public class F01 extends JFrame {
     GameController gc;
