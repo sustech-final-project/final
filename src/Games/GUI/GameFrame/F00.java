@@ -59,7 +59,7 @@ public class F00 extends JFrame {
                 @Override
                 public void run() {
                     // mai();
-                    MainLocal.solo();
+                    MainLocal.solo1();
                 }
             });
         });

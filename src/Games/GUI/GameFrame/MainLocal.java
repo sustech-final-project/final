@@ -62,6 +62,13 @@ public class MainLocal {
         f02.setLocationRelativeTo(null);
         f02.setVisible(true);
     }
+    public static void solo1() {
+        Solo1 f02 = new Solo1("游戏设置", gc);
+        f02.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f02.setSize(470, 170);
+        f02.setLocationRelativeTo(null);
+        f02.setVisible(true);
+    }
 
     public static void solo() {
         Solo solo = new Solo("单人模式", gc);

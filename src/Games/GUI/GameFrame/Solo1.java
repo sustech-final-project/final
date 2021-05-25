@@ -13,7 +13,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
 public class Solo1 extends JFrame {
     GameController gc;
-    String[] typeList = new String[]{"无","玩家", "简单人机", "中级人机", "高级人机"};
+    String[] typeList = new String[]{"玩家", "无"};
     String[] characteristicList = new String[]{"无", "角色1","角色2"};
     JPanel[] sub_1 = new JPanel[4];
     ArrayList<JComboBox<String>> type = new ArrayList<>();
@@ -61,9 +61,16 @@ public class Solo1 extends JFrame {
         sub_1[3].add(begin, "20%");
         for (int i = 0; i < 4; i++) {
             type.add(new JComboBox<String>(typeList));
-            type.get(i).setSelectedIndex(1);
             characteristic.add(new JComboBox<String>(characteristicList));
             name.add(new JTextField("昵称"));
+            if (i == 0)type.get(i).setSelectedIndex(0);
+            else{
+                type.get(i).setSelectedIndex(1);
+                type.get(i).setEnabled(false);
+                characteristic.get(i).setSelectedIndex(0);
+                characteristic.get(i).setEnabled(false);
+                name.get(i).setEnabled(false);
+            }
             sub_1[0].add(type.get(i), "20%");
             sub_1[1].add(name.get(i), "20%");
             sub_1[2].add(characteristic.get(i), "20%");
@@ -95,8 +102,7 @@ public class Solo1 extends JFrame {
             this.dispose();
             type.forEach(ty ->{
                 if (!Objects.equals(ty.getSelectedItem(), "无")) {
-                    if (Objects.equals(ty.getSelectedItem(), "简单人机") || Objects.equals(ty.getSelectedItem(), "高级人机") || Objects.equals(ty.getSelectedItem(), "中级人机"))gc.addRobot(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem(), ty.getSelectedIndex() - 1);
-                    if (ty.getSelectedIndex() == 1) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
+                    if (ty.getSelectedIndex() == 0) gc.addPlayer(name.get(type.indexOf(ty)).getText(), (String) characteristic.get(type.indexOf(ty)).getSelectedItem());
                 }
             });
 
@@ -124,7 +130,7 @@ public class Solo1 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    f03();
+                    solo();
                 }
             });
         });

@@ -156,6 +156,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public Player whoseTurn() {
+        System.out.println(Data.getClick() + "\t" + Data.getPlayers().size());
         return Data.getPlayers().get(Data.getOrder() / Data.getClick() % Data.getPlayers().size());
     }
 

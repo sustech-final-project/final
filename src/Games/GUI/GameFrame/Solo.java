@@ -260,12 +260,12 @@ import static Games.GUI.GameFrame.MainLocal.*;
         private class MouseListener extends MouseAdapter {
             @Override
             public void mouseClicked(MouseEvent e) {
-                order = gc.getOrder();
                 int index = listeners.indexOf(this);
                 int r = index / map[0].length;
                 int c = index % map[0].length;
                 Border border = BorderFactory.createLineBorder(Color.RED, 2);
                 Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
+                System.out.println(order);
                 if (order == 0){
                     gc.createMap(r, c);
                 }
