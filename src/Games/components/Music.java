@@ -32,7 +32,7 @@ public class Music extends Applet {
                     f = new File("src\\音效\\单个爆炸音.wav");
 
                     //f = new File("src\\音效\\单个爆炸音.wav");
-                    f = new File("final\\src\\音效\\单个爆炸音.wav");
+                   // f = new File("final\\src\\音效\\单个爆炸音.wav");
 
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
@@ -43,7 +43,7 @@ public class Music extends Applet {
                     f = new File("src\\音效\\左键单击.wav");
 
                     //f = new File("src\\音效\\左键单击.wav");
-                    f = new File("final\\src\\音效\\左键单击.wav");
+                  //  f = new File("final\\src\\音效\\左键单击.wav");
 
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);

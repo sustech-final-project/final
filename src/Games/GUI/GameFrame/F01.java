@@ -45,10 +45,20 @@ public class F01 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        gc.choseSave();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    boolean a = false;
+                    while(!a){
+                        try{
+                            gc.choseSave();
+                            a = true;
+                        }catch (Exception e){
+                            int ant = JOptionPane.showConfirmDialog(null, "数据不合法", "数据不合法", JOptionPane.YES_NO_OPTION);
+//            if (a == 1) {
+//                System.exit(0); // 关闭
+//            }
+//            else {
+//                System.exit(0);
+//            }
+                        }
                     }
                     //Data.resetorder();
                     f03();

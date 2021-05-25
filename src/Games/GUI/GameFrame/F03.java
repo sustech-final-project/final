@@ -7,6 +7,7 @@ import Games.Map.Data;
 import Games.Map.Player;
 import Games.Map.Timer;
 import Games.components.CountDown;
+import Games.components.Music;
 import Games.listener.GameController;
 
 
@@ -136,6 +137,7 @@ public class F03 extends JFrame {
         JMenuItem cheat = new JMenuItem("作弊模式");
         JMenuItem creator = new JMenuItem("制作人的话");
         JMenuItem about = new JMenuItem("关于...");
+        JMenuItem music = new JMenuItem("关闭音乐");
         JMenu changeTheme = new JMenu("更换主题");
 
         fileMenu.add(save);
@@ -164,6 +166,19 @@ public class F03 extends JFrame {
         });
 
         viewMenu.add(changeTheme);
+        viewMenu.add(music);
+
+        music.addActionListener(listener -> {
+
+            if (music.getText().equals("关闭音乐")) {
+                music.setText("开启音乐");
+                Music.stopMusic();
+            }
+            else if (music.getText().equals("开启音乐")) {
+                music.setText("关闭音乐");
+                Music.playMusic("BGM");
+            }
+        });
 
         save.addActionListener(listener -> {
             gc.save();
@@ -313,27 +328,32 @@ public class F03 extends JFrame {
         if (type == 0) return;
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
             if (gc.getChar(row, column).equals("M")) {
+                try {
+                    Fgif.Tnt();
+                }catch (Exception e){
 
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread thread = new Thread(){
-                                public void run(){
-                                    try {
-                                        Fgif.Tnt();
-                                    } catch (InterruptedException exception) {
-                                        exception.printStackTrace();
-                                    }
-                                }
-                            };
+                }
 
-
-                        } catch (Exception interruptedException) {
-                            interruptedException.printStackTrace();
-                        }
-                    }
-                });
+//                SwingUtilities.invokeLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            Thread thread = new Thread(){
+//                                public void run(){
+//                                    try {
+//                                        Fgif.Tnt();
+//                                    } catch (InterruptedException exception) {
+//                                        exception.printStackTrace();
+//                                    }
+//                                }
+//                            };
+//
+//
+//                        } catch (Exception interruptedException) {
+//                            interruptedException.printStackTrace();
+//                        }
+//                    }
+//                });
             }
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {

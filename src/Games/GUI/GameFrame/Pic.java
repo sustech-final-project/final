@@ -17,6 +17,7 @@ public enum Pic {
     FLAG(new ImageIcon("src\\Games\\image\\方块插旗.jpg")),
     BLANK(new ImageIcon("src\\Games\\image\\正常方块.jpg")),
 
+    NUM10(new ImageIcon("src\\Games\\image\\blank.jpg")),
     NUM11(new ImageIcon("src\\Games\\image\\转换\\1.jpg")),
     NUM12(new ImageIcon("src\\Games\\image\\转换\\2.jpg")),
     NUM13(new ImageIcon("src\\Games\\image\\转换\\3.jpg")),
@@ -58,7 +59,7 @@ public enum Pic {
         }
         else {
             switch (Char) {
-                case "0": return NUM0.getIcon();
+                case "0": return NUM10.getIcon();
                 case "1": return NUM11.getIcon();
                 case "2": return NUM12.getIcon();
                 case "3": return NUM13.getIcon();

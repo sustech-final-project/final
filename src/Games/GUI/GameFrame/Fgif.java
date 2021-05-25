@@ -180,7 +180,7 @@ public class Fgif extends JFrame{
             }
         });
 
-        JLabel label = new JLabel(new Fgif().imageIcon);
+        JLabel label = new JLabel(new Fgif().tnt);
         frame.setAlwaysOnTop(true);
         Music.playMusic("realBoom");
         panel.add(label);
