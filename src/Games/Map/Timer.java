@@ -77,7 +77,7 @@ public class Timer implements Runnable							//计时器类
             try
             {
                 Thread.sleep(1000);								//每次停顿一秒
-                time += 0.5;										//计时变量+1
+                time += 0.25;										//计时变量+1
                 TimerField.setText(String.valueOf((int)time));       //显示计时
                 if (time==30){
                     ResetTimer();
