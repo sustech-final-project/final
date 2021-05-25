@@ -303,6 +303,7 @@ public class F03 extends JFrame {
             int column = Integer.parseInt(str[1]);
             int type = Integer.parseInt(str[2]);
             click(row, column, type);
+            Timer.resetTimer();
         }
 
     }
@@ -385,6 +386,7 @@ public class F03 extends JFrame {
         
         if (gc.isEnd()) {
             dispose();
+            Timer.stop();
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -392,6 +394,7 @@ public class F03 extends JFrame {
                 }
             });
         }
+        Timer.resetTimer();
 
 
     }

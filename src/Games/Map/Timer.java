@@ -18,16 +18,20 @@ import javax.swing.JTextField;
 
 public class Timer implements Runnable							//计时器类
 {
-    private int time;													//计时变量
+    private static int time;													//计时变量
 
-    JPanel panel1;												//面板
+    static JPanel panel1;												//面板
 
     public JPanel getPanel1() {
         return panel1;
     }
 
-    JTextField TimerField;										//计时器文本框
-    Thread TimerThread;											//为计时器创建新线程
+    static JTextField TimerField;										//计时器文本框
+    static Thread TimerThread;								    //为计时器创建新线程
+
+    public static void stop(){
+        TimerThread.stop();
+    }
 
     public Timer(JPanel panel)									//构造函数
     {
@@ -50,6 +54,12 @@ public class Timer implements Runnable							//计时器类
     }
 
     public void ResetTimer()									//计时器重置
+    {
+        time = 0;
+        TimerField.setText(String.valueOf(time));
+    }
+
+    public static void resetTimer()									//计时器重置
     {
         time = 0;
         TimerField.setText(String.valueOf(time));
