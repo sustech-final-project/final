@@ -425,7 +425,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
                     tool.get(3).setVisible(true);
                     tool.get(5).setVisible(true);
                 }
-                
+
             }
         }
 

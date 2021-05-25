@@ -24,6 +24,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
 public class F03 extends JFrame {
     //参数
+    Boolean hasgone = false;
     static int order = 0;
     static GameController gc;
     static char[][] map;
@@ -39,27 +40,51 @@ public class F03 extends JFrame {
     static ArrayList<CardLayout> layouts = new ArrayList<>();
     static JPanel board = new JPanel(new GridLayout());
     ImageIcon timer1 = pic.getTimer();
-    ImageIcon Player1 = pic.getPlayer();
+    //ImageIcon Player1 = pic.getPlayer();
 
     //其他组件
     static JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
     //CountDown timer = new CountDown();
    static ArrayList<Player> players = new ArrayList<>();
+   JLabel mi = new JLabel();
 
+   public static void clear() {
+
+       //游戏面板组件
+ listeners = new ArrayList<>();
+        buttons = new ArrayList<>();
+       imagePanel = new ArrayList<>();
+       labels = new ArrayList<>();
+       upperPanel = new ArrayList<>();
+       cardContainer = new ArrayList<>();
+       layouts = new ArrayList<>();
+       board = new JPanel(new GridLayout());
+
+       //其他组件
+       playerInf = new JLabel[0];
+       JPanel timerPanel = new Timer(new JPanel()).getPanel1();
+       //CountDown timer = new CountDown();
+       players = new ArrayList<>();
+   }
 
     public F03() {}
     public F03(String title, GameController gc) {
         //初始化参数
         super(title);
-        timer1.setImage(timer1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
-        Player1.setImage(Player1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
+        timer1.setImage(timer1.getImage().getScaledInstance(294,108,Image.SCALE_DEFAULT));
+        //Player1.setImage(Player1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
         F03.gc = gc;
         order = gc.getOrder();
         map = gc.getMap();
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new AfXLayout());
+        JPanel mine = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        ImageIcon show1 = Pic.MINE.getIcon();
+        show1.setImage(show1.getImage().getScaledInstance(70, 70,Image.SCALE_DEFAULT ));
+        mine.add(new JLabel(show1));
+        mine.add(mi = new JLabel("X " + Data.getMines()));
 
         //建立游戏面板
         board.setLayout(new GridLayout(map.length, map[0].length));
@@ -75,8 +100,10 @@ public class F03 extends JFrame {
             imagePanel.add(new JPanel(new GridLayout(1, 1)));
             cardContainer.add(new JPanel(layouts.get(i)));
 
+
             //加入组件
             buttons.get(i).setSize(upperPanel.get(i).getSize());
+            buttons.get(i).setEnabled(true);
             upperPanel.get(i).add(buttons.get(i));
             imagePanel.get(i).add(labels.get(i));
             cardContainer.get(i).add(upperPanel.get(i));
@@ -117,12 +144,13 @@ public class F03 extends JFrame {
         timerPanel.add(new JLabel(timer1));
         contentPane.add(board, "70%");
         JPanel left = new JPanel(new AfYLayout());
+        left.add(mi);
         left.add(timerPanel, "20%");
         JPanel score = new JPanel(new AfYLayout());
         score.setBorder(new LineBorder(Color.BLACK, 2));
         players = gc.getPlayers();
         playerInf = new JLabel[players.size()];
-        score.add(new JLabel(Player1));
+       // score.add(new JLabel(Player1));
 
         System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
@@ -198,6 +226,8 @@ public class F03 extends JFrame {
                 @Override
                 public void run() {
                     gc.clear();
+                    clear();
+
                     f02();
                     dispose();
                 }
@@ -208,6 +238,7 @@ public class F03 extends JFrame {
                 @Override
                 public void run() {
                     gc.clear();
+                    clear();
                     f01();
                 }
             });
@@ -307,7 +338,8 @@ public class F03 extends JFrame {
 
             System.out.println(gc.whoseTurn().getLevel());
             AIClick();
-            if (gc.isEnd()) {
+            if (gc.isEnd() && !hasgone) {
+                hasgone = true;
                 dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -343,26 +375,6 @@ public class F03 extends JFrame {
 
                 }
 
-//                SwingUtilities.invokeLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        try {
-//                            Thread thread = new Thread(){
-//                                public void run(){
-//                                    try {
-//                                        Fgif.Tnt();
-//                                    } catch (InterruptedException exception) {
-//                                        exception.printStackTrace();
-//                                    }
-//                                }
-//                            };
-//
-//
-//                        } catch (Exception interruptedException) {
-//                            interruptedException.printStackTrace();
-//                        }
-//                    }
-//                });
             }
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
@@ -391,7 +403,8 @@ public class F03 extends JFrame {
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
             left(row, column);
-        } else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3 && gc.getChar(row,column).equals("M") ) {
+        }
+        else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3 && gc.getChar(row,column).equals("M") ) {
             ImageIcon show = Pic.FLAG.getIcon();
             Dimension size = cardContainer.get(index).getSize();
             show.setImage(show.getImage().getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT));
@@ -418,8 +431,17 @@ public class F03 extends JFrame {
         Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
-        
-        if (gc.isEnd()) {
+
+        int minenum = 0;
+        for (int i=0;i< map.length;i++){
+            for (int j=0;j<map[0].length;j++){
+                if(Data.getHasClicked(i,j) == 0 && map[i][j] == 'M') minenum++;
+            }
+        }
+        mi.setText("X " + minenum);
+
+        if (gc.isEnd() && !hasgone) {
+            hasgone = true;
             dispose();
             Timer.stop();
             SwingUtilities.invokeLater(new Runnable() {

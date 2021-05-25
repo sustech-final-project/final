@@ -21,7 +21,8 @@ public class F04 extends JFrame {
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         contentPane.setLayout(new Layout());
-        label = new JLabel("Congratulation, " + gc.whoWin().toString() + ", wins!");
+        if (!gc.whoWin().toString().equals("[平局]"))label = new JLabel("Congratulation, " + gc.whoWin().toString() + ", wins!");
+        else label = new JLabel("We have a tied match!");
         play = new JButton("Play Again.");
         play.addActionListener(e -> {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -29,6 +30,7 @@ public class F04 extends JFrame {
                 public void run() {
                     dispose();
                     gc.clear();
+                    F03.clear();
                     f02();
                 }
             });
