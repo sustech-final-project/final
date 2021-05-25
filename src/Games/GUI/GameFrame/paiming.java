@@ -30,9 +30,9 @@ public class paiming extends JFrame {
         Map<Double,String> paiming = SoloData.getPaiming();
         Set<Double> keySet = paiming.keySet();
         int i=1;
-        taShow.setText("排名        玩家ID           用时");
+        taShow.setText("排名\t\t玩家ID\t\t用时");
         for (Double key : keySet) {
-            taShow.setText(taShow.getText()+"\n"+i+"              "+paiming.get(key)+ "           " + key);
+            taShow.setText(taShow.getText()+"\n"+i+"\t\t"+paiming.get(key)+ "\t\t" + key);
             i++;
         }
         //taShow.setText("abcd");

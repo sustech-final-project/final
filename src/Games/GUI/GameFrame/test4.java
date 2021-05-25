@@ -10,8 +10,8 @@ public class test4 {
 //        paiming.put(67.0,"杨清淞");
 //        paiming.put(63.0,"杨基");
 //        SoloData.setPaiming(paiming);
-//        SoloData.readpaiming();
-//        SoloData.savepaiming();
+        SoloData.readpaiming();
+        SoloData.savepaiming();
         new paiming();
     }
 }

@@ -73,7 +73,7 @@ public class MainLocal {
     public static void solo() {
         Solo solo = new Solo("单人模式", gc);
         solo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        solo.setSize(30 * (int) (70.0/0.7), 16*70+60);
+        solo.setSize(gc.getMap()[0].length * (int) (70.0/0.7), gc.getMap().length * 70 + 60);
         solo.setLocationRelativeTo(null);
         solo.setVisible(true);
     }

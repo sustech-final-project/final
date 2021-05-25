@@ -3,6 +3,7 @@ package Games.GUI.GameFrame;
 import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
 
+import Games.Map.Data;
 import Games.Map.Player;
 import Games.Map.Timer;
 import Games.components.CountDown;
@@ -135,7 +136,7 @@ public class F03 extends JFrame {
         JMenuItem cheat = new JMenuItem("作弊模式");
         JMenuItem creator = new JMenuItem("制作人的话");
         JMenuItem about = new JMenuItem("关于...");
-        JMenuItem changeTheme = new JMenuItem("更换主题");
+        JMenu changeTheme = new JMenu("更换主题");
 
         fileMenu.add(save);
         fileMenu.add(reLoad);
@@ -148,10 +149,19 @@ public class F03 extends JFrame {
 
         JMenuItem Theme1 = new JMenuItem("主题1");
         JMenuItem Theme2 = new JMenuItem("主题2");
-        JMenuItem Theme3 = new JMenuItem("主题3");
+        //JMenuItem Theme3 = new JMenuItem("主题3");
         changeTheme.add(Theme1);
         changeTheme.add(Theme2);
-        changeTheme.add(Theme3);
+        //changeTheme.add(Theme3);
+
+        Theme1.addActionListener(i ->{
+            Data.zhuti=1;
+            //Todo 更新地图
+        });
+        Theme2.addActionListener(i ->{
+            Data.zhuti=2;
+            //TODO 更新地图
+        });
 
         viewMenu.add(changeTheme);
 
@@ -308,13 +318,13 @@ public class F03 extends JFrame {
                     public void run() {
                         try {
                             Thread thread = new Thread(){
-                               public void run(){
-                                   try {
-                                       Fgif.Tnt();
-                                   } catch (InterruptedException exception) {
-                                       exception.printStackTrace();
-                                   }
-                               }
+                                public void run(){
+                                    try {
+                                        Fgif.Tnt();
+                                    } catch (InterruptedException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                }
                             };
 
 
@@ -327,11 +337,28 @@ public class F03 extends JFrame {
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
             if (!gc.getChar(row, column).equals("M")) {
-                try {
-                    Fgif.Chaqi();
-                } catch (Exception exception) {
 
-                }
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread thread = new Thread() {
+                                public void run() {
+                                    try {
+                                        Fgif.Chaqi();
+                                    } catch (InterruptedException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                }
+                            };
+
+
+                        } catch (Exception interruptedException) {
+                            interruptedException.printStackTrace();
+                        }
+                    }
+                });
+
             }
         }
 

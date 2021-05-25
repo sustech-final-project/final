@@ -1,5 +1,7 @@
 package Games.GUI.GameFrame;
 
+import Games.Map.Data;
+
 import javax.swing.*;
 
 public enum Pic {
@@ -26,18 +28,36 @@ public enum Pic {
     }
 
     public static ImageIcon getIcon(String Char) {
-         switch (Char) {
-             case "0": return NUM0.getIcon();
-             case "1": return NUM1.getIcon();
-             case "2": return NUM2.getIcon();
-             case "3": return NUM3.getIcon();
-             case "4": return NUM4.getIcon();
-             case "5": return NUM5.getIcon();
-             case "6": return NUM6.getIcon();
-             case "7": return NUM7.getIcon();
-             case "M": return MINE.getIcon();
-             case "F": return FLAG.getIcon();
-             default: return null;
+        if (Data.zhuti==1){
+            switch (Char) {
+                case "0": return NUM0.getIcon();
+                case "1": return NUM1.getIcon();
+                case "2": return NUM2.getIcon();
+                case "3": return NUM3.getIcon();
+                case "4": return NUM4.getIcon();
+                case "5": return NUM5.getIcon();
+                case "6": return NUM6.getIcon();
+                case "7": return NUM7.getIcon();
+                case "M": return MINE.getIcon();
+                case "F": return FLAG.getIcon();
+                default: return null;
+            }
         }
+        else {
+            switch (Char) {
+                case "0": return NUM0.getIcon();
+                case "1": return NUM1.getIcon();
+                case "2": return NUM2.getIcon();
+                case "3": return NUM3.getIcon();
+                case "4": return NUM4.getIcon();
+                case "5": return NUM5.getIcon();
+                case "6": return NUM6.getIcon();
+                case "7": return NUM7.getIcon();
+                case "M": return MINE.getIcon();
+                case "F": return FLAG.getIcon();
+                default: return null;
+            }
+        }
+
     }
 }

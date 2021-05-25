@@ -38,7 +38,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
         //其他组件
         JLabel[] playerInf;
-        JPanel timerPanel = new Timer(new JPanel()).getPanel1();
+        //JPanel timerPanel = new Timer(new JPanel()).getPanel1();
         ArrayList<Player> players = new ArrayList<>();
 
         public Solo(String title, GameController gc) {
@@ -93,20 +93,20 @@ import static Games.GUI.GameFrame.MainLocal.*;
             Border border1 = BorderFactory.createLineBorder(Color.RED, 2);
             Border empty = BorderFactory.createEmptyBorder(2,2,2,2);
             board.setBorder(border);
-            timerPanel.setBorder(border);
+            //timerPanel.setBorder(border);
 
             if (board.isVisible()) {
                 Dimension size = board.getPreferredSize();
                 board.setBounds(0, 0, size.width, size.height);
             }
 
-            if (timerPanel.isVisible()){
-                Dimension size = timerPanel.getPreferredSize();
-                timerPanel.setBounds(70 * map.length,0,size.width * 2,size.height);
-            }
+//            if (timerPanel.isVisible()){
+//                Dimension size = timerPanel.getPreferredSize();
+//                timerPanel.setBounds(70 * map.length,0,size.width * 2,size.height);
+//            }
             contentPane.add(board, "70%");
             JPanel left = new JPanel(new AfYLayout());
-            left.add(timerPanel, "20%");
+//            left.add(timerPanel, "20%");
             JPanel score = new JPanel(new AfYLayout());
             score.setBorder(new LineBorder(Color.BLACK, 2));
             players = gc.getPlayers();
