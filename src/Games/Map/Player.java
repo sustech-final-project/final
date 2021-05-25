@@ -96,6 +96,7 @@ public class Player {
             int t;
             if (map[r][c] == 'M') t = 3;
             else t = 1;
+            if (Data.isAllClicked()) return "0 0 0";
             if(Data.getHasClicked(r, c) == 1) return AiClick(map);
             else return r + " " + c + " " + t;
         }

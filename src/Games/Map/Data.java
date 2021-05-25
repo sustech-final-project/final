@@ -99,6 +99,14 @@ public class Data {
     private static String nameMd ="不太容易被击败的玩家";
     private static String nameHa ="强大的机器人玩家";
 
+    public static boolean isAllClicked() {
+        for (int[] ints : HasClicked) {
+            for (int j = 0; j < HasClicked[0].length; j++) {
+                if (ints[j] == 0) return false;
+            }
+        }
+        return true;
+    }
 
 
     /**

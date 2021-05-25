@@ -75,13 +75,7 @@ public class GameController implements Games.listener.GameController {
 
     @Override
     public boolean isEnd() {
-        int[][] check = Data.getHasClicked();
-        for (int i = 0; i < check.length; i++) {
-            for (int j = 0; j < check[0].length; j++) {
-                if (check[i][j] == 0) return false;
-            }
-        }
-        return true;
+        return Data.isAllClicked();
     }
 
     @Override
