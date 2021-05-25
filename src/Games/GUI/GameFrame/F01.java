@@ -2,6 +2,7 @@ package Games.GUI.GameFrame;
 
 import Games.Map.Data;
 import Games.Map.Map;
+import Games.components.pic;
 import Games.listener.GameController;
 
 import javax.swing.*;
@@ -13,9 +14,10 @@ import static Games.GUI.GameFrame.MainLocal.f03;
 
 public class F01 extends JFrame {
     GameController gc;
+    JLabel bg = new JLabel();
     JLabel haveSave = new JLabel("是否从存档开始游戏");
-    JButton buttonYes = new JButton("是");
-    JButton buttonNo = new JButton("否");
+    JButton buttonYes = new JButton();
+    JButton buttonNo = new JButton();
 
     public F01(String title, GameController gc){
         super(title);
@@ -27,6 +29,16 @@ public class F01 extends JFrame {
         contentPane.add(haveSave);
         contentPane.add(buttonYes);
         contentPane.add(buttonNo);
+        getContentPane().add(bg);
+
+        ImageIcon No= pic.getNo();
+        ImageIcon Yes=pic.getYes();
+        No.setImage(No.getImage().getScaledInstance(46,24,Image.SCALE_DEFAULT));
+        Yes.setImage(Yes.getImage().getScaledInstance(46,24,Image.SCALE_DEFAULT));
+
+        buttonYes.setIcon(Yes);
+
+        buttonNo.setIcon(No);
 
         buttonYes.addActionListener((l) -> {
             this.dispose();
@@ -69,20 +81,25 @@ public class F01 extends JFrame {
                 int y = (height - size.height) / 3;
                 haveSave.setBounds(x, y, size.width, size.height);
             }
-
+            if (bg.isVisible()) {
+                bg.setBounds(0, 0, width, height);
+                ImageIcon show = pic.getBG1();
+                show.setImage(show.getImage().getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING));
+                bg.setIcon(show);
+            }
             if (buttonYes.isVisible()) {
                 Dimension size = buttonYes.getPreferredSize();
 
                 int x = (width - size.width) / 3;
                 int y = 2 * (height - size.height) / 3;
-                buttonYes.setBounds(x, y, size.width, size.height);
+                buttonYes.setBounds(x, y,46, 24);
             }
 
             if (buttonNo.isVisible()) {
                 Dimension size = buttonNo.getPreferredSize();
                 int x =  2 * (width - size.width) / 3;
                 int y = 2 * (height - size.height) / 3;
-                buttonNo.setBounds(x, y, size.width, size.height);
+                buttonNo.setBounds(x, y, 46, 24);
             }
         }
 
