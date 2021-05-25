@@ -4,7 +4,9 @@ import Games.GUI.GameFrame.layout.AfXLayout;
 import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Data;
 import Games.Map.Player;
+import Games.Map.SoloTimer;
 import Games.Map.Timer;
+import Games.components.pic;
 import Games.listener.GameController;
 
 import javax.swing.*;
@@ -39,6 +41,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
         ArrayList<CardLayout> layouts= new ArrayList<>();
         JPanel board = new JPanel(new GridLayout());
         ArrayList<JLabel> tool = new ArrayList<>();
+        JPanel timerPanel = new SoloTimer(new JPanel()).getPanel1();
 
         //其他组件
         JLabel[] playerInf;
@@ -55,6 +58,13 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
             Container contentPane = getContentPane();
             contentPane.setLayout(new AfXLayout());
+            Border border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
+            timerPanel.setBorder(border2);
+            if (timerPanel.isVisible()) {
+                Dimension size = timerPanel.getPreferredSize();
+                timerPanel.setBounds(70 * map.length, 0, size.width * 2, size.height);
+            }
+
 
             //建立游戏面板
             board.setLayout(new GridLayout(map.length, map[0].length));
@@ -111,6 +121,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 //            }
             contentPane.add(board, "70%");
             JPanel left = new JPanel(new AfYLayout());
+            left.add(timerPanel, "20%");
 //            left.add(timerPanel, "20%");
             JPanel score = new JPanel(new AfYLayout());
             JPanel heart = new JPanel(new FlowLayout());
@@ -331,6 +342,11 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1){
                     if (gc.getChar(r,c).equals("M")) {
+                        try {
+                        Fgif.Tnt();
+                    } catch (InterruptedException exception) {
+                        exception.printStackTrace();
+                    }
                         if(DunNum > 0){
                             DunNum--;
                         } else if (heartNum > 0) {
@@ -345,16 +361,6 @@ import static Games.GUI.GameFrame.MainLocal.*;
                                 }
                             });
                         }
-                        // javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                        //  @Override
-                        // public void run() {
-                        try {
-                            Fgif.Tnt();
-                        } catch (InterruptedException exception) {
-                            exception.printStackTrace();
-                        }
-                        //                                  }
-                        // });
                     }
                 }
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
@@ -362,20 +368,36 @@ import static Games.GUI.GameFrame.MainLocal.*;
                         try {
                             Fgif.Chaqi();
                         }catch (Exception exception){
-
                         }
+                        if(DunNum > 0){
+                            DunNum--;
+                        } else if (heartNum > 0) {
+                            heartNum--;
+                        } else {
+                            //TODO 结束游戏
+                            dispose();
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    f04();
+                                }
+                            });
+                        }
+
                     }
                 }
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
-                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3&& gc.getChar(r,c).equals("M")){
+                }
+                else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3 && gc.getChar(r,c).equals("M")){
                     ImageIcon show = Pic.FLAG.getIcon();
                     Dimension size = cardContainer.get(index).getSize();
                     show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
                     labels.get(index).setIcon(show);
                     layouts.get(index).last(cardContainer.get(index));
-                }else {
+                }
+                else {
                     ImageIcon show = Pic.MINE.getIcon();
                     Dimension size = cardContainer.get(index).getSize();
                     show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
@@ -385,6 +407,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
                 buttons.get(index).setEnabled(false);
                 gc.Click(r, c, e.getButton());
+                //Data.HasClicked(r,c);
                 for (int i = 0; i < players.size(); i++) {
                     playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
                 }
@@ -424,6 +447,12 @@ import static Games.GUI.GameFrame.MainLocal.*;
                     tool.get(1).setVisible(true);
                     tool.get(3).setVisible(true);
                     tool.get(5).setVisible(true);
+                }
+                order++;
+                for (int i=0;i<map.length;i++){
+                    for (int j=0;j<map[0].length;j++){
+                        
+                    }
                 }
 
             }

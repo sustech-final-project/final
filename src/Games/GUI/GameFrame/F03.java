@@ -336,7 +336,7 @@ public class F03 extends JFrame {
             click(r, c, e.getButton());
 
 
-            System.out.println(gc.whoseTurn().getLevel());
+            //System.out.println(gc.whoseTurn().getLevel());
             AIClick();
             if (gc.isEnd() && !hasgone) {
                 hasgone = true;
@@ -353,7 +353,7 @@ public class F03 extends JFrame {
 
     public void AIClick() {
         while (gc.whoseTurn().getLevel() != 0 && !gc.isEnd()) {
-            System.out.println("进入");
+            //System.out.println("进入");
             String[] str = gc.whoseTurn().AiClick(gc.getMap()).split(" ");
             int row = Integer.parseInt(str[0]);
             int column = Integer.parseInt(str[1]);
