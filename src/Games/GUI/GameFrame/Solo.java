@@ -222,7 +222,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
                         }
                     }
                 });
-            });
+            });  //作弊模式
             creator    .addActionListener(listener ->{
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -296,8 +296,14 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
                 if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON1) {
                     left(r, c);
-                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3){
+                } else if (buttons.get(index).isVisible() && e.getButton() == MouseEvent.BUTTON3&& gc.getChar(r,c).equals("M")){
                     ImageIcon show = Pic.FLAG.getIcon();
+                    Dimension size = cardContainer.get(index).getSize();
+                    show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+                    labels.get(index).setIcon(show);
+                    layouts.get(index).last(cardContainer.get(index));
+                }else {
+                    ImageIcon show = Pic.MINE.getIcon();
                     Dimension size = cardContainer.get(index).getSize();
                     show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
                     labels.get(index).setIcon(show);
@@ -343,10 +349,4 @@ import static Games.GUI.GameFrame.MainLocal.*;
                 if (!gc.isPrint(r + 1, c - 1)) try {left(r + 1, c - 1);} catch (Exception ignored) {}
             }
         }
-
-
     }
-
-
-
-
