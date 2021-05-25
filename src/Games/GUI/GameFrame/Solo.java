@@ -161,6 +161,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
             JMenuItem restart     = new JMenuItem("新游戏");
             JMenuItem reLoad      = new JMenuItem("载入");
             JMenuItem cheat       = new JMenuItem("作弊模式");
+            JMenuItem paihangbang = new JMenuItem("单人排行榜");
             JMenuItem creator     = new JMenuItem("制作人的话");
             JMenuItem about       = new JMenuItem("关于...");
             JMenuItem changeTheme = new JMenuItem("更换主题");
@@ -173,6 +174,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
             helpMenu.addSeparator();
             helpMenu.add(creator);
             helpMenu.add(about);
+            helpMenu.add(paihangbang);
 
             JMenuItem Theme1 = new JMenuItem("主题1");
             JMenuItem Theme2 = new JMenuItem("主题2");
@@ -206,6 +208,9 @@ import static Games.GUI.GameFrame.MainLocal.*;
                         dispose();
                     }
                 });
+            });
+            paihangbang.addActionListener(i ->{
+                new paiming();
             });
 
             cheat      .addActionListener(listener ->{
@@ -449,10 +454,18 @@ import static Games.GUI.GameFrame.MainLocal.*;
                     tool.get(5).setVisible(true);
                 }
                 order++;
+                boolean iswin = true;
                 for (int i=0;i<map.length;i++){
                     for (int j=0;j<map[0].length;j++){
-                        
+                        if (Data.getHasClicked(i,j)==0) iswin=false;
                     }
+                }
+                if (iswin){
+                    int ant = JOptionPane.showConfirmDialog(null, "恭喜获胜", "恭喜获胜", JOptionPane.YES_NO_OPTION);
+                    String str = players.get(0).getName();
+                    int time0 = SoloTimer.gettime();
+                    SoloData.addname((double) time0,str);
+                    new paiming();
                 }
 
             }

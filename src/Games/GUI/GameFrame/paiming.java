@@ -41,7 +41,8 @@ public class paiming extends JFrame {
                 int a = JOptionPane.showConfirmDialog(null, "确定关闭吗？", "温馨提示",
                         JOptionPane.YES_NO_OPTION);
                 if (a == 1) {
-                    System.exit(0); // 关闭
+                    //System.exit(0); // 关闭
+                    dispose();
                 }
             }
         });

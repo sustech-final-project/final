@@ -171,6 +171,7 @@ public class F03 extends JFrame {
         JMenuItem save = new JMenuItem("保存");
         JMenuItem restart = new JMenuItem("新游戏");
         JMenuItem reLoad = new JMenuItem("载入");
+        JMenuItem paihangbang = new JMenuItem("单人排行榜");
         JMenuItem cheat = new JMenuItem("作弊模式");
         JMenuItem creator = new JMenuItem("制作人的话");
         JMenuItem about = new JMenuItem("关于...");
@@ -185,6 +186,7 @@ public class F03 extends JFrame {
         helpMenu.addSeparator();
         helpMenu.add(creator);
         helpMenu.add(about);
+        helpMenu.add(paihangbang);
 
         JMenuItem Theme1 = new JMenuItem("主题1");
         JMenuItem Theme2 = new JMenuItem("主题2");
@@ -192,6 +194,15 @@ public class F03 extends JFrame {
         changeTheme.add(Theme1);
         changeTheme.add(Theme2);
         //changeTheme.add(Theme3);
+
+        paihangbang.addActionListener(i ->{
+            new paiming();
+//            try {
+//                new Tnt();
+//            }catch (Exception e){
+//
+//            }
+        });
 
         Theme1.addActionListener(i ->{
             Data.zhuti=1;

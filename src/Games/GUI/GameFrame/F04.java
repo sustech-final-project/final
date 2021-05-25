@@ -8,6 +8,7 @@ import Games.listener.GameController;
 import javax.swing.*;
 import java.awt.*;
 
+import static Games.GUI.GameFrame.MainLocal.f00;
 import static Games.GUI.GameFrame.MainLocal.f02;
 
 public class F04 extends JFrame {
@@ -31,7 +32,7 @@ public class F04 extends JFrame {
                     dispose();
                     gc.clear();
                     F03.clear();
-                    f02();
+                    f00();
                 }
             });
         });

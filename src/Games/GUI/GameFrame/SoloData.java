@@ -44,6 +44,12 @@ public class SoloData {
         return soloplayer;
     }
 
+    public static void addname(double time,String name){
+        readpaiming();
+        paiming.put(time,name);
+        savepaiming();
+    }
+
     public static void setSoloplayer(ArrayList<Player> soloplayer) {
         SoloData.soloplayer = soloplayer;
     }
