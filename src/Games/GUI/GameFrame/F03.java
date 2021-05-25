@@ -40,40 +40,40 @@ public class F03 extends JFrame {
     static ArrayList<CardLayout> layouts = new ArrayList<>();
     static JPanel board = new JPanel(new GridLayout());
     ImageIcon timer1 = pic.getTimer();
-    //ImageIcon Player1 = pic.getPlayer();
+    ImageIcon Player1 = pic.getPlayer();
 
     //其他组件
     static JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
     //CountDown timer = new CountDown();
-   static ArrayList<Player> players = new ArrayList<>();
-   JLabel mi = new JLabel();
+    static ArrayList<Player> players = new ArrayList<>();
+    JLabel mi = new JLabel();
 
-   public static void clear() {
+    public static void clear() {
 
-       //游戏面板组件
- listeners = new ArrayList<>();
+        //游戏面板组件
+        listeners = new ArrayList<>();
         buttons = new ArrayList<>();
-       imagePanel = new ArrayList<>();
-       labels = new ArrayList<>();
-       upperPanel = new ArrayList<>();
-       cardContainer = new ArrayList<>();
-       layouts = new ArrayList<>();
-       board = new JPanel(new GridLayout());
+        imagePanel = new ArrayList<>();
+        labels = new ArrayList<>();
+        upperPanel = new ArrayList<>();
+        cardContainer = new ArrayList<>();
+        layouts = new ArrayList<>();
+        board = new JPanel(new GridLayout());
 
-       //其他组件
-       playerInf = new JLabel[0];
-       JPanel timerPanel = new Timer(new JPanel()).getPanel1();
-       //CountDown timer = new CountDown();
-       players = new ArrayList<>();
-   }
+        //其他组件
+        playerInf = new JLabel[0];
+        JPanel timerPanel = new Timer(new JPanel()).getPanel1();
+        //CountDown timer = new CountDown();
+        players = new ArrayList<>();
+    }
 
     public F03() {}
     public F03(String title, GameController gc) {
         //初始化参数
         super(title);
         timer1.setImage(timer1.getImage().getScaledInstance(294,108,Image.SCALE_DEFAULT));
-        //Player1.setImage(Player1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
+        Player1.setImage(Player1.getImage().getScaledInstance(294,138,Image.SCALE_DEFAULT));
         F03.gc = gc;
         order = gc.getOrder();
         map = gc.getMap();
@@ -144,18 +144,24 @@ public class F03 extends JFrame {
         timerPanel.add(new JLabel(timer1));
         contentPane.add(board, "70%");
         JPanel left = new JPanel(new AfYLayout());
-        left.add(mi);
+        left.add(mine);
         left.add(timerPanel, "20%");
         JPanel score = new JPanel(new AfYLayout());
         score.setBorder(new LineBorder(Color.BLACK, 2));
         players = gc.getPlayers();
+        JPanel[] Inf = new JPanel[players.size()];
         playerInf = new JLabel[players.size()];
-       // score.add(new JLabel(Player1));
 
         System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
-            score.add(playerInf[i] = new JLabel("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>"), (int) (1 / (double) (players.size()) * 100) + "%");
-
+            score.add(Inf[i] = new JPanel(new GridLayout(1, 1)), (int) (1 / (double) (players.size()) * 100) + "%");
+            playerInf[i] = new JLabel();
+            playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
+            ImageIcon tem = players.get(i).getIcon();
+            tem.setImage(tem.getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING));
+            Inf[i].add(new JLabel(tem));
+            Inf[i].add(playerInf[i]);
+            score.add(Inf[i]);
         }
         playerInf[players.indexOf(gc.whoseTurn())].setBorder(border1);
         left.add(score, "1w");
