@@ -1,5 +1,7 @@
 package Games.Map;
 
+import Games.GUI.GameFrame.F03;
+
 import java.awt.*;
 import java.text.*;
 
@@ -61,14 +63,19 @@ public class Timer implements Runnable							//计时器类
     @Override
     public void run()											//计时器功能
     {
-        // TODO 自动生成的方法存根
         while(true)
         {
             try
             {
                 Thread.sleep(1000);								//每次停顿一秒
                 time += 1;										//计时变量+1
-                TimerField.setText(String.valueOf(time));		//显示计时
+                TimerField.setText(String.valueOf(time));       //显示计时
+                if (time==3){
+                    ResetTimer();
+                    Data.setOrder(Data.getOrder()+1);
+                    F03.resetBorder();
+                }
+
             }
             catch (InterruptedException e)
             {

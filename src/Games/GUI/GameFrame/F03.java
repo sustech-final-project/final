@@ -5,6 +5,7 @@ import Games.GUI.GameFrame.layout.AfYLayout;
 
 import Games.Map.Player;
 import Games.Map.Timer;
+import Games.components.CountDown;
 import Games.listener.GameController;
 
 
@@ -21,7 +22,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 public class F03 extends JFrame {
     //参数
     int order = 0;
-    GameController gc;
+    static GameController gc;
     char[][] map;
 
 
@@ -36,9 +37,10 @@ public class F03 extends JFrame {
     JPanel board = new JPanel(new GridLayout());
 
     //其他组件
-    JLabel[] playerInf;
+    static JLabel[] playerInf;
     JPanel timerPanel = new Timer(new JPanel()).getPanel1();
-    ArrayList<Player> players = new ArrayList<>();
+    //CountDown timer = new CountDown();
+   static ArrayList<Player> players = new ArrayList<>();
 
     public F03(String title, GameController gc) {
         //初始化参数
@@ -348,6 +350,13 @@ public class F03 extends JFrame {
 
 
 
+    }
+
+    public static void resetBorder(){
+        Border border = BorderFactory.createLineBorder(Color.RED, 2);
+        Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+        playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
+        playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
     }
 
     private void left(int r, int c) {
