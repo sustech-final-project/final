@@ -358,22 +358,20 @@ public class F03 extends JFrame {
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
             if (!gc.getChar(row, column).equals("M")) {
-
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            Thread thread = new Thread() {
-                                public void run() {
-                                    try {
-                                        Fgif.Chaqi();
-                                    } catch (InterruptedException exception) {
-                                        exception.printStackTrace();
-                                    }
-                                }
-                            };
-
-
+//                            Thread thread = new Thread() {
+//                                public void run() {
+//                                    try {
+//                                        Fgif.Chaqi();
+//                                    } catch (InterruptedException exception) {
+//                                        exception.printStackTrace();
+//                                    }
+//                                }
+//                            };
+                            Fgif.Chaqi();
                         } catch (Exception interruptedException) {
                             interruptedException.printStackTrace();
                         }
@@ -382,23 +380,31 @@ public class F03 extends JFrame {
 
             }
         }
-
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
             left(row, column);
-        } else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3) {
+        } else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3 && gc.getChar(row,column).equals("M") ) {
             ImageIcon show = Pic.FLAG.getIcon();
             Dimension size = cardContainer.get(index).getSize();
             show.setImage(show.getImage().getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT));
             labels.get(index).setIcon(show);
             layouts.get(index).last(cardContainer.get(index));
         }
-
+        else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1 && gc.getChar(row,column).equals("M")){
+            ImageIcon show = Pic.MINE.getIcon();
+            Dimension size = cardContainer.get(index).getSize();
+            show.setImage(show.getImage().getScaledInstance(size.width, size.height,Image.SCALE_DEFAULT ));
+            labels.get(index).setIcon(show);
+            layouts.get(index).last(cardContainer.get(index));
+        }
+        else {
+            int index123 = row * map[0].length + column;
+            showNum(index123);
+        }
         buttons.get(index).setEnabled(false);
         gc.Click(row, column, type);
         for (int i = 0; i < players.size(); i++) {
             playerInf[i].setText("<html><body>" + "Player:" + players.get(i).getName() + "<br>" + "Score:" + players.get(i).getScore() + "<br>Mistake:" + players.get(i).getMistake() + "<body></html>");
         }
-
         Border border = BorderFactory.createLineBorder(Color.RED, 2);
         Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
         playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);

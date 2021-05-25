@@ -2,6 +2,7 @@ package Games.GUI.GameFrame;
 
 import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Map;
+import Games.components.pic;
 import Games.listener.GameController;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import static Games.GUI.GameFrame.MainLocal.f02;
 
 public class F04 extends JFrame {
     GameController gc;
+    JLabel bg = new JLabel();
     JButton play;
     JLabel label;
     public F04(String title, GameController gc){
@@ -33,6 +35,7 @@ public class F04 extends JFrame {
         });
         contentPane.add(label);
         contentPane.add(play);
+        contentPane.add(bg);
 
 //        buttonYes.addActionListener((l) -> {
 //            this.dispose();
@@ -65,6 +68,12 @@ public class F04 extends JFrame {
             if (label.isVisible()){
                 Dimension size = label.getPreferredSize();
                 label.setBounds((width - size.width) / 2, (height - size.height) / 3, size.width, size.height);
+            }
+            if (bg.isVisible()) {
+                bg.setBounds(0, 0, width, height);
+                ImageIcon show = pic.getBG1();
+                show.setImage(show.getImage().getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING));
+                bg.setIcon(show);
             }
             if (play.isVisible()){
                 Dimension size = play.getPreferredSize();
