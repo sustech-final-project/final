@@ -1,5 +1,6 @@
 package Games.GUI.GameFrame;
 
+import Games.components.pic;
 import Games.listener.GameController;
 
 
@@ -10,10 +11,11 @@ import static Games.GUI.GameFrame.MainLocal.f01;
 import static Games.GUI.GameFrame.MainLocal.f02;
 
 public class F00 extends JFrame {
+    JLabel bg = new JLabel();
     JLabel label = new JLabel("请选择游戏类型");
-    JButton native_ = new JButton("多人游戏");
-    JButton net = new JButton("联网游戏");
-    JButton solo = new JButton("剧情模式");
+    JButton native_ = new JButton("");
+    JButton net = new JButton("");
+    JButton solo = new JButton("");
     GameController gc;
 
     public F00(String title, GameController gc){
@@ -26,7 +28,18 @@ public class F00 extends JFrame {
         contentPane.add(native_);
         contentPane.add(net);
         contentPane.add(solo);
+        contentPane.add(bg);
 
+        ImageIcon DuoRen = pic.getDuoRen();
+        ImageIcon JuQing = pic.getJuQing();
+        ImageIcon LianWang = pic.getLianWang();
+
+        DuoRen.setImage(DuoRen.getImage().getScaledInstance(86, 26, Image.SCALE_DEFAULT));
+        JuQing.setImage(JuQing.getImage().getScaledInstance(86, 26, Image.SCALE_DEFAULT));
+        LianWang.setImage(LianWang.getImage().getScaledInstance(86, 26, Image.SCALE_DEFAULT));
+        solo.setIcon(JuQing);
+        native_.setIcon(DuoRen);
+        net.setIcon(LianWang);
         native_.addActionListener((l) -> {
             this.dispose();
             SwingUtilities.invokeLater(new Runnable() {
@@ -59,7 +72,7 @@ public class F00 extends JFrame {
                 @Override
                 public void run() {
                     // mai();
-                    MainLocal.solo1();
+                    MainLocal.solo();
                 }
             });
         });
@@ -75,27 +88,35 @@ public class F00 extends JFrame {
 
             if (label.isVisible()) {
                 Dimension size = label.getPreferredSize();
-                int x = (width - size.width)/2;
-                int y = (height - size.height) / 3;
-                label.setBounds(x, y, size.width, size.height);
+                int x = (width - 86)/2;
+                int y = (height - 26) / 3;
+                label.setBounds(x, y, 86, 26);
+            }
+            if (bg.isVisible()) {
+                bg.setBounds(0, 0, width, height);
+                ImageIcon show = pic.getBG1();
+                show.setImage(show.getImage().getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING));
+                bg.setIcon(show);
+
             }
             if (native_.isVisible()) {
                 Dimension size = native_.getPreferredSize();
-                int x = (width - 3 * size.width) / 4;
-                int y = 2 * (height - size.height) / 3;
-                native_.setBounds(x, y, size.width, size.height);
+                System.out.println(size);
+                int x = (width - 3 * 86) / 4;
+                int y = 2 * (height - 26) / 3;
+                native_.setBounds(x, y, 86, 26);
             }
             if (net.isVisible()) {
                 Dimension size = net.getPreferredSize();
-                int x = (width - 3 * size.width) / 4 * 2 + size.width;
-                int y = 2 * (height - size.height) / 3;
-                net.setBounds(x, y, size.width, size.height);
+                int x = (width - 3 * 86) / 4 * 2 + 86;
+                int y = 2 * (height - 26) / 3;
+                net.setBounds(x, y, 86, 26);
             }
             if(solo.isVisible()) {
                 Dimension size = solo.getPreferredSize();
-                int x = (width - 3 * size.width) / 4 * 3 + (2 * size.width);
-                int y = 2 * (height - size.height) / 3;
-                solo.setBounds(x, y, size.width, size.height);
+                int x = (width - 3 * 86) / 4 * 3 + (2 * 86);
+                int y = 2 * (height - 26) / 3;
+                solo.setBounds(x, y, 86, 26);
             }
 
 
