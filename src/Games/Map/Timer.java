@@ -70,7 +70,7 @@ public class Timer implements Runnable							//计时器类
                 Thread.sleep(1000);								//每次停顿一秒
                 time += 1;										//计时变量+1
                 TimerField.setText(String.valueOf(time));       //显示计时
-                if (time==3){
+                if (time==30){
                     ResetTimer();
                     GameController.setOrder(Data.getOrder()+1);
                     F03.resetBorder();

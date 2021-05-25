@@ -360,12 +360,15 @@ public class F03 extends JFrame {
     }
 
     public static void resetBorder(){
-        Border border = BorderFactory.createLineBorder(Color.RED, 2);
-        Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
-        playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
-        playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
-        if (gc.whoseTurn().getLevel() != 0) {
-            Connection.connect();
+        if (players.size()!=0) {
+            Border border = BorderFactory.createLineBorder(Color.RED, 2);
+            Border empty = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+            playerInf[(players.indexOf(gc.whoseTurn()) + players.size() - 1) % players.size()].setBorder(empty);
+            playerInf[players.indexOf(gc.whoseTurn())].setBorder(border);
+
+            if (gc.whoseTurn().getLevel() != 0) {
+                Connection.connect();
+            }
         }
     }
 
