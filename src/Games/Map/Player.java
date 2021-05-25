@@ -1,7 +1,9 @@
 package Games.Map;
 
+import Games.GUI.GameFrame.Pic;
 import Games.Internet.GameServer.Map;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,6 +13,11 @@ public class Player {
     int score;
     int mistake;
     int level = 0;// 简单 1、 普通 2、 困难 3
+    ImageIcon icon;
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
 
     public int getLevel() {
         return level;
@@ -21,6 +28,7 @@ public class Player {
         this.characteristic = characteristic;
         this.score=0;
         this.mistake=0;
+        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
     }
 
     public Player(String name, String characteristic, int level) {
@@ -29,6 +37,8 @@ public class Player {
         this.level = level;
         this.score=0;
         this.mistake=0;
+        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
+
         System.out.println("level" + level);
     }
 
@@ -37,6 +47,7 @@ public class Player {
         this.characteristic = characteristic;
         this.score = score;
         this.mistake = mistake;
+        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
     }
 
     public String getCharacteristic() {

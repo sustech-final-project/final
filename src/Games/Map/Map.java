@@ -63,6 +63,7 @@ public class Map {
         this.row = row;
         this.column = column;
         this.num = num;
+        Data.setMines(num);
     }
 
     public Map(String fileName) {

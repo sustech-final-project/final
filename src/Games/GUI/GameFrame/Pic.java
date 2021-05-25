@@ -27,6 +27,10 @@ public enum Pic {
     NUM16(new ImageIcon("src\\Games\\image\\转换\\6.jpg")),
     NUM17(new ImageIcon("src\\Games\\image\\转换\\7.jpg")),
     MINE1(new ImageIcon("src\\Games\\image\\mine.jpg")),
+    Play1(new ImageIcon("src\\Games\\image\\P1.png")),
+    Play2(new ImageIcon("src\\Games\\image\\P2.jpg")),
+    Play3(new ImageIcon("src\\Games\\image\\P3.png")),
+    Play4(new ImageIcon("src\\Games\\image\\P4.jpg")),
     FLAG1(new ImageIcon("src\\Games\\image\\flag.jpg"));
 
 
@@ -40,6 +44,15 @@ public enum Pic {
 
     public ImageIcon getIcon() {
         return icon;
+    }
+    public static ImageIcon getPlayerIcon(int index) {
+        switch (index) {
+            case 1: return Play1.getIcon();
+            case 2: return Play2.getIcon();
+            case 3: return Play3.getIcon();
+            case 4: return Play4.getIcon();
+            default: return null;
+        }
     }
 
     public static ImageIcon getIcon(String Char) {
