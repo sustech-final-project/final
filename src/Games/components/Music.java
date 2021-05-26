@@ -27,7 +27,6 @@ public class Music extends Applet {
             try {
                 File f = null;
                 if ("boom".equals(str)) {
-
                     //f = new File("final\\src\\音效\\单个爆炸音.wav");
                     f = new File("src\\音效\\单个爆炸音.wav");
 
@@ -95,6 +94,11 @@ public class Music extends Applet {
                 else if ("Begin".equals(str)){
                     //f = new File("final\\src\\音效\\开头.wav");
                     f = new File("src\\音效\\开头.wav");
+                    cb = f.toURL();
+                    auu = Applet.newAudioClip(cb);
+                    auu.play();
+                }else if (("50".equals(str))){
+                    f = new File("src\\音效\\50.wav");
                     cb = f.toURL();
                     auu = Applet.newAudioClip(cb);
                     auu.play();

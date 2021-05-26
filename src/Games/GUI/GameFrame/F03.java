@@ -230,7 +230,7 @@ public class F03 extends JFrame {
             }
             else if (music.getText().equals("开启音乐")) {
                 music.setText("关闭音乐");
-                Music.playMusic("BGM");
+                Music.playMusic("50");
             }
         });
 
