@@ -51,35 +51,67 @@ public class DoubleClick extends Map implements pve{
 
 
     public int top(int row,int column){
+        try{
         if (getMap(row-1,column)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+        return 0;
+        }
         return 0;
     }
     public int topleft(int row,int column){
-        if (getMap(row-1,column-1)=='M'&&Data.getHasClicked(row-1,column-1)==1) return 1;
+        try{
+            if (getMap(row-1,column-1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int topright(int row,int column){
-        if (getMap(row-1,column+1)=='M'&&Data.getHasClicked(row-1,column+1)==1) return 1;
+        try{
+            if (getMap(row-1,column+1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int left(int row,int column){
-        if (getMap(row,column-1)=='M'&&Data.getHasClicked(row,column-1)==1) return 1;
+        try{
+            if (getMap(row,column-1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int right(int row,int column){
-        if (getMap(row,column+1)=='M'&&Data.getHasClicked(row,column+1)==1) return 1;
+        try{
+            if (getMap(row,column+1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int bottom(int row,int column){
-        if (getMap(row+1,column)=='M'&&Data.getHasClicked(row+1,column)==1) return 1;
+        try{
+            if (getMap(row+1,column)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int bottomleft(int row,int column){
-        if (getMap(row+1,column-1)=='M'&&Data.getHasClicked(row+1,column-1)==1) return 1;
+        try{
+            if (getMap(row+1,column-1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
     public int bottomright(int row,int column){
-        if (getMap(row+1,column+1)=='M'&&Data.getHasClicked(row+1,column+1)==1) return 1;
+        try{
+            if (getMap(row+1,column+1)=='M'&&Data.getHasClicked(row-1,column)==1) return 1;
+        } catch (Exception e) {
+            return 0;
+        }
         return 0;
     }
 }

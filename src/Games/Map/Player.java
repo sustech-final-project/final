@@ -28,7 +28,7 @@ public class Player {
         this.characteristic = characteristic;
         this.score=0;
         this.mistake=0;
-        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
+        if (characteristic.length() == 3)icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
     }
 
     public Player(String name, String characteristic, int level) {
@@ -37,7 +37,7 @@ public class Player {
         this.level = level;
         this.score=0;
         this.mistake=0;
-        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
+        if (characteristic.length() == 3)icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
 
         System.out.println("level" + level);
     }
@@ -47,7 +47,7 @@ public class Player {
         this.characteristic = characteristic;
         this.score = score;
         this.mistake = mistake;
-        icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
+        if (characteristic.length() == 3)icon = Pic.getPlayerIcon(Integer.parseInt(characteristic.substring(2)));
     }
 
     public String getCharacteristic() {
@@ -99,8 +99,7 @@ public class Player {
                 return r + " " + c + " " + t;
             }
         } else if (level == 2){
-
-            return null;
+            return new pvetest().pvemiddle();
         } else if (level == 3){
             int r = random.nextInt(map.length);
             int c = random.nextInt(map[0].length);

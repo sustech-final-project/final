@@ -159,7 +159,7 @@ public class Data {
         try {
             return HasClicked[row][column];
         } catch (Exception e){
-            return 1;
+            return 2;
         }
     }
 

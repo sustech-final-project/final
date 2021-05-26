@@ -120,7 +120,7 @@ public class F03 extends JFrame {
             //如有存档初始化地图
             int row = i / map[0].length;
             int column = i % map[0].length;
-            System.out.println(order);
+//            System.out.println(order);
             if (order != 0 && gc.isPrint(row, column)) {//Todo:修复读档的bug
                 showNum(i);
             }
@@ -152,7 +152,7 @@ public class F03 extends JFrame {
         JPanel[] Inf = new JPanel[players.size()];
         playerInf = new JLabel[players.size()];
 
-        System.out.println(players.size());
+//        System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
             score.add(Inf[i] = new JPanel(new GridLayout(1, 1)), (int) (1 / (double) (players.size()) * 100) + "%");
             playerInf[i] = new JLabel();
@@ -280,6 +280,7 @@ public class F03 extends JFrame {
 
                                 //  if (order == 0) gc.createMap(r, c);
                                 if (buttons.get(index).isVisible() && !gc.getChar(r, c).equals("M")) {
+                                    System.out.println("GC\t" + r + "\t" + c);
                                     left(r, c);
                                 } else if (buttons.get(index).isVisible()) {
                                     ImageIcon show = Pic.FLAG.getIcon();
@@ -332,6 +333,7 @@ public class F03 extends JFrame {
 
     private void showNum(int index) {
         //todo 显示该位置的数字
+        System.out.println(index / map[0].length + "\t" + index % map[0].length);
         ImageIcon show = Pic.getIcon(gc.getChar(index / map[0].length, index % map[0].length));
         show.setImage(show.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         labels.get(index).setIcon(show);
@@ -419,6 +421,7 @@ public class F03 extends JFrame {
             }
         }
         if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON1) {
+            System.out.println("LeftB\t" + row + "\t" + column);
             left(row, column);
         }
         else if (buttons.get(index).isVisible() && type == MouseEvent.BUTTON3 && gc.getChar(row,column).equals("M") ) {
@@ -436,8 +439,7 @@ public class F03 extends JFrame {
             layouts.get(index).last(cardContainer.get(index));
         }
         else {
-            int index123 = row * map[0].length + column;
-            showNum(index123);
+            left(row, column);
         }
         buttons.get(index).setEnabled(false);
         gc.Click(row, column, type);
@@ -488,7 +490,7 @@ public class F03 extends JFrame {
 
     private void left(int r, int c) {
         int index = r * map[0].length + c;
-        showNum(index);
+        if (r >= 0&& c >= 0&&index >= 0&& r < map.length&& c < map[0].length) showNum(index);
         if (map[r][c] == '0') {
             if (!gc.isPrint(r - 1, c + 1)) try {
                 left(r - 1, c + 1);
