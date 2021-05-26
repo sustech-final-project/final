@@ -14,7 +14,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 public class Solo1 extends JFrame {
     GameController gc;
     String[] typeList = new String[]{"玩家", "无"};
-    String[] characteristicList = new String[]{"无", "角色1","角色2"};
+    String[] characteristicList = new String[]{"角色1","角色2"};
     JPanel[] sub_1 = new JPanel[4];
     ArrayList<JComboBox<String>> type = new ArrayList<>();
     ArrayList<JComboBox<String>> characteristic = new ArrayList<>();

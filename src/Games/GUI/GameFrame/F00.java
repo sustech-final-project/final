@@ -45,7 +45,7 @@ public class F00 extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (gc.isSaveExist()) {         ////////////////////////////
+                    if (true) {         ////////////////////////////
                         gc.clear();
                         F03.clear();
                         f01();
