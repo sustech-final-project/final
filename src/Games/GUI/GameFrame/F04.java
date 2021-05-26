@@ -2,11 +2,13 @@ package Games.GUI.GameFrame;
 
 import Games.GUI.GameFrame.layout.AfYLayout;
 import Games.Map.Map;
+import Games.Map.Player;
 import Games.components.pic;
 import Games.listener.GameController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static Games.GUI.GameFrame.MainLocal.f00;
 import static Games.GUI.GameFrame.MainLocal.f02;
@@ -22,7 +24,10 @@ public class F04 extends JFrame {
         setLocationRelativeTo(null);
         Container contentPane = getContentPane();
         contentPane.setLayout(new Layout());
-        if (!gc.whoWin().toString().equals("[平局]"))label = new JLabel("Congratulation, " + gc.whoWin().toString() + ", wins!");
+        System.out.println(gc.whoWin());
+        if (!gc.whoWin().contains("平局")){
+            label = new JLabel("Congratulation, " + gc.whoWin().toString() + ", wins!");
+        }
         else label = new JLabel("We have a tied match!");
         play = new JButton("Play Again.");
         play.addActionListener(e -> {

@@ -334,9 +334,10 @@ public class F03 extends JFrame {
     private void showNum(int index) {
         //todo 显示该位置的数字
         System.out.println(index / map[0].length + "\t" + index % map[0].length);
+        try{
         ImageIcon show = Pic.getIcon(gc.getChar(index / map[0].length, index % map[0].length));
         show.setImage(show.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
-        labels.get(index).setIcon(show);
+        labels.get(index).setIcon(show);}catch (Exception e){}
         layouts.get(index).last(cardContainer.get(index));
     }
 

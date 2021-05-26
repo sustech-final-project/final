@@ -473,7 +473,7 @@ import static Games.GUI.GameFrame.MainLocal.*;
 
         private void left(int r, int c) {
             int index = r * map[0].length + c;
-            showNum(index);
+            if (r >= 0&& c >= 0&&index >= 0&& r < map.length&& c < map[0].length) showNum(index);
             if (map[r][c] == '0'){
                 if (!gc.isPrint(r - 1, c +1)) try {left(r - 1, c +1);} catch (Exception ignored) {}
                 if (!gc.isPrint(r - 1, c)) try {left(r - 1, c);} catch (Exception ignored) {}
