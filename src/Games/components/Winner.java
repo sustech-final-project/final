@@ -54,11 +54,19 @@ public class Winner {
         }
         for (int i = 0; i < Data.getPlayers().size(); i++) {
             Player player = Data.getPlayers().get(i);
-            if (player.getScore() == sc && player.getMistake()==mistake) {
+            if (player.getScore() == sc) {
                 winner.add(player.getName());
             }
         }
-
+        if (winner.size() != 1){
+            winner=new ArrayList<>();
+            for (int i = 0; i < Data.getPlayers().size(); i++) {
+                Player player = Data.getPlayers().get(i);
+                if (player.getScore() == sc && player.getMistake()==mistake) {
+                    winner.add(player.getName());
+                }
+            }
+        }
         if (winner.size()==0){
             winner=new ArrayList<>();
             winner.add("平局");
